@@ -1,5 +1,5 @@
 package Class.ModellVasut;
-
+//Működik
 /**
  * @author Bandi
  * @version 1.0
