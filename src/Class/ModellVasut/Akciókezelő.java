@@ -20,7 +20,7 @@ public class Akciókezelő {
 	 * @param cs
 	 */
 	public void akció(Class.ModellVasut.Csomópont cs){
-
+		//>><<//
 	}
 
 }
