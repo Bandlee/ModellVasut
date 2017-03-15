@@ -8,9 +8,9 @@ import java.io.*;
 public class Main {
     public static void main(String[] args){
         String parancs;
-        boolean vÃ©ge=false;
+        boolean vége=false;
         BufferedReader be= new BufferedReader(new InputStreamReader(System.in));
-        while(!vÃ©ge){
+        while(!vége){
             try{
                 parancs=be.readLine();
                 switch(parancs){
@@ -18,24 +18,22 @@ public class Main {
 
                         break;
                     case "20":
-                        System.out.println(">>AkciÃ³kezelÃµ::akciÃ³(AlagÃºtSzÃ¡j a)");
-                        System.out.println(">>AkciÃ³kezelÃµ::akciÃ³(AlagÃºtSzÃ¡j a)");
-                        AkciÃ³kezelÅ‘ ak2= new AkciÃ³kezelÅ‘();
-                        AlagÃºtSzÃ¡j aj_epit = new AlagÃºtSzÃ¡j();
-                        ak2.akciÃ³(aj_epit);
+                        System.out.println(">>Akciókezelõ::akció(AlagútSzáj a)");
+                        Akciókezelõ ak2= new Akciókezelõ();
+                        AlagútSzáj aj_epit = new AlagútSzáj();
+                        ak2.akció(aj_epit);
                         break;
                     case "21":
-                        System.out.println(">>AkciÃ³kezelÃµ::akciÃ³(AlagÃºtSzÃ¡j a)");
-                        AkciÃ³kezelÅ‘ ak3= new AkciÃ³kezelÅ‘();
-                        AlagÃºtSzÃ¡j aj_rombol = new AlagÃºtSzÃ¡j();
-                        ak3.akciÃ³(aj_rombol);
+                        System.out.println(">>Akciókezelõ::akció(AlagútSzáj a)");
+                        Akciókezelõ ak3= new Akciókezelõ();
+                        AlagútSzáj aj_rombol = new AlagútSzáj();
+                        ak3.akció(aj_rombol);
                         break;
                     case "30":
-
-                        System.out.println(">>AkciÃ³kezelÃµ::akciÃ³(VÃ¡ltÃ³ v)");
-                        AkciÃ³kezelÅ‘ ak= new AkciÃ³kezelÅ‘();
-                        VÃ¡ltÃ³ v = new VÃ¡ltÃ³();
-                        ak.akciÃ³(v);
+                        System.out.println(">>Akciókezelõ::akció(Váltó v)");
+                        Akciókezelõ ak= new Akciókezelõ();
+                        Váltó v = new Váltó();
+                        ak.akció(v);
                         break;
                     case "40":
 
@@ -63,10 +61,10 @@ public class Main {
 
                         break;
                     case "99":
-                        vÃ©ge=true;
+                        vége=true;
                         break;
                     default:
-                        System.out.println("Nem megfelelÃµ bemenet.");
+                        System.out.println("Nem megfelelo bemenet.");
                 }
             } catch (IOException e){
                 System.out.println(e.getMessage());
