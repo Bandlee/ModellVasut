@@ -8,9 +8,9 @@ import java.io.*;
 public class Main {
     public static void main(String[] args){
         String parancs;
-        boolean vÈge=false;
+        boolean v√©ge=false;
         BufferedReader be= new BufferedReader(new InputStreamReader(System.in));
-        while(!vÈge){
+        while(!v√©ge){
             try{
                 parancs=be.readLine();
                 switch(parancs){
@@ -18,24 +18,24 @@ public class Main {
 
                         break;
                     case "20":
-                        System.out.println(">>AkciÛkezelo::akciÛ(Alag˙tSz·j a)");
-                        System.out.println(">>AkciÛkezelo::akciÛ(Alag˙tSz·j a)");
-                        AkciÛkezelı ak2= new AkciÛkezelı();
-                        Alag˙tSz·j aj_epit = new Alag˙tSz·j();
-                        ak2.akciÛ(aj_epit);
+                        System.out.println(">>Akci√≥kezel√µ::akci√≥(Alag√∫tSz√°j a)");
+                        System.out.println(">>Akci√≥kezel√µ::akci√≥(Alag√∫tSz√°j a)");
+                        Akci√≥kezel≈ë ak2= new Akci√≥kezel≈ë();
+                        Alag√∫tSz√°j aj_epit = new Alag√∫tSz√°j();
+                        ak2.akci√≥(aj_epit);
                         break;
                     case "21":
-                        System.out.println(">>AkciÛkezelo::akciÛ(Alag˙tSz·j a)");
-                        AkciÛkezelı ak3= new AkciÛkezelı();
-                        Alag˙tSz·j aj_rombol = new Alag˙tSz·j();
-                        ak3.akciÛ(aj_rombol);
+                        System.out.println(">>Akci√≥kezel√µ::akci√≥(Alag√∫tSz√°j a)");
+                        Akci√≥kezel≈ë ak3= new Akci√≥kezel≈ë();
+                        Alag√∫tSz√°j aj_rombol = new Alag√∫tSz√°j();
+                        ak3.akci√≥(aj_rombol);
                         break;
                     case "30":
 
-                        System.out.println(">>AkciÛkezelo::akciÛ(V·ltÛ v)");
-                        AkciÛkezelı ak= new AkciÛkezelı();
-                        V·ltÛ v = new V·ltÛ();
-                        ak.akciÛ(v);
+                        System.out.println(">>Akci√≥kezel√µ::akci√≥(V√°lt√≥ v)");
+                        Akci√≥kezel≈ë ak= new Akci√≥kezel≈ë();
+                        V√°lt√≥ v = new V√°lt√≥();
+                        ak.akci√≥(v);
                         break;
                     case "40":
 
@@ -63,10 +63,10 @@ public class Main {
 
                         break;
                     case "99":
-                        vÈge=true;
+                        v√©ge=true;
                         break;
                     default:
-                        System.out.println("Nem megfelelo bemenet.");
+                        System.out.println("Nem megfelel√µ bemenet.");
                 }
             } catch (IOException e){
                 System.out.println(e.getMessage());
