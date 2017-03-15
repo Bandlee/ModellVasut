@@ -41,7 +41,6 @@ public class Main {
 
                         break;
                     case "50":
-                        //Sárga pintyőke
                         break;
                     case "51":
 
@@ -50,7 +49,6 @@ public class Main {
 
                         break;
                     case "53":
-                        System.out.println("Hahahaha");
                         break;
                     case "60":
 
