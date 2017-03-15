@@ -20,7 +20,7 @@ public class Váltó extends Csomópont {
 	}
 
 	public void felhasználóAkció(){
-
+		System.out.println("Váltás történik.");
 	}
 
 	/**
@@ -28,6 +28,8 @@ public class Váltó extends Csomópont {
 	 * @param v
 	 * @param s
 	 */
+
+	@Override
 	public boolean tovább(VonatElem v, SínElem s){
 		return false;
 	}

@@ -8,7 +8,7 @@ package Class.ModellVasut;
  */
 public class SínElem {
 
-	private Class.ModellVasut.VonatElem aktuálisVonatElem;
+	private VonatElem aktuálisVonatElem;
 	private SínElem elõzõ;
 	private SínElem következõ;
 	private boolean látható;
@@ -23,7 +23,7 @@ public class SínElem {
 
 	}
 
-	public Class.ModellVasut.VonatElem getÁthaladóElem(){
+	public VonatElem getÁthaladóElem(){
 		return null;
 	}
 
@@ -32,7 +32,7 @@ public class SínElem {
 	 * @param i
 	 * @param v
 	 */
-	public boolean keresztez(boolean i, Class.ModellVasut.VonatElem v){
+	public boolean keresztez(boolean i, VonatElem v){
 		return false;
 	}
 

@@ -9,8 +9,8 @@ package Class.ModellVasut;
 public abstract class VonatElem {
 
 	protected boolean irány;
-	protected Class.ModellVasut.SínElem TartózkodásiHely;
-	public Class.ModellVasut.SínElem m_SínElem;
+	protected SínElem TartózkodásiHely;
+	public SínElem m_SínElem;
 
 	public VonatElem(){
 
@@ -32,7 +32,7 @@ public abstract class VonatElem {
 		return false;
 	}
 
-	public Class.ModellVasut.SínElem getPozíció(){
+	public SínElem getPozíció(){
 		return null;
 	}
 
@@ -52,7 +52,7 @@ public abstract class VonatElem {
 	 * 
 	 * @param s
 	 */
-	public void setPozíció(Class.ModellVasut.SínElem s){
+	public void setPozíció(SínElem s){
 
 	}
 

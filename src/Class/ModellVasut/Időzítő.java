@@ -11,7 +11,7 @@ import java.util.List;
 public class Idõzítõ {
 
 	private List<Mozdony> mozdonyok;
-	public Class.ModellVasut.Mozdony m_Mozdony;
+	public Mozdony m_Mozdony;
 
 	public Idõzítõ(){
 

@@ -11,9 +11,9 @@ import java.util.List;
 public class Alagút {
 
 	private List<SínElem> alagútelem;
-	private Class.ModellVasut.AlagútSzáj bejárat1;
-	private Class.ModellVasut.AlagútSzáj bejárat2;
-	public Class.ModellVasut.SínElem m_SínElem;
+	private AlagútSzáj bejárat1;
+	private AlagútSzáj bejárat2;
+	public SínElem m_SínElem;
 
 	public Alagút(){
 
