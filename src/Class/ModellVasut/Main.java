@@ -19,17 +19,21 @@ public class Main {
                         break;
                     case "20":
                         System.out.println(">>Akciókezelõ::akció(AlagútSzáj a)");
+                        System.out.println(">>Akciókezelõ::akció(AlagútSzáj a)");
+                        Akciókezelő ak2= new Akciókezelő();
+                        AlagútSzáj aj_epit = new AlagútSzáj();
+                        ak2.akció(aj_epit);
                         break;
                     case "21":
                         System.out.println(">>Akciókezelõ::akció(AlagútSzáj a)");
-                        Akciókezelõ ak2= new Akciókezelõ();
-                        AlagútSzáj aj_epit = new AlagútSzáj();
-                        ak2.akció(aj_epit);
+                        Akciókezelő ak3= new Akciókezelő();
+                        AlagútSzáj aj_rombol = new AlagútSzáj();
+                        ak3.akció(aj_rombol);
                         break;
                     case "30":
 
                         System.out.println(">>Akciókezelõ::akció(Váltó v)");
-                        Akciókezelõ ak= new Akciókezelõ();
+                        Akciókezelő ak= new Akciókezelő();
                         Váltó v = new Váltó();
                         ak.akció(v);
                         break;
@@ -46,7 +50,7 @@ public class Main {
 
                         break;
                     case "53":
-
+                        System.out.println("Hahahaha");
                         break;
                     case "60":
 

@@ -17,7 +17,7 @@ public class Akciókezelõ{
 
 	/**
 	 * 
-	 * @param cs
+	 * @param cs: Megadja, hogy melyik csomópont típusú elemen szeretne a felhasználó akciót végrehajtani.
 	 */
 	public void akció(Csomópont cs){
 	    /**Csak a Szkeletonban történõ kiíratás miatt kérjük le a típusát csomópont objektumnak.
