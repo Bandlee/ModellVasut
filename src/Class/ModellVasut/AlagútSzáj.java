@@ -41,11 +41,12 @@ public class AlagútSzáj extends Csomópont {
 				System.out.println("Építesz vagy rombolsz?(é/r)");
 				String válasz=be.readLine();
 				if (válasz.equals("é")) {
-					System.out.println("Egy van belõle?(i/n");
+					System.out.println("Egy van belõle?(i/n)");
 					String egy = be.readLine();
 
 					if (egy.equals("i")) {
 						System.out.println(">>AlagútSzáj::épít()");
+						this.épít();
 					}
 
 					else if (egy.equals("n")) {
