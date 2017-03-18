@@ -25,6 +25,7 @@ public abstract class VonatElem {
 	 * @param s
 	 */
 	public boolean ellenõriz(String s){
+		System.out.println("<<VonatElem::ellenõriz(String s)::boolean");
 		return false;
 	}
 

@@ -22,7 +22,8 @@ public class PályaGeneráló {
 	}
 
 	public Idõzítõ kezdés(){
-		return null;
+		System.out.println("<<Pályageneráló::kezdés()::Idõzítõ");
+		return new Idõzítõ();
 	}
 
 }
