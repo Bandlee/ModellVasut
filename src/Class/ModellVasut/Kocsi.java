@@ -26,6 +26,9 @@ public class Kocsi extends VonatElem {
 	}
 
 	/**
+	 * A metódus megadja, hogy adott színû állomás mellett elhaladva szállnak-e le a kocsiról utasok.
+	 * Amennyiben igen, ezt jelzi az utas tulajdonság beállításával, valamit engedélyezi az utána következõ
+	 * kocsinak a leszállást (ez a szkeletonban nincs megvalósítva, a végsõ programban lesz szerepe).
 	 *
 	 * @param s: Az állomás színét jelöli a paraméter, ez alapján fogjuk a végsõ programban eldönteni,
 	 *           hogy szállnak-e le az adott kocsiról a megadott színû állomáson.
@@ -33,6 +36,10 @@ public class Kocsi extends VonatElem {
 	@Override
 	public boolean ellenõriz(String s){
 
+		/**
+		 * Szkeletonban nem szín egyezeés és leszállási engedély alapján történik annak megállapítása hogy szálltak-e le utasok.
+		 * Ez nyilvánvalóan másképp lesz megvalósítva a végsõ programban.
+		 */
 		System.out.println("Szállnak le utasok a kocsiról?(i/n)");
 		BufferedReader be= new BufferedReader(new InputStreamReader(System.in));
 		String leszállnak;
