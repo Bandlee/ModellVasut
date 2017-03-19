@@ -14,6 +14,10 @@ public class Mozdony extends VonatElem {
 	public Csomópont m_Csomópont;
 	public Kocsi m_Kocsi;
 
+	/**
+	 * jelenleg csak a tesztesethez állítunk be egy kezdõértéket
+	 * az éles programban nem így fog kinézni
+	 */
 	public Mozdony(){
 		késleltetés = 10;
 	}

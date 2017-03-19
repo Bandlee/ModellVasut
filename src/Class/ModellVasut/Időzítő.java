@@ -13,6 +13,9 @@ public class Idõzítõ {
 	private List<Mozdony> mozdonyok;
 	public Mozdony m_Mozdony;
 
+	/**
+	 * saját, tesztesetekhez használt változó
+	 */
 	public Idõzítõ(){
 		m_Mozdony = new Mozdony();
 
@@ -22,6 +25,9 @@ public class Idõzítõ {
 
 	}
 
+	/**
+	 * az idõ eltelését szimbolizálja, idõegységenként hívódik meg
+	 */
 	public void tick(){
 		System.out.println(">>Mozdony::tickAkció()");
 		m_Mozdony.tickAkció();

@@ -16,6 +16,10 @@ public class SínElem {
 	private Csomópont sínvég2;
 	public Csomópont m_Sinveg;
 
+	/**
+	 * sínelem konstruktor
+	 * jelenleg csak a tesztesetekhez szükséges elemeket hozza létre
+	 */
 	public SínElem(){
 		sínvég1 = new Csomópont();
 		sínvég2 = new Csomópont();
@@ -25,6 +29,12 @@ public class SínElem {
 
 	}
 
+	/**
+	 * segédfüggvény a tesztesetekhez
+	 * alapból a konstruktor jelenleg nullázza a következõ sínelemre mutató referenciát, mivel ha újat hoznék létre, végtelen ciklusba kerülne
+	 * viszont bizonyos esetekben szükség van arra, hogy legyen beállítva követezõ sínelem, ezt kezeli ez a függvény
+	 * a rendes mûködés közben erre nem lesz ilyen formában szükség
+	 */
 	public void setKövetkezõ(){
 		következõ = new SínElem();
 		következõ.elõzõ = this;
@@ -35,6 +45,11 @@ public class SínElem {
 		következõ.elõzõ = this;
 	}
 
+	/**
+	 * visszatér az aktuálisan a sínelemen tartózkodó vonatelemmel
+	 * jelenleg mivel nincsenek elõre felépített objektumaink, itt hoz létre egy elemet, amit visszaad, de ez a rendes kódban nem így fog majd kinézni
+	 * @return a sínelemen tartózkodó vonatelem
+	 */
 	public VonatElem getÁthaladóElem(){
 		System.out.println("<<SínElem::getÁthaladóElem()::boolean");
 		return new Kocsi();
@@ -56,13 +71,19 @@ public class SínElem {
 	}
 
 	/**
-	 * 
-	 * @param áe
+	 * beállítja  a sínelemen áthaladó vonatelemet
+	 * @param áe a beállított paraméter
 	 */
 	public void setÁthaladóElem(VonatElem áe){
 
 	}
 
+	/**
+	 * a függvény kezeli azt az esetét a vonatütközésnek, mikor egymással két szembenálló mozdony "átugraná egymást"
+	 *
+	 * jelenlegi visszatérési értéke a tesztesetek mûködését szolgálja, az éles programban nem így lesz meghatározva
+	 * @return megmutatja, hogy fennáll e az ütközésnek a lehetõsége
+	 */
 	public boolean ütközésElõrejelez(){
 		System.out.println(">>SínElem::ütközéstElõrejelez()");
 		elõzõ = new SínElem();
@@ -76,10 +97,17 @@ public class SínElem {
 		return false;
 	}
 
+	/**
+	 * a sínelemhez kapcsolódó, következõ elemet adja vissza
+	 * @return a keresett elem
+	 */
 	public SínElem getKövetkezõ() {
 		return következõ;
 	}
-
+	/**
+	 * a sínelemhez kapcsolódó, elõzõ elemet adja vissza
+	 * @return a keresett elem
+	 */
 	public SínElem getElõzõ() {
 		return elõzõ;
 	}

@@ -19,19 +19,12 @@ public class Váltó extends Csomópont {
 		super.finalize();
 	}
 
+	/**
+	 * a felhasználó váltását kezelõ függvény
+	 */
 	public void felhasználóAkció(){
 		System.out.println("Váltás történik.");
-	}
 
-	/**
-	 * 
-	 * @param v
-	 * @param s
-	 */
-
-	@Override
-	public boolean tovább(VonatElem v, SínElem s){
-		return false;
 	}
 
 }
