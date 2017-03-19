@@ -23,7 +23,12 @@ public class Mozdony extends VonatElem {
 	}
 
 	public void tickAkció(){
-
+		if(késleltetés == 0) {
+			mozgat();
+			elsõ.tickAkció();
+		} else {
+			késleltetés--;
+		}
 	}
 
 }

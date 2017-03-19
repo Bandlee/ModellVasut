@@ -37,7 +37,13 @@ public abstract class VonatElem {
 	}
 
 	public void mozgat(){
+		if(irány) {
 
+			if(m_SínElem.getKövetkezõ() == null) {
+				m_SínElem.keresztez(irány, this);
+			}
+
+		}
 	}
 
 	/**

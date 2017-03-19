@@ -33,7 +33,11 @@ public class SínElem {
 	 * @param v
 	 */
 	public boolean keresztez(boolean i, VonatElem v){
-		return false;
+		if(i) {
+			return sínvég1.tovább(v, this);
+		} else {
+			return sínvég2.tovább(v, this);
+		}
 	}
 
 	/**
@@ -48,4 +52,11 @@ public class SínElem {
 		return false;
 	}
 
+	public SínElem getKövetkezõ() {
+		return következõ;
+	}
+
+	public SínElem getElõzõ() {
+		return elõzõ;
+	}
 }

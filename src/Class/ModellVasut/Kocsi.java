@@ -30,7 +30,8 @@ public class Kocsi extends VonatElem {
 	}
 
 	public void tickAkció(){
-
+		mozgat();
+		if(következõ != null) következõ.tickAkció();
 	}
 
 }
