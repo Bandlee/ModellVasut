@@ -28,11 +28,12 @@ public class SínElem {
 	}
 
 	/**
-	 * 
-	 * @param i
-	 * @param v
+	 * Tovább küldi az irányának megfelelõ csomópontba a v paraméterben kapott VonatElemet
+	 * @param i A vonat iránya
+	 * @param v A vonatelem, amelyet mozgatni akarunk
 	 */
 	public boolean keresztez(boolean i, VonatElem v){
+		System.out.println("Vonat érkezett, irányának megfelelõen adjuk tovább a csomópontnak.");
 		if(i) {
 			return sínvég1.tovább(v, this);
 		} else {

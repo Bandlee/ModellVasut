@@ -60,7 +60,12 @@ public class Kocsi extends VonatElem {
 
 	}
 
+	/**
+	 * A metódus meghívódik minden alkalommal, mikor az elõtte lévõ vonat elem átadja neki az órajelet
+	 * Meghívja az elem mozgatásáért felelõs függvényt, és továbbadja a jelet a következõ vonat elemnek, ha létezik.
+	 */
 	public void tickAkció(){
+		System.out.println("Kocsi órajelet kapott");
 		mozgat();
 		if(következõ != null) következõ.tickAkció();
 	}

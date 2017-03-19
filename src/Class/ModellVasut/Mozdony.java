@@ -22,7 +22,12 @@ public class Mozdony extends VonatElem {
 		super.finalize();
 	}
 
+	/**
+	 * Közvetlenül a játék lefolyását kezelõ osztályból hívódik. Meghívja a vonat mozgatásáért felelõs függvényt, ha
+	 * annak már a pályán kellene lennie (késleltetés == 0), különben csökkenti a késleltetést
+	 */
 	public void tickAkció(){
+		System.out.println("Mozdony órajelet kapott");
 		if(késleltetés == 0) {
 			mozgat();
 			elsõ.tickAkció();

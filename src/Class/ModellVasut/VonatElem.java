@@ -40,30 +40,40 @@ public abstract class VonatElem {
 		return null;
 	}
 
+	/**
+	 *	Adott vonat elem következõ sínelemre helyezését irányítja
+	 */
 	public void mozgat(){
+		System.out.println("Vonat tovább halad");
 		if(irány) {
-
 			if(m_SínElem.getKövetkezõ() == null) {
 				m_SínElem.keresztez(irány, this);
+			} else {
+				setPozíció(m_SínElem.getKövetkezõ());
 			}
-
+		} else {
+			if(m_SínElem.getElõzõ() == null) {
+				m_SínElem.keresztez(irány, this);
+			} else {
+				setPozíció(m_SínElem.getElõzõ());
+			}
 		}
 	}
 
 	/**
-	 * 
+	 *
 	 * @param i
 	 */
 	public void setIrány(boolean i){
-
+		irány = i;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param s
 	 */
 	public void setPozíció(SínElem s){
-
+		TartózkodásiHely = s;
 	}
 
 }
