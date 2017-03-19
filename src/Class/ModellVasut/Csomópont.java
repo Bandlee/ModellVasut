@@ -33,8 +33,9 @@ public class Csomópont {
 	 * @param s
 	 */
 	public boolean tovább(VonatElem v, SínElem s){
-		v.setPozíció();
-		v.setIrány();
+		v.setPozíció(new SínElem());
+		v.setIrány(true);
+		return true;
 	}
 
 }
