@@ -34,7 +34,7 @@ public class Csomópont {
 	 */
 	public boolean tovább(VonatElem v, SínElem s){
 		System.out.println(">>Csomópont::tovább(v,s)");
-		v.setPozíció(new SínElem());
+		v.setPozíció(m_SínElem);
 		v.setIrány(true);
 		System.out.println("<<Csomópont::tovább(v,s)::boolean");
 

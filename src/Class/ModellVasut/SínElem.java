@@ -14,6 +14,7 @@ public class SínElem {
 	private boolean látható;
 	private Csomópont sínvég1;
 	private Csomópont sínvég2;
+	public Csomópont m_Sinveg;
 
 	public SínElem(){
 		sínvég1 = new Csomópont();
@@ -26,6 +27,12 @@ public class SínElem {
 
 	public void setKövetkezõ(){
 		következõ = new SínElem();
+		következõ.elõzõ = this;
+	}
+
+	public void setKövetkezõ(SínElem se){
+		következõ = se;
+		következõ.elõzõ = this;
 	}
 
 	public VonatElem getÁthaladóElem(){

@@ -70,10 +70,36 @@ public class Main {
                         m3.mozgat();
                         break;
                     case "60":
+                        /** Vonat mozgatása */
+                        System.out.println(">>VonatElem::mozgat()");
+                        SínElem s1 = new SínElem();
+                        SínElem s2 = new SínElem();
+                        SínElem s3 = new SínElem();
 
+                        s1.setKövetkezõ(s2);
+                        s2.setKövetkezõ(s3);
+
+                        Mozdony m4 = new Mozdony(0);
+                        Kocsi k = new Kocsi();
+                        m4.setElsõ(k);
+                        m4.m_SínElem = s2;
+                        m4.setIrány(true);
+
+                        k.m_SínElem = s1;
+
+                        m4.tickAkció();
                         break;
                     case "61":
+                        SínElem s4 = new SínElem();
+                        SínElem s5 = new SínElem();
+                        Csomópont cs = new Csomópont();
+                        cs.m_SínElem = s5;
+                        s4.m_Sinveg = cs;
 
+                        Mozdony m5 = new Mozdony(0);
+                        m5.m_SínElem = s4;
+
+                        m5.tickAkció();
                         break;
                     case "70":
                         /** Célba érés */

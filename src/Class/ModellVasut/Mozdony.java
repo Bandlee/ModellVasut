@@ -18,6 +18,10 @@ public class Mozdony extends VonatElem {
 		késleltetés = 10;
 	}
 
+	public Mozdony(int k){
+		késleltetés = k;
+	}
+
 	public void finalize() throws Throwable {
 		super.finalize();
 	}
@@ -27,12 +31,16 @@ public class Mozdony extends VonatElem {
 	 * annak már a pályán kellene lennie (késleltetés == 0), különben csökkenti a késleltetést
 	 */
 	public void tickAkció(){
+		System.out.println("Mozdony órajelet kapott");
 		if(késleltetés == 0) {
 			mozgat();
-			elsõ.tickAkció();
+			if(elsõ != null) elsõ.tickAkció();
 		} else {
 			késleltetés--;
 		}
 	}
 
+	public void setElsõ(Kocsi elsõ) {
+		this.elsõ = elsõ;
+	}
 }

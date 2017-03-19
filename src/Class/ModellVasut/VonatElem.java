@@ -98,6 +98,7 @@ public abstract class VonatElem {
 	 */
 	public void setPozíció(SínElem s){
 		TartózkodásiHely = s;
+		//System.out.println(this.toString() + " átkerült " + s.toString() + " sínre");
 	}
 
 }
