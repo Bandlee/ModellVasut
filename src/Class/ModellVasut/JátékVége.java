@@ -17,7 +17,7 @@ public class JátékVége {
 	}
 
 	public void vég(){
-
+		System.out.println(">>JátékVége::vég()");
 	}
 
 }

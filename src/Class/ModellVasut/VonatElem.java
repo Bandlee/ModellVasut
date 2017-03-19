@@ -14,7 +14,10 @@ public abstract class VonatElem {
 
 	public VonatElem(){
 		m_SínElem = new SínElem();
+		irány = true;
 	}
+
+
 
 	public void finalize() throws Throwable {
 
@@ -44,28 +47,40 @@ public abstract class VonatElem {
 	 *	Adott vonat elem következõ sínelemre helyezését irányítja
 	 */
 	public void mozgat(){
-		System.out.println("Vonat tovább halad");
+		System.out.println(">>Mozdony::mozgat()");
+
 		if(irány) {
 			if(m_SínElem.getKövetkezõ() == null) {
-				if(!m_SínElem.keresztez(true, this)){
-					System.out.println("<<JátékVége::vég()");
+				boolean tmp = m_SínElem.keresztez(true, this);
+				System.out.println("<<SínElem::keresztez(i,v)::boolean");
+				if(!tmp){
 					JátékVége v = new JátékVége();
 					v.vég();
+					return;
 				}
 			} else {
 				setPozíció(m_SínElem.getKövetkezõ());
 			}
 		} else {
-			if(m_SínElem.getElõzõ() == null) {
+			boolean tmp = m_SínElem.keresztez(true, this);
+			System.out.println("<<SínElem::keresztez(i,v)::boolean");
+			if(!tmp){
 				if(!m_SínElem.keresztez(irány, this)){
-					System.out.println("<<JátékVége::vég()");
 					JátékVége v = new JátékVége();
 					v.vég();
+					return;
 				}
 
 			} else {
 				setPozíció(m_SínElem.getElõzõ());
 			}
+
+		}
+		boolean ütköz = m_SínElem.ütközésElõrejelez();
+		if(!ütköz) {
+			JátékVége v = new JátékVége();
+			v.vég();
+
 		}
 	}
 

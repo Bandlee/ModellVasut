@@ -24,8 +24,13 @@ public class SínElem {
 
 	}
 
+	public void setKövetkezõ(){
+		következõ = new SínElem();
+	}
+
 	public VonatElem getÁthaladóElem(){
-		return null;
+		System.out.println("<<SínElem::getÁthaladóElem()::boolean");
+		return new Kocsi();
 	}
 
 	/**
@@ -34,8 +39,9 @@ public class SínElem {
 	 * @param v A vonatelem, amelyet mozgatni akarunk
 	 */
 	public boolean keresztez(boolean i, VonatElem v){
-		System.out.println("Vonat érkezett, irányának megfelelõen adjuk tovább a csomópontnak.");
+		System.out.println(">>SínElem::keresztez(i,v)");
 		if(i) {
+
 			return sínvég1.tovább(v, this);
 		} else {
 			return sínvég2.tovább(v, this);
@@ -51,6 +57,15 @@ public class SínElem {
 	}
 
 	public boolean ütközésElõrejelez(){
+		System.out.println(">>SínElem::ütközéstElõrejelez()");
+		elõzõ = new SínElem();
+		következõ = new SínElem();
+
+		System.out.println(">>SínElem::getÁthaladóElem()");
+		elõzõ.getÁthaladóElem();
+		System.out.println(">>SínElem::getÁthaladóElem()");
+		következõ.getÁthaladóElem();
+		System.out.println("<<SínElem::ütközéstElõrejelez()::boolean");
 		return false;
 	}
 
