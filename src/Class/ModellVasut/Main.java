@@ -15,7 +15,10 @@ public class Main {
                 parancs=be.readLine();
                 switch(parancs){
                     case "10":
-
+                        /** Init */
+                        System.out.println(">>PályaGeneráló::kezdés()");
+                        PályaGeneráló pg_10 = new PályaGeneráló();
+                        pg_10.kezdés();
                         break;
                     case "20":
                         System.out.println(">>Akciókezelõ::akció(AlagútSzáj a)");
