@@ -16,6 +16,10 @@ public class JátékVége {
 
 	}
 
+	/**
+	 * játék végét jelentõ függvény
+	 * ezesetben a felhasználó vesztett, ezt fogja majd kezelni
+	 */
 	public void vég(){
 		System.out.println(">>JátékVége::vég()");
 	}

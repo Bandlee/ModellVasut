@@ -28,9 +28,11 @@ public class Csomópont {
 	}
 
 	/**
-	 * 
-	 * @param v
-	 * @param s
+	 * a csomópontra érkezõ vonatot továbbírja a megfelelõ kimenetre
+     * jelenlegi kimenete csak a tesztesetek mûködését szolgálja, az éles programban nem így fog kinézni
+     *
+	 * @param v a továbbítandó vonatelem
+	 * @param s megmutatja, honnan is érkezett a vonatelem
 	 */
 	public boolean tovább(VonatElem v, SínElem s){
 		System.out.println(">>Csomópont::tovább(v,s)");
