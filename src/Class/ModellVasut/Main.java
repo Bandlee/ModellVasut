@@ -15,7 +15,10 @@ public class Main {
                 parancs=be.readLine();
                 switch(parancs){
                     case "10":
-
+                        /** Init */
+                        System.out.println(">>PályaGeneráló::kezdés()");
+                        PályaGeneráló pg_10 = new PályaGeneráló();
+                        pg_10.kezdés();
                         break;
                     case "20":
                         System.out.println(">>Akciókezelõ::akció(AlagútSzáj a)");
@@ -36,7 +39,12 @@ public class Main {
                         ak.akció(v);
                         break;
                     case "40":
-
+                        /** Utasok leszállása */
+                        System.out.println(">>Állomás::tovább(VonatElem v, SínElem s)");
+                        Állomás áll_40 = new Állomás();
+                        SínElem s_40 = new SínElem();
+                        Kocsi k_40 = new Kocsi();
+                        áll_40.tovább(k_40,s_40);
                         break;
                     case "50":
                         break;
@@ -55,7 +63,11 @@ public class Main {
 
                         break;
                     case "70":
-
+                        /** Célba érés */
+                        System.out.println(">>Állomás::leszáll(VonatElem v)");
+                        Állomás áll_70 = new Állomás();
+                        Kocsi k_70 = new Kocsi();
+                        áll_70.leszáll(k_70);
                         break;
                     case "71":
 

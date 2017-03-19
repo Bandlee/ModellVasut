@@ -21,10 +21,14 @@ public abstract class VonatElem {
 	}
 
 	/**
+	 * A metódus megadja, hogy adott színû állomás mellett elhaladva szállnak-e le a vonatelemrõl utasok.
+	 * Visszatérési értéke false, vagyis biztosan nem szállnak le utasok. Azoknál a VonatElem õsû osztályoknál,
+	 * amelyeknél utasok leszállhatnak, felül kell írni ezt a metódust.
 	 * 
-	 * @param s
+	 * @param s: Az állomás színét jelöli, ami mellett elhalad a VonatElem.
 	 */
 	public boolean ellenõriz(String s){
+		System.out.println("<<VonatElem::ellenõriz(String s)::boolean");
 		return false;
 	}
 
