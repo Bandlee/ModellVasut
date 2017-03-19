@@ -16,7 +16,8 @@ public class SínElem {
 	private Csomópont sínvég2;
 
 	public SínElem(){
-
+		sínvég1 = new Csomópont();
+		sínvég2 = new Csomópont();
 	}
 
 	public void finalize() throws Throwable {

@@ -47,14 +47,27 @@ public class Main {
                         áll_40.tovább(k_40,s_40);
                         break;
                     case "50":
+                        /** ütközés sínen */
                         break;
                     case "51":
 
+                        /** kisiklás ha vége a sínnek */
+                        Mozdony m = new Mozdony();
+                        System.out.println(">>Mozdony::mozgat()");
+                        m.mozgat();
                         break;
                     case "52":
 
+                        /** kisiklás inaktív alagútszájhelyen */
+                        Mozdony m2 = new Mozdony();
+                        System.out.println(">>Mozdony::mozgat()");
+                        m2.mozgat();
                         break;
                     case "53":
+                        /** kisiklás váltóban */
+                        Mozdony m3 = new Mozdony();
+                        System.out.println(">>Mozdony::mozgat()");
+                        m3.mozgat();
                         break;
                     case "60":
 
@@ -70,7 +83,10 @@ public class Main {
                         áll_70.leszáll(k_70);
                         break;
                     case "71":
-
+                        /** tick */
+                        Idõzítõ i = new Idõzítõ();
+                        System.out.println(">>Idõzítõ::tick()");
+                        i.tick();
                         break;
                     case "99":
                         vége=true;

@@ -14,6 +14,7 @@ public class Idõzítõ {
 	public Mozdony m_Mozdony;
 
 	public Idõzítõ(){
+		m_Mozdony = new Mozdony();
 
 	}
 
@@ -22,7 +23,8 @@ public class Idõzítõ {
 	}
 
 	public void tick(){
-
+		System.out.println(">>Mozdony::tickAkció()");
+		m_Mozdony.tickAkció();
 	}
 
 }

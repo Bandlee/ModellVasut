@@ -15,7 +15,7 @@ public class Mozdony extends VonatElem {
 	public Kocsi m_Kocsi;
 
 	public Mozdony(){
-
+		késleltetés = 10;
 	}
 
 	public void finalize() throws Throwable {

@@ -13,7 +13,7 @@ public abstract class VonatElem {
 	public SínElem m_SínElem;
 
 	public VonatElem(){
-
+		m_SínElem = new SínElem();
 	}
 
 	public void finalize() throws Throwable {
@@ -47,13 +47,22 @@ public abstract class VonatElem {
 		System.out.println("Vonat tovább halad");
 		if(irány) {
 			if(m_SínElem.getKövetkezõ() == null) {
-				m_SínElem.keresztez(irány, this);
+				if(!m_SínElem.keresztez(true, this)){
+					System.out.println("<<JátékVége::vég()");
+					JátékVége v = new JátékVége();
+					v.vég();
+				}
 			} else {
 				setPozíció(m_SínElem.getKövetkezõ());
 			}
 		} else {
 			if(m_SínElem.getElõzõ() == null) {
-				m_SínElem.keresztez(irány, this);
+				if(!m_SínElem.keresztez(irány, this)){
+					System.out.println("<<JátékVége::vég()");
+					JátékVége v = new JátékVége();
+					v.vég();
+				}
+
 			} else {
 				setPozíció(m_SínElem.getElõzõ());
 			}
