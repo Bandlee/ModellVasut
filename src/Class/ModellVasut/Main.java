@@ -21,18 +21,21 @@ public class Main {
                         pg_10.kezdés();
                         break;
                     case "20":
+                        /**Alagút építése */
                         System.out.println(">>Akciókezelõ::akció(AlagútSzáj a)");
                         Akciókezelõ ak2= new Akciókezelõ();
                         AlagútSzáj aj_epit = new AlagútSzáj();
                         ak2.akció(aj_epit);
                         break;
                     case "21":
+                        /**Alagút rombolása */
                         System.out.println(">>Akciókezelõ::akció(AlagútSzáj a)");
                         Akciókezelõ ak3= new Akciókezelõ();
                         AlagútSzáj aj_rombol = new AlagútSzáj();
                         ak3.akció(aj_rombol);
                         break;
                     case "30":
+                        /**Váltás */
                         System.out.println(">>Akciókezelõ::akció(Váltó v)");
                         Akciókezelõ ak= new Akciókezelõ();
                         Váltó v = new Váltó();
@@ -90,6 +93,7 @@ public class Main {
                         m4.tickAkció();
                         break;
                     case "61":
+                        /** Vonat érkezése csomópontban */
                         SínElem s4 = new SínElem();
                         SínElem s5 = new SínElem();
                         Csomópont cs = new Csomópont();

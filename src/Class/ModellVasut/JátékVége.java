@@ -6,6 +6,8 @@ package Class.ModellVasut;
  * @version 1.0
  * @created 11-márc.-2017 3:39:56
  */
+
+/** A játék végét megvalósító osztály */
 public class JátékVége {
 
 	public JátékVége(){

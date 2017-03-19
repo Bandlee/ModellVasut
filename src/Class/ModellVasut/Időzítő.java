@@ -8,14 +8,16 @@ import java.util.List;
  * @version 1.0
  * @created 11-márc.-2017 3:39:56
  */
+
+/**
+ * Az idõ múlását megvalósító osztály
+ */
 public class Idõzítõ {
 
 	private List<Mozdony> mozdonyok;
 	public Mozdony m_Mozdony;
 
-	/**
-	 * saját, tesztesetekhez használt változó
-	 */
+
 	public Idõzítõ(){
 		m_Mozdony = new Mozdony();
 

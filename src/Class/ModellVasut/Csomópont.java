@@ -29,7 +29,7 @@ public class Csomópont {
 
 	/**
 	 * a csomópontra érkezõ vonatot továbbírja a megfelelõ kimenetre
-     * jelenlegi kimenete csak a tesztesetek mûködését szolgálja, az éles programban nem így fog kinézni
+     * jelenlegi kimenete csak a tesztesetek mûködését szolgálja
      *
 	 * @param v a továbbítandó vonatelem
 	 * @param s megmutatja, honnan is érkezett a vonatelem

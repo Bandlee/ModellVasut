@@ -10,6 +10,10 @@ import java.io.InputStreamReader;
  * @version 1.0
  * @created 11-márc.-2017 3:39:55
  */
+
+/**
+ * Az alagútszájat megvalóító osztály
+ */
 public class AlagútSzáj extends Csomópont {
 
 	private boolean aktív;
