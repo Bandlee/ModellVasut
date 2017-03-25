@@ -14,6 +14,32 @@ public class CommandFactory {
             case "test":
                 cmd = new Test();
                 cmd.setArguments(args);
+                break;
+
+            case "createvonatelement":
+                cmd = new CreateVonatElem();
+                cmd.setArguments(args);
+                break;
+
+            case "createcsomopont":
+                cmd = new CreateCsomopont();
+                cmd.setArguments(args);
+                break;
+
+            case "valtovaltas":
+                cmd = new Valtas();
+                cmd.setArguments(args);
+                break;
+
+            case "alagutszajtoggle":
+                cmd = new AlagutSzajToggle();
+                cmd.setArguments(args);
+                break;
+
+            case "vonatmozatas":
+                cmd = new VonatMozgatas();
+                cmd.setArguments(args);
+                break;
         }
 
         return cmd;

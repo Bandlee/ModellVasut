@@ -6,14 +6,17 @@ import Class.ModellVasut.Cmd.CommandFactory;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by rolac on 2017. 03. 25..
  */
 public class Prot {
+    public static List<Object> elements;
+
     public static void main(String[] args) {
+        elements = new ArrayList<>();
+
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String in;
 
@@ -23,7 +26,11 @@ public class Prot {
                 List<String> params = Arrays.asList(in.split(" "));
                 Command cmd = factory.create(params.get(0), params.subList(1, params.size()));
 
-                cmd.run();
+                Object res = cmd.run();
+                if(res != null) {
+                    elements.add(res);
+                    System.out.println(res.getClass() + " created with ID #" + elements.indexOf(res));
+                }
             }
 
         } catch (IOException e) {
