@@ -21,20 +21,25 @@ public class Prot {
         String in;
 
         try {
-            CommandFactory factory = new CommandFactory();
             while((in = br.readLine()) != null) {
-                List<String> params = Arrays.asList(in.split(" "));
-                Command cmd = factory.create(params.get(0), params.subList(1, params.size()));
-
-                Object res = cmd.run();
-                if(res != null) {
-                    elements.add(res);
-                    System.out.println(res.getClass() + " created with ID #" + elements.indexOf(res));
-                }
+                eval(in);
             }
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void eval(String in) {
+        CommandFactory factory = new CommandFactory();
+
+        List<String> params = Arrays.asList(in.split(" "));
+        Command cmd = factory.create(params.get(0), params.subList(1, params.size()));
+
+        Object res = cmd.run();
+        if(res != null) {
+            elements.add(res);
+            System.out.println(res.getClass() + " created with ID #" + elements.indexOf(res));
         }
     }
 }
