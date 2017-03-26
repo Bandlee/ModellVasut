@@ -17,7 +17,7 @@ public class VonatMozgatas implements Command {
             Mozdony me = (Mozdony) Prot.elements.get(arg);
             me.tickAkció();
         } else {
-            System.out.println("#" + arg + " elem nem AlagútSzáj");
+            System.out.println("#" + arg + " elem nem Mozdony");
         }
 
         return null;
