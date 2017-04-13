@@ -14,15 +14,18 @@ public class SínElem {
 	private boolean látható;
 	private Csomópont sínvég1;
 	private Csomópont sínvég2;
-	public Csomópont m_Sinveg;
 
 	/**
 	 * sínelem konstruktor
 	 * jelenleg csak a tesztesetekhez szükséges elemeket hozza létre
 	 */
-	public SínElem(){
-		sínvég1 = new Csomópont();
-		sínvég2 = new Csomópont();
+	public SínElem( VonatElem v, SínElem el, SínElem köv, boolean láth, Csomópont csp1, Csomópont csp2){
+		aktuálisVonatElem = v;
+		elõzõ = el;
+		következõ = köv;
+		látható = láth;
+		sínvég1 = csp1;
+		sínvég2 = csp2;
 	}
 
 	public void finalize() throws Throwable {
@@ -35,11 +38,6 @@ public class SínElem {
 	 * viszont bizonyos esetekben szükség van arra, hogy legyen beállítva követezõ sínelem, ezt kezeli ez a függvény
 	 * a rendes mûködés közben erre nem lesz ilyen formában szükség
 	 */
-	public void setKövetkezõ(){
-		következõ = new SínElem();
-		következõ.elõzõ = this;
-	}
-
 	public void setKövetkezõ(SínElem se){
 		következõ = se;
 		következõ.elõzõ = this;
@@ -51,8 +49,7 @@ public class SínElem {
 	 * @return a sínelemen tartózkodó vonatelem
 	 */
 	public VonatElem getÁthaladóElem(){
-		System.out.println("<<SínElem::getÁthaladóElem()::boolean");
-		return new Kocsi();
+		return aktuálisVonatElem;
 	}
 
 	/**
@@ -61,13 +58,16 @@ public class SínElem {
 	 * @param v A vonatelem, amelyet mozgatni akarunk
 	 */
 	public boolean keresztez(boolean i, VonatElem v){
-		System.out.println(">>SínElem::keresztez(i,v)");
 		if(i) {
-
-			return sínvég1.tovább(v, this);
+			if(this.következõ==null){
+				return sínvég1.tovább(aktuálisVonatElem,this);
+			}
 		} else {
-			return sínvég2.tovább(v, this);
+			if(this.elõzõ ==null){
+				return sínvég2.tovább(aktuálisVonatElem,this);
+			}
 		}
+		return false;
 	}
 
 	/**
@@ -75,7 +75,7 @@ public class SínElem {
 	 * @param áe a beállított paraméter
 	 */
 	public void setÁthaladóElem(VonatElem áe){
-
+		aktuálisVonatElem = áe;
 	}
 
 	/**
@@ -85,16 +85,15 @@ public class SínElem {
 	 * @return megmutatja, hogy fennáll e az ütközésnek a lehetõsége
 	 */
 	public boolean ütközésElõrejelez(){
-		System.out.println(">>SínElem::ütközéstElõrejelez()");
-		elõzõ = new SínElem();
-		következõ = new SínElem();
 
-		System.out.println(">>SínElem::getÁthaladóElem()");
-		elõzõ.getÁthaladóElem();
-		System.out.println(">>SínElem::getÁthaladóElem()");
-		következõ.getÁthaladóElem();
-		System.out.println("<<SínElem::ütközéstElõrejelez()::boolean");
-		return false;
+		VonatElem elõttem = elõzõ.getÁthaladóElem();
+		VonatElem mögöttem = következõ.getÁthaladóElem();
+		if(elõttem!=null && elõttem.getIrány()!=aktuálisVonatElem.getIrány()){
+			return false;
+		} else if(mögöttem != null && mögöttem.getIrány()!= aktuálisVonatElem.getIrány()){
+			return false;
+		} else return true;
+
 	}
 
 	/**
@@ -104,6 +103,7 @@ public class SínElem {
 	public SínElem getKövetkezõ() {
 		return következõ;
 	}
+
 	/**
 	 * a sínelemhez kapcsolódó, elõzõ elemet adja vissza
 	 * @return a keresett elem
@@ -111,4 +111,10 @@ public class SínElem {
 	public SínElem getElõzõ() {
 		return elõzõ;
 	}
+
+	public boolean getLátható(){ return látható; }
+
+	public Csomópont getSínvég1() { return sínvég1; }
+
+	public Csomópont getSínvég2() { return sínvég2; }
 }
