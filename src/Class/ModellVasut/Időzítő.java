@@ -15,11 +15,14 @@ import java.util.List;
 public class Idõzítõ {
 
 	private List<Mozdony> mozdonyok;
-	public Mozdony m_Mozdony;
+	//public Mozdony m_Mozdony;
 
-
-	public Idõzítõ(){
-		m_Mozdony = new Mozdony();
+	/**
+	 * Konstruktor az Idõzítõ osztály példányosításához
+	 * @param list pályán lévõ összes Mozdonyt tartalmazó lista
+	 */
+	public Idõzítõ( List<Mozdony> list){
+		mozdonyok = list;
 
 	}
 
@@ -31,8 +34,9 @@ public class Idõzítõ {
 	 * az idõ eltelését szimbolizálja, idõegységenként hívódik meg
 	 */
 	public void tick(){
-		System.out.println(">>Mozdony::tickAkció()");
-		m_Mozdony.tickAkció();
+		//System.out.println(">>Mozdony::tickAkció()");
+		for (Mozdony m : mozdonyok)
+			m.mozgat();
 	}
 
 }
