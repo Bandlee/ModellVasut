@@ -14,6 +14,12 @@ public class Csomópont {
 	protected int x;
 	protected int y;
 
+	/**
+	 * Konstruktor a Csomópont osztály példányosításához
+	 * @param a a Csomópont x koordinátája
+	 * @param b a Csomópont x koordinátája
+	 * @param list a Csomópontba futó SínElemek listája
+	 */
 	public Csomópont(int a, int b, List<SínElem> list){
 		x = a;
 		y = b;
@@ -26,7 +32,8 @@ public class Csomópont {
 
 	/**
 	 * a csomópontra érkezõ vonatot továbbírja a megfelelõ kimenetre
-     * jelenlegi kimenete csak a tesztesetek mûködését szolgálja
+     * visszatérési értéke attól függ, hogy sikerül-e beállítani a a megfelelõ
+	 * változtatásokat.
      *
 	 * @param v a továbbítandó vonatelem
 	 * @param s megmutatja, honnan is érkezett a vonatelem
@@ -50,6 +57,14 @@ public class Csomópont {
 		}catch(Exception e){
 			return false;
 		}
+	}
+
+	/**
+	 * A Csomópontba futó sínek bõvítése, új befutó SínElem hozzáadása
+	 * @param s a hozzáadandó SínElem
+	 */
+	public void setBefutóSín(SínElem s){
+		befutóSínek.add(s);
 	}
 
 }

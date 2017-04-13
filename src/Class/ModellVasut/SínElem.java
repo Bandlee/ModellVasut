@@ -16,8 +16,13 @@ public class SínElem {
 	private Csomópont sínvég2;
 
 	/**
-	 * sínelem konstruktor
-	 * jelenleg csak a tesztesetekhez szükséges elemeket hozza létre
+	 * A SínElem osztály konstruktora.
+	 * @param v a SínElemen áthaladó aktuális VonatElem
+	 * @param el a SínElemet megelõzõ SínElem
+	 * @param köv a SínElemet követõ SínElem
+	 * @param láth a SínElem láthatósága
+	 * @param csp1 a SínElemek alkotta sín egyik végsõ csomópontja
+	 * @param csp2 a SínElemek alkotta sín másik végsõ csomópontja
 	 */
 	public SínElem( VonatElem v, SínElem el, SínElem köv, boolean láth, Csomópont csp1, Csomópont csp2){
 		aktuálisVonatElem = v;
@@ -33,10 +38,8 @@ public class SínElem {
 	}
 
 	/**
-	 * segédfüggvény a tesztesetekhez
-	 * alapból a konstruktor jelenleg nullázza a következõ sínelemre mutató referenciát, mivel ha újat hoznék létre, végtelen ciklusba kerülne
-	 * viszont bizonyos esetekben szükség van arra, hogy legyen beállítva követezõ sínelem, ezt kezeli ez a függvény
-	 * a rendes mûködés közben erre nem lesz ilyen formában szükség
+	 * a SínElemet követõ SínElem beállítása
+	 * @param se a SínElemnek beállítandó következõ SínElem
 	 */
 	public void setKövetkezõ(SínElem se){
 		következõ = se;
@@ -44,8 +47,16 @@ public class SínElem {
 	}
 
 	/**
+	 * a SínElemet megelõzõ SínElem beállítása
+	 * @param se a SínElemnek beállítandó elõzõ SínElem
+	 */
+	public void setElõzõ(SínElem se){
+		elõzõ = se;
+		elõzõ.következõ = this;
+	}
+
+	/**
 	 * visszatér az aktuálisan a sínelemen tartózkodó vonatelemmel
-	 * jelenleg mivel nincsenek elõre felépített objektumaink, itt hoz létre egy elemet, amit visszaad, de ez a rendes kódban nem így fog majd kinézni
 	 * @return a sínelemen tartózkodó vonatelem
 	 */
 	public VonatElem getÁthaladóElem(){
@@ -80,8 +91,6 @@ public class SínElem {
 
 	/**
 	 * a függvény kezeli azt az esetét a vonatütközésnek, mikor egymással két szembenálló mozdony "átugraná egymást"
-	 *
-	 * jelenlegi visszatérési értéke a tesztesetek mûködését szolgálja, az éles programban nem így lesz meghatározva
 	 * @return megmutatja, hogy fennáll e az ütközésnek a lehetõsége
 	 */
 	public boolean ütközésElõrejelez(){
@@ -112,9 +121,23 @@ public class SínElem {
 		return elõzõ;
 	}
 
+	/**
+	 * a SínElem láthatóságát mutatja meg
+	 * @return a SínElem látható attribútuma
+	 */
 	public boolean getLátható(){ return látható; }
 
+	/**
+	 * visszaadja a SínElemek alkotta sín egyik végpontját
+	 * @return a SínElem sínvég1 attribútumával
+	 */
 	public Csomópont getSínvég1() { return sínvég1; }
 
+	/**
+	 * visszaadja a SínElemek alkotta sín másik végpontját
+	 * @return a SínElem sínvég2 attribútumával
+	 */
 	public Csomópont getSínvég2() { return sínvég2; }
+
+
 }
