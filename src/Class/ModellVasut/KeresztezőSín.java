@@ -23,7 +23,7 @@ public class KeresztezõSín extends Csomópont {
     }
 
     /**
-     * A keresztezõbe érkezõ vonatot továbbítja a megfelelõ kimenetre
+     * A keresztezõdésbe érkezõ vonatot továbbítja a megfelelõ kimenetre
      * visszatérési értéke attól függ, hogy sikerül-e beállítani a a megfelelõ
      * változtatásokat.
      *
