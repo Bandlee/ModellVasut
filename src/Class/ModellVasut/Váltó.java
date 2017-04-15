@@ -51,7 +51,7 @@ public class Váltó extends Csomópont {
 	}
 
 	/**
-	 * A váltóba érkezõ vonatot továbbírja a megfelelõ kimenetre
+	 * A váltóba érkezõ vonatot továbbítja a megfelelõ kimenetre
 	 * visszatérési értéke attól függ, hogy sikerül-e beállítani a a megfelelõ
 	 * változtatásokat.
 	 *

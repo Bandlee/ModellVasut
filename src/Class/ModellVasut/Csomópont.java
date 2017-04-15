@@ -31,7 +31,7 @@ public class Csomópont {
 	}
 
 	/**
-	 * a csomópontra érkezõ vonatot továbbírja a megfelelõ kimenetre
+	 * a csomópontra érkezõ vonatot továbbítja a megfelelõ kimenetre
      * visszatérési értéke attól függ, hogy sikerül-e beállítani a a megfelelõ
 	 * változtatásokat.
      *
