@@ -15,7 +15,7 @@ public class CommandFactory {
                 break;
 
             case "asz":
-                cmd = new CreateVonatElem();
+                cmd = new Asz();
                 break;
 
             case "akt":
@@ -23,7 +23,7 @@ public class CommandFactory {
                 break;
 
             case "all":
-                cmd = new Vlt();
+                cmd = new All();
                 break;
 
             case "vlt":
@@ -31,40 +31,51 @@ public class CommandFactory {
                 break;
 
             case "swc":
-                cmd = new VonatMozgatas();
+                cmd = new Swc();
                 break;
 
             case "ksn":
+                cmd = new Ksn();
                 break;
 
             case "sel":
+                cmd = new Sel()
                 break;
 
             case "alg":
+                cmd = new Alg();
                 break;
 
             case "snk":
+                cmd = new Snk();
                 break;
 
             case "smk":
+                cmd = new Smk();
                 break;
 
             case "mzd":
+                cmd = new Mzd();
                 break;
 
             case "uts":
+                cmd = new Uts();
                 break;
 
             case "nls":
+                cmd = new Nls();
                 break;
 
             case "start":
+                cmd = new Start();
                 break;
 
             case "stop":
+                cmd = new Stop();
                 break;
 
             case "tick":
+                cmd = new Tick();
                 break;
         }
         cmd.setArguments(args);

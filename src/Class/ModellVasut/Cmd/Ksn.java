@@ -1,19 +1,16 @@
 package Class.ModellVasut.Cmd;
 
-import Class.ModellVasut.Váltó;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by rolac on 2017. 04. 16..
  */
-public class Vlt implements Command {
+public class Ksn implements Command {
     int x, y;
 
     @Override
     public Object run() {
-        return new Váltó(x, y, new ArrayList<>());
+        return new KeresztSín();
     }
 
     @Override

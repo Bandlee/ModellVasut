@@ -7,6 +7,8 @@ package Class.ModellVasut;
  * @created 11-márc.-2017 3:39:56
  */
 
+import java.util.List;
+
 /**
  * A váltót megvalósító osztály
  */
@@ -15,8 +17,8 @@ public class Váltó extends Csomópont {
 	private int aktív;
 	private SínElem rögzített;
 
-	public Váltó(){
-
+	public Váltó(int x, int y, List<SínElem> se){
+		super(x, y, se);
 	}
 
 	public void finalize() throws Throwable {

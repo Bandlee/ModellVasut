@@ -19,6 +19,9 @@ public class All implements Command {
 
     @Override
     public void setArguments(List<String> args) {
+        x = Integer.parseInt(args.get(0));
+        y = Integer.parseInt(args.get(1));
 
+        szin = args.get(2);
     }
 }

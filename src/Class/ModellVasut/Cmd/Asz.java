@@ -1,19 +1,20 @@
 package Class.ModellVasut.Cmd;
 
-import Class.ModellVasut.Váltó;
+import Class.ModellVasut.AlagútSzáj;
+import Class.ModellVasut.Állomás;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by rolac on 2017. 04. 16..
+ * Created by rolac on 2017. 04. 14..
  */
-public class Vlt implements Command {
+public class Asz implements Command {
     int x, y;
 
     @Override
     public Object run() {
-        return new Váltó(x, y, new ArrayList<>());
+        return new AlagútSzáj(x, y, new ArrayList<>());
     }
 
     @Override

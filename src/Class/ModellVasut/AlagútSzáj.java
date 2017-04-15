@@ -4,6 +4,7 @@ package Class.ModellVasut;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 
 /**
  * @author Bandi
@@ -21,8 +22,8 @@ public class AlagútSzáj extends Csomópont {
 	private static int darab;
 	public Alagút m_Alagút;
 
-	public AlagútSzáj(){
-
+	public AlagútSzáj(int x, int y, List<SínElem> se){
+		super(x, y, se);
 	}
 
 	public void finalize() throws Throwable {
