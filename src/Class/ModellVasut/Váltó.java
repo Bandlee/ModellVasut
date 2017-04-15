@@ -50,6 +50,34 @@ public class Váltó extends Csomópont {
 			aktív = befutóSínek.get(i);
 	}
 
+	/**
+	 * A váltóba érkezõ vonatot továbbírja a megfelelõ kimenetre
+	 * visszatérési értéke attól függ, hogy sikerül-e beállítani a a megfelelõ
+	 * változtatásokat.
+	 *
+	 * @param v a továbbítandó vonatelem
+	 * @param s megmutatja, honnan is érkezett a vonatelem
+	 */
+	public boolean tovább(VonatElem v, SínElem s){
+		try{
+			SínElem hova = null;
+
+			if(s == rögzített){
+				hova = aktív;
+			} else if(s == aktív){
+				hova = rögzített;
+			}
+			if(hova == null){
+				return false;
+			} else{
+				v.setPozíció(hova);
+				if(hova.getSínvég1()==this) v.setIrány(true); else v.setIrány(false);
+				return true;
+			}
+		}catch(Exception e){
+			return false;
+		}
+	}
 }
 
 
