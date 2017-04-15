@@ -14,7 +14,6 @@ public class Kocsi extends VonatElem {
 
 	private Kocsi következõ;
 	private boolean leszállhat;
-	private String szín;
 	private boolean utas;
 
 	public Kocsi(){
@@ -35,10 +34,8 @@ public class Kocsi extends VonatElem {
 	 */
 	@Override
 	public boolean ellenõriz(String s){
-
-
 		System.out.println("<<Kocsi::ellenõriz(String s)::boolean");
-		return leszálltak;
+		return false;
 
 	}
 
