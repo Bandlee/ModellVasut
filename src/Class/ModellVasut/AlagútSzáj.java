@@ -4,6 +4,7 @@ package Class.ModellVasut;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 
 /**
  * @author Bandi
@@ -12,83 +13,93 @@ import java.io.InputStreamReader;
  */
 
 /**
- * Az alagútszájat megvalóító osztály
+ * Az alagút szájat megvalóító osztály
  */
 public class AlagútSzáj extends Csomópont {
 
 	private boolean aktív;
+	private static List<AlagútSzáj> aktívak;
 	private Alagút alagút;
-	private static int darab;
-	public Alagút m_Alagút;
 
-	public AlagútSzáj(){
-
+	/**
+	 * A konstruktorban alapértelmezettként inaktívra állítjuk az alagút szájat.
+	 */
+	public AlagútSzáj(int a, int b, List<SínElem> list){
+		super(a, b, list);
+		aktív = false;
 	}
 
 	public void finalize() throws Throwable {
 		super.finalize();
 	}
 
-	private Alagút épít(){
-		System.out.println("<<AlagútSzáj::épít()::Alagút");
-		return new Alagút();
-	}
 
-	@Override
+	/**
+	 *  Ez a függvény gondoskodik róla, hogy átállítsa az alagút száj aktivitását.
+	 *  Amelyik aktív lesz, berakja az aktívak listába, amelyik inaktívvá válik, azt kiveszi onnan.
+	 *  Nem hagyja, hogy egy harmadik alagút száj is aktív legyen.
+	 *  Megvizsgálja az aktívakat:
+	 *  Ha a második alagút száj is aktív lett, meghívja az építés függvényét.
+	 *  Ha 2 alá csökken az aktív alagút szájak száma,
+	 *  a rombolás függvényét meghívva leromboltatja a meglévõ alagutat,
+	 *  feltéve, hogy nincs éppen vonat az alagútban.
+	 */
 	public void felhasználóAkció(){
-		System.out.println("Van aktív alagútszáj?(i/n)");
-		BufferedReader be= new BufferedReader(new InputStreamReader(System.in));
-		String van;
-		try{
-			van=be.readLine();
-			if (van.equals("i")){
-				System.out.println("Építesz vagy rombolsz?(é/r)");
-				String válasz=be.readLine();
-				if (válasz.equals("é")) {
-					System.out.println("Egy van belõle?(i/n)");
-					String egy = be.readLine();
-
-					if (egy.equals("i")) {
-						System.out.println(">>AlagútSzáj::épít()");
-						this.épít();
-					}
-
-					else if (egy.equals("n")) {
-						System.out.println("Nem épült fel alagútszáj");
-					}
-
-					else {
-						System.out.println("Nem megfelelõ válasz.");
-					}
-				}
-
-				else if(válasz.equals("r")){
-					Alagút a = new Alagút();
-					System.out.println(">>AlagútSzáj::rombol()");
-					this.rombol(a);
-				}
-
-				else{
-					System.out.println("Nem megfelelõ válasz.");
-				}
-			}
-
-			else if (van.equals("n")){
-				System.out.println("Felépült egy alagútszáj");
-			}
-
+		// ha inaktív volt:
+		if (!aktív){
+			// max. 2 aktív lehet
+			if (aktívak.size() >= 2)
+				System.out.println("Nem hozható létre több alagút!");
 			else {
-				System.out.println("Nem megfelelõ válasz.");
+				// hozzáadjuk a listához és aktiváljuk
+				aktívak.add(this);
+				aktív = true;
+				// ha aktív lett 2, építünk
+				if (aktívak.size() == 2)
+					épít();
 			}
-		} catch(IOException e) {e.getMessage();}
+
+		}
+		// ha aktív volt:
+		else {
+			// ha 2-rõl lecsökkent az aktívak száma, töröljük az alagutat
+			if (aktívak.size() == 2) {
+				// ha az alagút üres
+				if (alagút.getÜresAlagút()){
+					rombol();
+					// töröljük a listából és inaktívvá tesszük
+					aktívak.remove(this);
+					aktív = false;
+				}
+				// ha nem üres, nem törlünk
+				else {
+					System.out.println("Az alagút nem szüntethetõ meg, mivel vonat halad benne!");
+				}
+			}
+
+		}
 	}
 
 	/**
-	 * 
-	 * @param a: Egy alagút típusú változót kap, amit megszüntet.
+	 * Létrehoz egy Alagút példányt,
+	 * majd az aktívak listájában lévõ (2) alagút szájaknál beállítja az új alagutat,
+	 * illetve az új alagútnál a bejáratait (utóbbit a konstruktora segítségével)
 	 */
-	private void rombol(Alagút a){
-		System.out.println("Egy alagút lerombolódott.");
+	private void épít(){
+		//létrehozzuk az alagutat a két végével
+		alagút = new Alagút(aktívak.get(0), aktívak.get(1));
+
+		//beállítjuk az alagút szájaknak a friss alagutunkat
+		for (AlagútSzáj actual : aktívak)
+			actual.alagút = alagút;
+	}
+
+	/**
+	 * Megszünteti (null pointerre cseréli) a létezõ alagutat mindkét végénél.
+	 */
+	private void rombol(){
+		for (AlagútSzáj actual : aktívak)
+			actual.alagút = null;
 	}
 
 }
