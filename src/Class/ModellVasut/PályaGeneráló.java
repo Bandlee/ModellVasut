@@ -10,15 +10,25 @@ import java.io.File;
  */
 public class PályaGeneráló {
 
+	private static PályaGeneráló me = null;
+
 	private File bemenet;
 	private int szint;
 
-	public PályaGeneráló(){
+	private PályaGeneráló(){
 
 	}
 
 	public void finalize() throws Throwable {
 
+	}
+
+	public static PályaGeneráló getInstance() {
+		if(me == null) {
+			me = new PályaGeneráló();
+		}
+
+		return me;
 	}
 
 	/**

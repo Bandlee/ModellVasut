@@ -1,6 +1,5 @@
 package Class.ModellVasut.Cmd;
 
-import Class.ModellVasut.AlagútSzáj;
 import Class.ModellVasut.Prot;
 import Class.ModellVasut.Váltó;
 
@@ -9,16 +8,17 @@ import java.util.List;
 /**
  * Created by rolac on 2017. 03. 25..
  */
-public class AlagutSzajToggle implements Command {
-    private int arg;
+public class Vlt implements Command {
+    int valtoId;
 
     @Override
     public Object run() {
-        if(Prot.elements.get(arg) instanceof AlagútSzáj) {
-            AlagútSzáj me = (AlagútSzáj) Prot.elements.get(arg);
+
+        if(Prot.elements.get(valtoId) instanceof Váltó) {
+            Váltó me = (Váltó)Prot.elements.get(valtoId);
             me.felhasználóAkció();
         } else {
-            System.out.println("#" + arg + " elem nem AlagútSzáj");
+            System.out.println("#" + valtoId + " elem nem Váltó");
         }
 
         return null;
@@ -26,6 +26,6 @@ public class AlagutSzajToggle implements Command {
 
     @Override
     public void setArguments(List<String> args) {
-        arg = Integer.parseInt(args.get(0));
+        valtoId = Integer.parseInt(args.get(0));
     }
 }

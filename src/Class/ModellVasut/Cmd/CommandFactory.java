@@ -1,6 +1,5 @@
 package Class.ModellVasut.Cmd;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,36 +10,64 @@ public class CommandFactory {
 
         Command cmd = null;
         switch(command.toLowerCase()) {
-            case "test":
-                cmd = new Test();
-                cmd.setArguments(args);
+            case "csp":
+                cmd = new Csp();
                 break;
 
-            case "createvonatelement":
+            case "asz":
                 cmd = new CreateVonatElem();
-                cmd.setArguments(args);
                 break;
 
-            case "createcsomopont":
-                cmd = new CreateCsomopont();
-                cmd.setArguments(args);
+            case "akt":
+                cmd = new Akt();
                 break;
 
-            case "valtovaltas":
-                cmd = new Valtas();
-                cmd.setArguments(args);
+            case "all":
+                cmd = new Vlt();
                 break;
 
-            case "alagutszajtoggle":
-                cmd = new AlagutSzajToggle();
-                cmd.setArguments(args);
+            case "vlt":
+                cmd = new Vlt();
                 break;
 
-            case "vonatmozatas":
+            case "swc":
                 cmd = new VonatMozgatas();
-                cmd.setArguments(args);
+                break;
+
+            case "ksn":
+                break;
+
+            case "sel":
+                break;
+
+            case "alg":
+                break;
+
+            case "snk":
+                break;
+
+            case "smk":
+                break;
+
+            case "mzd":
+                break;
+
+            case "uts":
+                break;
+
+            case "nls":
+                break;
+
+            case "start":
+                break;
+
+            case "stop":
+                break;
+
+            case "tick":
                 break;
         }
+        cmd.setArguments(args);
 
         return cmd;
     }

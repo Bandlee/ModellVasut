@@ -10,7 +10,6 @@ public abstract class VonatElem {
 
 	protected boolean irány;
 	protected SínElem TartózkodásiHely;
-	public SínElem m_SínElem;
 
 	/**
 	 * vonatelem konstruktor
@@ -18,8 +17,7 @@ public abstract class VonatElem {
 	 * a mûödõ programban nem így fog kinézni, mivel elõre definiáljuk a vonatelemeket
 	 */
 	public VonatElem(){
-		m_SínElem = new SínElem();
-		irány = true;
+
 	}
 
 
@@ -43,11 +41,12 @@ public abstract class VonatElem {
 	}
 
 	public boolean getIrány(){
-		return false;
+		System.out.println(">>VonatElem::getIrány() : boolean");
+		return irány;
 	}
 
 	public SínElem getPozíció(){
-		return null;
+		return TartózkodásiHely;
 	}
 
 	/**
@@ -58,8 +57,8 @@ public abstract class VonatElem {
 		System.out.println(">>Mozdony::mozgat()");
 
 		if(irány) {
-			if(m_SínElem.getKövetkezõ() == null) {
-				boolean tmp = m_SínElem.keresztez(true, this);
+			if(TartózkodásiHely.getKövetkezõ() == null) {
+				boolean tmp = TartózkodásiHely.keresztez(true, this);
 				System.out.println("<<SínElem::keresztez(i,v)::boolean");
 				if(!tmp){
 					JátékVége v = new JátékVége();
@@ -67,24 +66,24 @@ public abstract class VonatElem {
 					return;
 				}
 			} else {
-				setPozíció(m_SínElem.getKövetkezõ());
+				setPozíció(TartózkodásiHely.getKövetkezõ());
 			}
 		} else {
-			boolean tmp = m_SínElem.keresztez(true, this);
+			boolean tmp = TartózkodásiHely.keresztez(true, this);
 			System.out.println("<<SínElem::keresztez(i,v)::boolean");
 			if(!tmp){
-				if(!m_SínElem.keresztez(irány, this)){
+				if(!TartózkodásiHely.keresztez(irány, this)){
 					JátékVége v = new JátékVége();
 					v.vég();
 					return;
 				}
 
 			} else {
-				setPozíció(m_SínElem.getElõzõ());
+				setPozíció(TartózkodásiHely.getElõzõ());
 			}
 
 		}
-		boolean ütköz = m_SínElem.ütközésElõrejelez();
+		boolean ütköz = TartózkodásiHely.ütközésElõrejelez();
 		if(!ütköz) {
 			JátékVége v = new JátékVége();
 			v.vég();
@@ -97,6 +96,7 @@ public abstract class VonatElem {
 	 * @param i az irányt jelzõ paraméter
 	 */
 	public void setIrány(boolean i){
+		System.out.println(">>VonatElem::setIrány(" + i + ")");
 		irány = i;
 	}
 
@@ -106,7 +106,7 @@ public abstract class VonatElem {
 	 */
 	public void setPozíció(SínElem s){
 		TartózkodásiHely = s;
-		//System.out.println(this.toString() + " átkerült " + s.toString() + " sínre");
+		System.out.println(this.toString() + " átkerült " + s.toString() + " sínre");
 	}
 
 }
