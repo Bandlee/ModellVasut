@@ -7,7 +7,12 @@ public class SzenesKocsi extends Kocsi {
 
 
 
-
+    /**
+     * Beállítja a szeneskocsi leszállhat értékét.
+     * Üres szemelykocsihoz hasonloan továbbadja a beálított jogot a következõ kocsinak.
+     *
+     * @param leszállhat erre az értékre állítjuk be a szeneskocsi leszállhat értékét
+     */
     @Override
     protected void setLeszállhat(boolean leszállhat) {
         this.leszállhat = leszállhat;

@@ -37,22 +37,22 @@ public class SzemelyKocsi extends Kocsi {
             return true;
         }
 
-        return (szín.equals(s));
+        return false;
     }
 
 
     /**
-     * A metódus megadja, hogy adott színû állomás mellett elhaladva szállnak-e fel a szemelykocsiról utasok.
+     * A metódus megadja, hogy adott színû állomás mellett elhaladva szállnak-e fel a szemelykocsira utasok.
      * Amennyiben igen, ezt jelzi az utas tulajdonság beállításával, valamit tíltja az utána következõ
      * kocsinak a leszállást.
      *
      * @param s: Az állomás színét jelöli a paraméter, ez alapján fogjuk eldönteni,
-     *           hogy szállnak-e fel utasok az adott szemelykocsira a megadott színû állomáson.
+     *           hogy szállhatnak-e fel utasok az adott szemelykocsira a megadott színû állomáson.
      */
     @Override
     public boolean felEllenõriz(String s){
 
-        if (szín.equals(s)) {
+        if (utas == false && szín.equals(s)) {
             utas = true;
             if (következõ != null) {
                 //felszálltak -> következõ tiltása
@@ -65,7 +65,14 @@ public class SzemelyKocsi extends Kocsi {
     }
 
 
-
+    /**
+     * Beállítja a szemelykocsi leszállhat értékét.
+     * Hamis érték esetén értesíti a mögötte lévõ kocsit, beállíja leszállhat értékét hamisra.
+     * Igaz érték esetén, ha nincs utas a szemelykocsiban, beállítja a következõ
+     * kocsi leszállhat értéket igazra.
+     *
+     * @param leszállhat erre az értékre állítjuk be a szemelykocsi leszállhat értékét
+     */
     @Override
     protected void setLeszállhat(boolean leszállhat) {
 
@@ -77,7 +84,7 @@ public class SzemelyKocsi extends Kocsi {
             }
             //engedély továbbadása, csak akkor, ha az aktuális SzemélyKocsi üres
             else if (utas == false) {
-                setLeszállhat(true);
+                következõ.setLeszállhat(true);
             }
         }
     }

@@ -21,13 +21,6 @@ public abstract class Kocsi extends VonatElem {
 	}
 
 
-	@Override
-	public boolean ellenõriz(String s){
-		System.out.println("<<Kocsi::ellenõriz(String s)::boolean");
-		return false;
-
-	}
-
 	/**
 	 * A metódus meghívódik minden alkalommal, mikor az elõtte lévõ vonat elem átadja neki az órajelet
 	 * Meghívja az elem mozgatásáért felelõs függvényt, és továbbadja a jelet a következõ vonat elemnek, ha létezik.
@@ -41,7 +34,11 @@ public abstract class Kocsi extends VonatElem {
 
 
 
-
+	/**
+	 * Kocsi leszállhat értékének beállíitására használandó.
+	 *
+	 * @param leszállhat erre az értékre állítjuk be a kocsi leszállhat értékét
+	 */
 	protected abstract void setLeszállhat(boolean leszállhat);
 
 
