@@ -106,4 +106,7 @@ public class Állomás extends Csomópont {
 		return ret;
 	}
 
+	public void addUtas() {
+		felszálló = true;
+	}
 }

@@ -12,13 +12,8 @@ import java.io.InputStreamReader;
  */
 public class Kocsi extends VonatElem {
 
-	private Kocsi következõ;
 	private boolean leszállhat;
 	private boolean utas;
-
-	public Kocsi(){
-
-	}
 
 	public void finalize() throws Throwable {
 		super.finalize();
@@ -49,4 +44,8 @@ public class Kocsi extends VonatElem {
 		if(következõ != null) következõ.tickAkció();
 	}
 
+
+	public void addUtas() {
+		utas = true;
+	}
 }

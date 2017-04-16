@@ -39,7 +39,7 @@ public class CommandFactory {
                 break;
 
             case "sel":
-                cmd = new Sel()
+                cmd = new Sel();
                 break;
 
             case "alg":

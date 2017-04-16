@@ -10,6 +10,7 @@ public abstract class VonatElem {
 
 	protected boolean irány;
 	protected SínElem TartózkodásiHely;
+	protected Kocsi következõ;
 
 	/**
 	 * vonatelem konstruktor
@@ -108,5 +109,10 @@ public abstract class VonatElem {
 		TartózkodásiHely = s;
 		System.out.println(this.toString() + " átkerült " + s.toString() + " sínre");
 	}
+
+	public void setKövetkezõ(Kocsi következõ) {
+		this.következõ = következõ;
+	}
+
 
 }

@@ -9,10 +9,7 @@ package Class.ModellVasut;
 public class Mozdony extends VonatElem {
 
 	private Csomópont belépésipont;
-	private Kocsi elsõ;
 	private int késleltetés;
-	public Csomópont m_Csomópont;
-	public Kocsi m_Kocsi;
 
 	/**
 	 * jelenleg csak a tesztesethez állítunk be egy kezdõértéket
@@ -22,8 +19,9 @@ public class Mozdony extends VonatElem {
 		késleltetés = 10;
 	}
 
-	public Mozdony(int k){
+	public Mozdony(int k, Csomópont b){
 		késleltetés = k;
+		belépésipont = b;
 	}
 
 	public void finalize() throws Throwable {
@@ -38,13 +36,10 @@ public class Mozdony extends VonatElem {
 		System.out.println("Mozdony órajelet kapott");
 		if(késleltetés == 0) {
 			mozgat();
-			if(elsõ != null) elsõ.tickAkció();
+			if(következõ != null) következõ.tickAkció();
 		} else {
 			késleltetés--;
 		}
 	}
 
-	public void setElsõ(Kocsi elsõ) {
-		this.elsõ = elsõ;
-	}
 }

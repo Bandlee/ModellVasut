@@ -1,5 +1,8 @@
 package Class.ModellVasut.Cmd;
 
+import Class.ModellVasut.KeresztezõSín;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,7 +13,7 @@ public class Ksn implements Command {
 
     @Override
     public Object run() {
-        return new KeresztSín();
+        return new KeresztezõSín(x, y, new ArrayList<>());
     }
 
     @Override

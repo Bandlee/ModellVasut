@@ -7,6 +7,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by rolac on 2017. 03. 25..
@@ -33,8 +35,21 @@ public class Prot {
     public static void eval(String in) {
         CommandFactory factory = new CommandFactory();
 
-        List<String> params = Arrays.asList(in.split(" "));
-        Command cmd = factory.create(params.get(0), params.subList(1, params.size()));
+        Pattern bracket = Pattern.compile("\\(.*\\)");
+        Matcher bracketMatch = bracket.matcher(in);
+        String cmdStr = bracketMatch.replaceAll("");
+
+        String argsStr = in.substring(bracketMatch.regionStart(), bracketMatch.regionEnd());
+
+        List<String> params = new ArrayList<>();
+        Pattern argsPattern = Pattern.compile("\\w+");
+        Matcher argsMatch = argsPattern.matcher(argsStr);
+
+        while(argsMatch.find()) {
+            params.add(argsStr.substring(argsMatch.regionStart(), argsMatch.regionEnd()));
+        }
+
+        Command cmd = factory.create(cmdStr, params.subList(1, params.size()));
 
         Object res = cmd.run();
         if(res != null) {
