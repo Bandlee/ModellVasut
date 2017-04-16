@@ -10,23 +10,17 @@ import java.io.InputStreamReader;
  * @version 1.0
  * @created 11-márc.-2017 3:39:56
  */
-public class Kocsi extends VonatElem {
+public abstract class Kocsi extends VonatElem {
 
-	private boolean leszállhat;
-	private boolean utas;
+	//létrehozáskor legyen true, láncolásnál majd beállítódik.
+	protected boolean leszállhat;
+
 
 	public void finalize() throws Throwable {
 		super.finalize();
 	}
 
-	/**
-	 * A metódus megadja, hogy adott színû állomás mellett elhaladva szállnak-e le a kocsiról utasok.
-	 * Amennyiben igen, ezt jelzi az utas tulajdonság beállításával, valamit engedélyezi az utána következõ
-	 * kocsinak a leszállást (ez a szkeletonban nincs megvalósítva, a végsõ programban lesz szerepe).
-	 *
-	 * @param s: Az állomás színét jelöli a paraméter, ez alapján fogjuk a végsõ programban eldönteni,
-	 *           hogy szállnak-e le az adott kocsiról a megadott színû állomáson.
-	 */
+
 	@Override
 	public boolean ellenõriz(String s){
 		System.out.println("<<Kocsi::ellenõriz(String s)::boolean");
@@ -45,7 +39,10 @@ public class Kocsi extends VonatElem {
 	}
 
 
-	public void addUtas() {
-		utas = true;
-	}
+
+
+
+	protected abstract void setLeszállhat(boolean leszállhat);
+
+
 }

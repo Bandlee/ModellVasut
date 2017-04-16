@@ -42,4 +42,15 @@ public class Mozdony extends VonatElem {
 		}
 	}
 
+
+	/**
+	 * Hozzáköti a mozdonyhoz a megadott kocsit, ez fog utána következni.
+	 *
+	 * @param következõ a kocsi, ami a mozdonyhoz lesz kötve.
+	 */
+	@Override
+	public void setKövetkezõ(Kocsi következõ) {
+		this.következõ = következõ;
+	}
+
 }

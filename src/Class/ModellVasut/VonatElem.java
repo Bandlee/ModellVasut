@@ -32,14 +32,26 @@ public abstract class VonatElem {
 	 * Visszatérési értéke false, vagyis biztosan nem szállnak le utasok. Azoknál a VonatElem õsû osztályoknál,
 	 * amelyeknél utasok leszállhatnak, felül kell írni ezt a metódust.
 	 *
-	 * jelenlegi visszatérési értéke a teszteseteket szolgálja, az éles programban nem így lesz meghatározva
-	 *
 	 * @param s: Az állomás színét jelöli, ami mellett elhalad a VonatElem.
 	 */
 	public boolean ellenõriz(String s){
 		System.out.println("<<VonatElem::ellenõriz(String s)::boolean");
 		return false;
 	}
+
+
+	/**
+	 * A metódus megadja, hogy adott színû állomás mellett elhaladva szállnak-e fel a vonatelemre utasok.
+	 * Visszatérési értéke false, vagyis biztosan nem szállnak fel utasok. Azoknál a VonatElem õsû osztályoknál,
+	 * amelyeknél utasok felszállhatnak, felül kell írni ezt a metódust.
+	 *
+	 * @param s: Az állomás színét jelöli, ami mellett elhalad a VonatElem.
+	 */
+	public boolean felEllenõriz(String s){
+		return false;
+	}
+
+
 
 	public boolean getIrány(){
 		System.out.println(">>VonatElem::getIrány() : boolean");
@@ -110,9 +122,13 @@ public abstract class VonatElem {
 		System.out.println(this.toString() + " átkerült " + s.toString() + " sínre");
 	}
 
-	public void setKövetkezõ(Kocsi következõ) {
-		this.következõ = következõ;
-	}
+
+	/**
+	 * Hozzáköti a vonatelemhez a megadott kocsit, ez fog utána következni.
+	 *
+	 * @param következõ a kocsi, ami a vonatelemhez lesz kötve.
+	 */
+	public abstract void setKövetkezõ(Kocsi következõ);
 
 
 }
