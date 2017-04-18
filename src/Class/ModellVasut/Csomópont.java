@@ -47,8 +47,10 @@ public class Csomópont {
         SínElem hova = null;
         if(befutóSínek.get(0)!=s){
             hova = befutóSínek.get(0);
-        } else if(befutóSínek.get(1)!=s){
-            hova = befutóSínek.get(1);
+        } else if(befutóSínek.size()>1){
+            if (befutóSínek.get(1)!=s) {
+                hova = befutóSínek.get(1);
+            }
         }
         if(hova == null){
             return false;
