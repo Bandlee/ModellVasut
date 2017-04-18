@@ -193,7 +193,7 @@ public class PályaGeneráló {
                     bw.write("Tick\n");
                 } else if(parancs.equals("Swc")) {
                     csomópontList.get(Integer.parseInt(index)-1).felhasználóAkció();
-                    
+
                 } else if(parancs.equals("Akt")) {
                     csomópontList.get(Integer.parseInt(index)-1).felhasználóAkció();
                 }
