@@ -17,17 +17,11 @@ public class SínElem {
 
 	/**
 	 * A SínElem osztály konstruktora.
-	 * @param v a SínElemen áthaladó aktuális VonatElem
-	 * @param el a SínElemet megelõzõ SínElem
-	 * @param köv a SínElemet követõ SínElem
 	 * @param láth a SínElem láthatósága
 	 * @param csp1 a SínElemek alkotta sín egyik végsõ csomópontja
 	 * @param csp2 a SínElemek alkotta sín másik végsõ csomópontja
 	 */
-	public SínElem( VonatElem v, SínElem el, SínElem köv, boolean láth, Csomópont csp1, Csomópont csp2){
-		aktuálisVonatElem = v;
-		elõzõ = el;
-		következõ = köv;
+	public SínElem( Csomópont csp1, Csomópont csp2, boolean láth){
 		látható = láth;
 		sínvég1 = csp1;
 		sínvég2 = csp2;

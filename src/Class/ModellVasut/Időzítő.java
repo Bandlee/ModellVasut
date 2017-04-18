@@ -15,7 +15,6 @@ import java.util.List;
 public class Idõzítõ {
 
 	private List<Mozdony> mozdonyok;
-	//public Mozdony m_Mozdony;
 
 	/**
 	 * Konstruktor az Idõzítõ osztály példányosításához

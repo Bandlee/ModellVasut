@@ -8,8 +8,9 @@ public class SzemelyKocsi extends Kocsi {
     private String szín;
     private boolean utas;
 
-    public SzemelyKocsi(String _szin) {
+    public SzemelyKocsi(String _szin, boolean utasok) {
         szín = _szin;
+        utas = utasok;
     }
 
 

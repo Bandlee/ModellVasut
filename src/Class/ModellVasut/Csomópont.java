@@ -19,14 +19,16 @@ public class Csomópont {
 
 	/**
 	 * Konstruktor a Csomópont osztály példányosításához
-	 * @param a a Csomópont x koordinátája
-	 * @param b a Csomópont x koordinátája
-	 * @param list a Csomópontba futó SínElemek listája
+	 *
 	 */
 	public Csomópont(){
 		befutóSínek = new ArrayList<SínElem>();
 		ids+=1;
 		id=ids;
+	}
+
+	public void felhasználóAkció(){
+
 	}
 
 	public void finalize() throws Throwable {
@@ -69,5 +71,7 @@ public class Csomópont {
 	public void setBefutóSín(SínElem s){
 		befutóSínek.add(s);
 	}
+
+	public int getId(){return id;}
 
 }
