@@ -38,12 +38,28 @@ public class PályaGeneráló {
 
 				} else if(parancs.equals("Sel")) {
 					int csp1=Integer.parseInt(sor.substring(4,5));
+					Csomópont cs1=null;
+					for (Csomópont cs: csomópontList) {
+						if(cs.getId()==csp1) cs1=cs;
+					}
+
 					int csp2=Integer.parseInt(sor.substring(6,7));
+					Csomópont cs2=null;
+					for (Csomópont cs: csomópontList) {
+						if(cs.getId()==csp2) cs2=cs;
+					}
+
 					int db=Integer.parseInt(sor.substring(8,9));
 
 					List<SínElem> temp_se =new ArrayList<>();
-					for(int i=0;i<db;i++)
-						temp_se.add(new SínElem(csp1, csp2, true));
+					for(int i=0;i<db;i++) temp_se.add(new SínElem(cs1, cs2, true));
+
+					if (temp_se.size()>1) {
+						for (int i = 0; i < temp_se.size() - 1; i++) {
+							temp_se.get(i).setKövetkezõ(temp_se.get(i+1));
+						}
+					}
+
 				} else if(parancs.equals("Ksn")) {
 					csomópontList.add(new KeresztezõSín());
 
