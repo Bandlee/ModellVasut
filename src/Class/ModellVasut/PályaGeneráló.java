@@ -107,11 +107,46 @@ public class PályaGeneráló {
                     csomópontList.add(new Állomás(szín, utas));
 
                 } else if(parancs.equals("Mzd")) {
+                    int csp1=Integer.parseInt(sor.substring(4,5));
+                    Csomópont cs1=null;
+                    for (Csomópont cs: csomópontList) {
+                        if(cs.getId()==csp1) cs1=cs;
+                    }
+
+                    int k=Integer.parseInt(sor.substring(6,7));
+
+                    mozdonyList.add(new Mozdony(cs1, k));
+
 
                 } else if(parancs.equals("Snk")) {
+                    if (mozdonyList.get(mozdonyList.size()-1).getKövetkezõ()==null){
+                        mozdonyList.get(mozdonyList.size()-1).setKövetkezõ(new SzenesKocsi());
+                    }
+
+                    
+
 
 
                 } else if(parancs.equals("Smk")) {
+                    int db=4;
+                    String szín;
+                    boolean utas;
+
+                    char[] temp = new char[20];
+                    while(sor.charAt(db++) != ','){
+                        temp[db-4]=sor.charAt(db);
+                    }
+                    szín=temp.toString();
+
+                    if (sor.substring(db,db+1)=="1"){
+                        utas=true;
+                    } else {
+                        utas=false;
+                    }
+
+                    if (mozdonyList.get(mozdonyList.size()-1).getKövetkezõ()==null){
+                        mozdonyList.get(mozdonyList.size()-1).setKövetkezõ(new SzemélyKocsi(szín, utas));
+                    }
 
                 } else {
                     System.out.println("Nem megfelelõ parancs.");
