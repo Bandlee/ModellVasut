@@ -7,6 +7,8 @@ import java.io.InputStreamReader;
 import java.util.List;
 
 /**
+ * Az állomásokat megvalósító osztály, a Csomópont leszármazottja.
+ * Az állomáson utasok szállhatnak fel, illetve le a megfelelõ szabályok szerint
  * @author Bandi
  * @version 1.0
  * @created 11-márc.-2017 3:39:55
