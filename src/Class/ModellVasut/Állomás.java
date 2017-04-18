@@ -44,12 +44,21 @@ public class Állomás extends Csomópont {
 	 * @param v: Az állomáson áthaladó VonatElemet jelöli.
 	 */
 	public boolean leszáll(VonatElem v){
-		nemleszállt--;
-		System.out.println("Utasok szálltak le");
-		if (nemleszállt == 0) {
-			pályaTeljesít();
+		try{
+			nemleszállt--;
+			System.out.println("Utasok szálltak le");
+			pg.getBw().write("Utasok szálltak le");
+			pg.getBw().newLine();
+			if (nemleszállt == 0) {
+				pg.getBw().write("Szint teljesítve");
+				pg.getBw().newLine();
+				pályaTeljesít();
+			}
+			return true;
+		}catch(IOException e){
+			System.out.println(e.getMessage());
 		}
-		return true;
+		return false;
 
 	}
 
@@ -60,9 +69,16 @@ public class Állomás extends Csomópont {
 	 * @param v: Az állomáson áthaladó VonatElemet jelöli.
 	 */
 	public boolean felszáll(VonatElem v){
-		felszálló = false;
-		System.out.println("Utasok szálltak fel");
-		return true;
+		try{
+			felszálló = false;
+			System.out.println("Utasok szálltak fel");
+			pg.getBw().write("Utasok szálltak SzemélyKocsira");
+			pg.getBw().newLine();
+			return true;
+		}catch(IOException e){
+			System.out.println(e.getMessage());
+		}
+		return false;
 	}
 
 
