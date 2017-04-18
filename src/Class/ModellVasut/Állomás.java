@@ -20,15 +20,11 @@ public class Állomás extends Csomópont {
 
 	/**
 	 * Konstruktor az Állomás osztály példányosításához
-	 * @param a az Állomás x koordinátája
-	 * @param b az Állomás y koordinátája
-	 * @param list az Állomásba futó SínElemek listája
 	 * @param szín az Állomás színe
 	 * @param felszálló megadja, hogy az Állomáson várakoznak-e utasok felszállásra
 	 * @param pg pályageneráló, amit az állomás értesít, ha sikeresen teljesül a szint
 	 */
 	public Állomás(String szín, boolean felszálló){
-		super(a,b,list);
 		this.szín = szín;
 		this.felszálló = felszálló;
 		this.pg = PályaGeneráló.getInstance();
@@ -49,7 +45,6 @@ public class Állomás extends Csomópont {
 		nemleszállt--;
 		if (nemleszállt == 0) {
 			pályaTeljesít();
-
 		}
 		return true;
 
@@ -106,6 +101,9 @@ public class Állomás extends Csomópont {
 		return ret;
 	}
 
+	/**
+	 * Az állomáshoz várakozó utasokat rendelünk.
+	 */
 	public void addUtas() {
 		felszálló = true;
 	}

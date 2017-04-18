@@ -77,12 +77,28 @@ public class Váltó extends Csomópont {
 		}
 	}
 
+	/**
+	 * Beállítja a váltó aktív kimenetét a paraméterben átadottra.
+	 * @param s a beállítandó SínElem
+	 */
 	public void setAktív(SínElem s){aktív = s;}
 
+	/**
+	 * Visszatér a váltó aktív kimenetével
+	 * @return az aktív SínElem
+	 */
 	public SínElem getAktív(){return aktív;}
 
+	/**
+	 * Beállítja a váltó rögzített kimenetét a paraméterben átadottra.
+	 * @param s a beállítandó SínElem
+	 */
 	public void setRögzített(SínElem s){rögzített = s;}
 
+	/**
+	 * Visszaadja a váltó rögzített kimenetét
+	 * @return  a visszaadott SínElem
+	 */
 	public SínElem getRögzített(){return rögzített;}
 }
 
