@@ -28,7 +28,6 @@ public class Állomás extends Csomópont {
 		this.szín = szín;
 		this.felszálló = felszálló;
 		this.pg = PályaGeneráló.getInstance();
-		System.out.println("Új "+ szín +" Állomás jött létre "+id+" ID-val");
 	}
 
 	public void finalize() throws Throwable {
