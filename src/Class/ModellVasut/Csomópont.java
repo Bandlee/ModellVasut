@@ -25,7 +25,6 @@ public class Csomópont {
 		befutóSínek = new ArrayList<SínElem>();
 		id=ids;
 		ids++;
-        System.out.println(this);
     }
 
 	public void felhasználóAkció(){
@@ -69,5 +68,9 @@ public class Csomópont {
 	}
 
 	public int getId(){return id;}
+
+	public static void nullId(){
+	    ids=0;
+    }
 
 }

@@ -18,7 +18,7 @@ public class PályaGeneráló {
 	private int szint;
 
 	public PályaGeneráló(){
-		szint = 0;
+		szint =8;
 	}
 
 	public void finalize() throws Throwable {
@@ -42,7 +42,8 @@ public class PályaGeneráló {
 
 	public Idõzítõ kezdés(){
         szint++;
-	    bemenet = new File("TesztBe" + String.valueOf(szint) + ".txt");
+        Csomópont.nullId();
+	    bemenet = new File("bemenet/TesztBe" + String.valueOf(szint) + ".txt");
         BufferedReader br = null;
         List<Csomópont> csomópontList= new ArrayList<>();
         csomópontList.add(new Csomópont());
@@ -60,7 +61,7 @@ public class PályaGeneráló {
                 } else if(parancs.equals("Vlt")) {
                     csomópontList.add(new Váltó());
 
-                } else if(parancs.equals("Als")) {
+                } else if(parancs.equals("Asz")) {
                     csomópontList.add(new AlagútSzáj());
 
                 } else if(parancs.equals("Sel")) {
@@ -167,7 +168,7 @@ public class PályaGeneráló {
 
 
             while((sor=br.readLine())!=null){
-                String parancs=sor.substring(0,3);
+                String parancs=sor.substring(0,2);
                 String index = sor.substring(4,5);
                 if(sor.equals("tick()")){
                     System.out.println("tick");
@@ -178,6 +179,7 @@ public class PályaGeneráló {
                     csomópontList.get(Integer.parseInt(index)-1).felhasználóAkció();
                 }
             }
+            br.close();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
