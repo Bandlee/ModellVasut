@@ -114,7 +114,13 @@ public abstract class VonatElem {
 	 *
 	 * @param következõ a kocsi, ami a vonatelemhez lesz kötve.
 	 */
-	public abstract void setKövetkezõ(Kocsi következõ);
+	public void setKövetkezõ(Kocsi _következõ){
+	    következõ=_következõ;
+    }
+
+	public Kocsi getKövetkezõ(){
+		return következõ;
+	}
 
 
 }

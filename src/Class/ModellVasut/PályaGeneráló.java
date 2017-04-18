@@ -110,6 +110,7 @@ public class PályaGeneráló {
 
                 } else if(parancs.equals("Snk")) {
 
+
                 } else if(parancs.equals("Smk")) {
 
                 } else {
