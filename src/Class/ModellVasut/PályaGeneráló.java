@@ -19,6 +19,7 @@ public class PályaGeneráló {
 	private File bemenet;
 	private int szint;
 
+    private BufferedWriter bw;
     /**
      * Konstruktor. Mivel csak egyetlen példány létezik az osztályból, a konstruktor privát.
      */
@@ -74,7 +75,7 @@ public class PályaGeneráló {
             }
 
             FileWriter fw = new FileWriter(file.getAbsoluteFile());
-            BufferedWriter bw = new BufferedWriter(fw);
+            bw = new BufferedWriter(fw);
 
             br=new BufferedReader(new FileReader(bemenet));
             String sor;
@@ -219,22 +220,23 @@ public class PályaGeneráló {
             }
 
             /** fájl végéig a parancsok beolvasása és feldolgozása */
-            try {
-                while ((sor = br.readLine()) != null) {
-                    String parancs = sor.substring(0, 3);
-                    String index = sor.substring(4, 5);
-                    if (sor.equals("tick()")) {
-                        /** tick parancs */
-                        System.out.println("tick");
-                        idõ.tick();
-                    } else if (parancs.equals("Swc")) {
-                        csomópontList.get(Integer.parseInt(index)).felhasználóAkció();
-                        /** váltó állítása */
-
-                    } else if (parancs.equals("Akt")) {
-                        /** alagútszáj-aktivitás állítása */
-                        csomópontList.get(Integer.parseInt(index)).felhasználóAkció();
-                    }
+            while((sor=br.readLine())!=null){
+                String parancs=sor.substring(0,3);
+                String index = sor.substring(4,5);
+                if(sor.equals("tick()")){
+                    /** tick parancs */
+                    System.out.println("tick");
+                    idõ.tick();
+                } else if(parancs.equals("Swc")) {
+                    csomópontList.get(Integer.parseInt(index)).felhasználóAkció();
+                    /** váltó állítása */
+                    bw.write("Váltás történt");
+                    bw.newLine();
+                } else if(parancs.equals("Akt")) {
+                    /** alagútszáj-aktivitás állítása */
+                    csomópontList.get(Integer.parseInt(index)).felhasználóAkció();
+                    bw.write("Alagútszáj aktivitás változott");
+                    bw.newLine();
                 }
             } catch (VegException v){
                 bw.write(v.getMessage());
@@ -247,5 +249,11 @@ public class PályaGeneráló {
         }
         return idõ;
     }
+
+    /**
+     * a tesztesetek kimenetelének kiírásához használatos, visszaadja a használt bufferedreadert
+     * @return bw
+     */
+    public BufferedWriter getBw(){return bw;}
 
 }
