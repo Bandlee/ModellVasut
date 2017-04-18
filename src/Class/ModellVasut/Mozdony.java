@@ -31,7 +31,7 @@ public class Mozdony extends VonatElem {
 	 * Közvetlenül a játék lefolyását kezelõ osztályból hívódik. Meghívja a vonat mozgatásáért felelõs függvényt, ha
 	 * annak már a pályán kellene lennie (késleltetés == 0), különben csökkenti a késleltetést
 	 */
-	public void tickAkció(){
+	public void tickAkció()throws VegException{
 		if(késleltetés == 0) {
 			mozgat();
 			if(következõ != null) következõ.tickAkció();

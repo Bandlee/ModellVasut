@@ -78,7 +78,7 @@ public class VonatElem {
 	 *	Adott vonat elem következõ sínelemre helyezését irányítja
 	 *	benne kerül sor ütközésdetektálásra is. érzékeli, ha játék végét jelentõ eset következik be
 	 */
-	public void mozgat(){
+	public void mozgat()throws VegException{
 
 		if(irány) {
 			if(TartózkodásiHely.getKövetkezõ() == null) {

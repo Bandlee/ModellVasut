@@ -25,7 +25,7 @@ public abstract class Kocsi extends VonatElem {
 	 * A metódus meghívódik minden alkalommal, mikor az elõtte lévõ vonat elem átadja neki az órajelet
 	 * Meghívja az elem mozgatásáért felelõs függvényt, és továbbadja a jelet a következõ vonat elemnek, ha létezik.
 	 */
-	public void tickAkció(){
+	public void tickAkció() throws VegException{
 		mozgat();
 		if(következõ != null) következõ.tickAkció();
 	}

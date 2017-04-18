@@ -7,6 +7,8 @@ package Class.ModellVasut;
  * @created 11-márc.-2017 3:39:56
  */
 
+import com.sun.org.apache.bcel.internal.generic.GOTO;
+
 /** A játék végét megvalósító osztály */
 public class JátékVége {
 
@@ -22,8 +24,9 @@ public class JátékVége {
 	 * játék végét jelentõ függvény
 	 * ezesetben a felhasználó vesztett, ezt fogja majd kezelni
 	 */
-	public void vég(){
-		System.out.println("JátékVége");
+
+	public void vég() throws VegException {
+		throw new VegException("Játék vége");
 	}
 
 }

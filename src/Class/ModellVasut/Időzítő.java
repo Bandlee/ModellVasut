@@ -32,7 +32,7 @@ public class Idõzítõ {
 	/**
 	 * az idõ eltelését szimbolizálja, idõegységenként hívódik meg
 	 */
-	public void tick(){
+	public void tick() throws  VegException{
 		for (Mozdony m : mozdonyok)
 			m.tickAkció();
 	}
