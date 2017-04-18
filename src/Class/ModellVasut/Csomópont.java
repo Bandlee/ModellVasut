@@ -14,7 +14,8 @@ public class Csomópont {
 	protected List<SínElem> befutóSínek;
 	protected int x;
 	protected int y;
-	protected static int id = 0;
+	private static int ids = 0;
+	protected int id;
 
 	/**
 	 * Konstruktor a Csomópont osztály példányosításához
@@ -24,7 +25,8 @@ public class Csomópont {
 	 */
 	public Csomópont(){
 		befutóSínek = new ArrayList<SínElem>();
-		id +=1;
+		ids+=1;
+		id=ids;
 	}
 
 	public void finalize() throws Throwable {

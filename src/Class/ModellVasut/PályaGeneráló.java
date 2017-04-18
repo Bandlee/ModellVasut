@@ -25,15 +25,35 @@ public class PályaGeneráló {
 				char[] temp = null;
 				for (int i = 0; i < 3; i++) temp[i] = sor.charAt(i);
 				String parancs= temp.toString();
+
 				if(parancs.equals("Csp")){
+					new Csomópont();
 
 				} else if(parancs.equals("Vlt")) {
+					new Váltó();
 
 				} else if(parancs.equals("Als")) {
+					int db=4;
+					String szín;
+					boolean utas;
+
+					while(sor.charAt(db++) != ','){
+						temp[db-4]=sor.charAt(0);
+					}
+					szín=temp.toString();
+
+					if (sor.charAt(db)=='0'){
+						utas=false;
+					} else {
+						utas=true;
+					}
+					
+					new Állomás(szín, utas);
 
 				} else if(parancs.equals("Sel")) {
 
 				} else if(parancs.equals("Ksn")) {
+					new KeresztezõSín();
 
 				} else if(parancs.equals("All")) {
 
