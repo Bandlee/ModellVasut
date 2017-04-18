@@ -35,7 +35,11 @@ public class VonatElem {
 
 	}
 
-
+	/**
+	 *
+	 * @param s
+	 * @return
+	 */
 	public boolean ellenõriz(String s){
 		if(this.getUtas() && this.getLeszállhat()) return true;
 		else return false;

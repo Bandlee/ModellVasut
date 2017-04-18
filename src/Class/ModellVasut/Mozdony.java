@@ -2,6 +2,7 @@ package Class.ModellVasut;
 
 
 /**
+ * A mozdonyokat megvalósító osztály. A vonatelem leszármazottja
  * @author Bandi
  * @version 1.0
  * @created 11-márc.-2017 3:39:56
@@ -14,7 +15,7 @@ public class Mozdony extends VonatElem {
 	/**
 	 * Mozdony osztály konstruktora
 	 * @param b a mozdony belépési pontja
-	 * @param k a mozdony 
+	 * @param k a mozdony késleltetése
 	 */
 	public Mozdony(Csomópont b, int k){
 		késleltetés = k;
@@ -56,6 +57,10 @@ public class Mozdony extends VonatElem {
 	 */
 	public int getKésleltetés(){return késleltetés;}
 
+	/**
+	 * Visszaadja a mozdony belépési pontját
+	 * @return belépési pont
+	 */
 	public Csomópont getBelépésiPont(){
 		return belépésipont;
 	}

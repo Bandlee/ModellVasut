@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * A bemeneti és kimeneti fájlok kezeléséért felelõs osztály.
+ * A bemeneti fájlok alapján építi fel a pályát, beolvas néhány elvégzendõ parancsot, majd végre is hajtja õket.
  * @author Bandi
  * @version 1.0
  * @created 11-márc.-2017 3:39:56
@@ -17,7 +19,10 @@ public class PályaGeneráló {
 	private File bemenet;
 	private int szint;
 
-	public PályaGeneráló(){
+    /**
+     * Konstruktor. Mivel csak egyetlen példány létezik az osztályból, a konstruktor privát.
+     */
+	private PályaGeneráló(){
 		szint = 0;
 	}
 
@@ -25,6 +30,11 @@ public class PályaGeneráló {
 
 	}
 
+    /**
+     * Csak egy példány létezik a PályaGenerálóból, ez a metódus biztosítja ennek a lekérését.
+     * Amennyiben még nem létezik az adott példány, létrehozza mert õ hozzáfér a konstruktorhoz.
+     * @return a pályageneráló példánya
+     */
 	public static PályaGeneráló getInstance() {
 		if(me == null) {
 			me = new PályaGeneráló();
@@ -34,13 +44,13 @@ public class PályaGeneráló {
 	}
 
 	/**
-	 * Pálya betöltésért, felelõs függvény.
-	 * A Szkeletonban csak 2 Csomópontot, az öket összekötõ SinElemeket,
-	 * kettõ kocsit, és az õket huzú mozdonyt hozzuk létre, valamint az idõzítõt,
-	 * ami a vonatok mozgatásáért felel.
+	 * Bemeneti fájlok feldolgozása és kimeneti fájlok készítése.
+     * A bemeneti fájlokból soronként állítjuk elõ a parancsokat, majd ennek megfelelõen elkészítjük a megfelelõ alkotóelemeket
+     * Ezek után a start beolvasása után parancsokat olvasunk és hajtunk végre
+     * Mellette a kimeneti fájlban jelezzük, hogy éppen mi történik.
 	 */
-
 	public Idõzítõ kezdés(){
+	    /** OLvasás és írás inicializálása */
         Csomópont.nullId();
         szint++;
 	    bemenet = new File("bemenet/TesztBe" + String.valueOf(szint) + ".txt");
@@ -50,6 +60,10 @@ public class PályaGeneráló {
 
         List<Mozdony> mozdonyList = new ArrayList<>();
         Idõzítõ idõ = new Idõzítõ(mozdonyList);
+
+        /** A beolvasást és kiírást bennfoglaló try blokk.
+         *  Benne a fájlok sorokénti feldolgozása
+         */
         try {
 
             File file = new File("kimenet/Kimenet"+szint+".txt");
@@ -63,22 +77,28 @@ public class PályaGeneráló {
 
             br=new BufferedReader(new FileReader(bemenet));
             String sor;
+
+            /** a start parancsig olvasunk. a beolvasottakból épül fel a pálya */
             while(!(sor=br.readLine()).equals("Start")){
                 String parancs=sor.substring(0,3);
 
                 if(parancs.equals("Csp")){
+                    /** csomópont elõállítása */
                     csomópontList.add(new Csomópont());
                     bw.write("Új Csomópont jött létre "+csomópontList.get(csomópontList.size()-1).getId()+" ID-val");
                     bw.newLine();
                 } else if(parancs.equals("Vlt")) {
+                    /** váltó elõállítása */
                     csomópontList.add(new Váltó());
                     bw.write("Új Váltó jött létre "+csomópontList.get(csomópontList.size()-1).getId()+"ID-val");
                     bw.newLine();
                 } else if(parancs.equals("Asz")) {
+                    /** alagútszáj elõállítása */
                     csomópontList.add(new AlagútSzáj());
                     bw.write("Új AlagútSzáj jött létre "+csomópontList.get(csomópontList.size()-1).getId()+"ID-val");
                     bw.newLine();
                 } else if(parancs.equals("Sel")) {
+                    /** sínelem elõállítása, sínelemek bekapcsoláa a csomópontok közé */
                     int csp1=Integer.parseInt(sor.substring(4,5));
                     Csomópont cs1=null;
                     for (Csomópont cs: csomópontList) {
@@ -111,10 +131,12 @@ public class PályaGeneráló {
                     cs2.setBefutóSín(temp_se.get(temp_se.size()-1));
 
                 } else if(parancs.equals("Ksn")) {
+                    /** keresztezõsín elõállítása */
                     csomópontList.add(new KeresztezõSín());
                     bw.write("Új KeresztezõSín jött létre "+csomópontList.get(csomópontList.size()-1).getId()+"ID-val");
                     bw.newLine();
                 } else if(parancs.equals("All")) {
+                    /** állomás elõállítása */
                     int db=4;
                     String szín=null;
                     boolean utas;
@@ -130,6 +152,7 @@ public class PályaGeneráló {
                     bw.write("Új "+szín+" Állomás jött létre "+csomópontList.get(csomópontList.size()-1).getId()+"ID-val");
                     bw.newLine();
                 } else if(parancs.equals("Mzd")) {
+                    /** mozdony elõállítása */
                     int csp1=Integer.parseInt(sor.substring(4,5));
                     Csomópont cs1=null;
                     for (Csomópont cs: csomópontList) {
@@ -147,6 +170,7 @@ public class PályaGeneráló {
 
 
                 } else if(parancs.equals("Snk")) {
+                    /** szeneskocsi elõállítása */
                     VonatElem iter = mozdonyList.get(mozdonyList.size() - 1);
                     while (iter.getKövetkezõ() != null) {
                         iter = iter.getKövetkezõ();
@@ -163,6 +187,7 @@ public class PályaGeneráló {
 
 
                 } else if(parancs.equals("Smk")) {
+                    /** személykocsi elõállítása */
                     int db=4;
                     String szín=null;
                     boolean utas;
@@ -192,17 +217,20 @@ public class PályaGeneráló {
                 }
             }
 
-
+            /** fájl végéig a parancsok beolvasása és feldolgozása */
             while((sor=br.readLine())!=null){
                 String parancs = sor.substring(0,2);
                 String index = sor.substring(4,5);
                 if(sor.equals("tick()")){
+                    /** tick parancs */
                     System.out.println("tick");
                     idõ.tick();
                 } else if(parancs.equals("Swc")) {
+                    /** váltó állítása */
                     csomópontList.get(Integer.parseInt(index)-1).felhasználóAkció();
 
                 } else if(parancs.equals("Akt")) {
+                    /** alagútszáj-aktivitás állítása */
                     csomópontList.get(Integer.parseInt(index)-1).felhasználóAkció();
                 }
             }

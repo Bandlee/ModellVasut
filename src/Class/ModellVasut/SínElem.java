@@ -2,6 +2,7 @@ package Class.ModellVasut;
 
 
 /**
+ * A SínElemeket megvalósító osztály. Feladataihoz tartozik az ütközésdetektálás és a vonatelemtovábbítás is.
  * @author Bandi
  * @version 1.0
  * @created 11-márc.-2017 3:39:56

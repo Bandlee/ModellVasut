@@ -102,8 +102,6 @@ public class Állomás extends Csomópont {
 
 		}
 
-
-
 		return ret;
 	}
 }

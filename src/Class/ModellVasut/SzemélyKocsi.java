@@ -1,6 +1,7 @@
 package Class.ModellVasut;
 
 /**
+ * Utasokat szállító kocsikat megvalósító osztály, a kocsi osztály leszármazottja
  * Created by rolac on 2017. 04. 15..
  */
 public class SzemélyKocsi extends Kocsi {
@@ -8,21 +9,25 @@ public class SzemélyKocsi extends Kocsi {
     private String szín;
     private boolean utas;
 
+    /**
+     * SzemélyKocsi konstruktor
+     * @param _szin a kocsi színe
+     * @param utasok megmutatja, hogy vannak-e utasok a kocsin
+     */
     public SzemélyKocsi(String _szin, boolean utasok) {
         szín = _szin;
         utas = utasok;
-        System.out.println("Új "+szín+" SzemélyKocsi jött létre");
     }
 
 
 
 
     /**
-     * A metódus megadja, hogy adott színû állomás mellett elhaladva szállnak-e le a szemelykocsiról utasok.
+     * A metódus megadja, hogy adott színû állomás mellett elhaladva szállnak-e le a SzemélyKocsiról utasok.
      * Amennyiben igen, ezt jelzi az utas tulajdonság beállításával, valamit engedélyezi az utána következõ
      * kocsinak a leszállást.
      *
-     * @param s: Az állomás színét jelöli a paraméter, a szemelykocsi színének egyeznie kell ezzel, ahoz,
+     * @param s: Az állomás színét jelöli a paraméter, a SzemélyKocsi színének egyeznie kell ezzel, ahoz,
      *           hogy leszállás történhessen.
      */
     @Override
@@ -43,12 +48,12 @@ public class SzemélyKocsi extends Kocsi {
 
 
     /**
-     * A metódus megadja, hogy adott színû állomás mellett elhaladva szállnak-e fel a szemelykocsira utasok.
+     * A metódus megadja, hogy adott színû állomás mellett elhaladva szállnak-e fel a SzemélyKocsira utasok.
      * Amennyiben igen, ezt jelzi az utas tulajdonság beállításával, valamit tíltja az utána következõ
      * kocsinak a leszállást.
      *
      * @param s: Az állomás színét jelöli a paraméter, ez alapján fogjuk eldönteni,
-     *           hogy szállhatnak-e fel utasok az adott szemelykocsira a megadott színû állomáson.
+     *           hogy szállhatnak-e fel utasok az adott SzemélyKocsira a megadott színû állomáson.
      */
     @Override
     public boolean felEllenõriz(String s){
@@ -67,12 +72,12 @@ public class SzemélyKocsi extends Kocsi {
 
 
     /**
-     * Beállítja a szemelykocsi leszállhat értékét.
+     * Beállítja a SzemélyKocsi leszállhat értékét.
      * Hamis érték esetén értesíti a mögötte lévõ kocsit, beállíja leszállhat értékét hamisra.
-     * Igaz érték esetén, ha nincs utas a szemelykocsiban, beállítja a következõ
+     * Igaz érték esetén, ha nincs utas a SzemélyKocsiban, beállítja a következõ
      * kocsi leszállhat értéket igazra.
      *
-     * @param leszállhat erre az értékre állítjuk be a szemelykocsi leszállhat értékét
+     * @param leszállhat erre az értékre állítjuk be a SzemélyKocsi leszállhat értékét
      */
     @Override
     protected void setLeszállhat(boolean leszállhat) {
@@ -91,12 +96,12 @@ public class SzemélyKocsi extends Kocsi {
     }
 
     /**
-     * Hozzáköti a szemelykocsihoz a megadott kocsit, ez fog utána következni.
-     * Beállítja a kocsinak a leszállhat jogosultságát a szemelykocsi
+     * Hozzáköti a SzemélyKocsihoz a megadott kocsit, ez fog utána következni.
+     * Beállítja a kocsinak a leszállhat jogosultságát a SzemélyKocsi
      * tulajdonságainak megfelelõen: ha van utas, vagy leszállhat false, akkor
      * a beállított érték false, különben marad true.
      *
-     * @param következõ a kocsi, ami a szemelykocsihoz lesz kötve.
+     * @param következõ a kocsi, ami a SzemélyKocsihoz lesz kötve.
      */
     @Override
     public void setKövetkezõ(Kocsi következõ) {
@@ -108,10 +113,17 @@ public class SzemélyKocsi extends Kocsi {
         //leszálhat létrehozáskor true
     }
 
-
+    /**
+     * Megmutatja, hogy van-e utas a SzemélyKocsiban
+     * @return utas paraméter
+     */
     @Override
     public boolean getUtas(){return utas;}
 
+    /**
+     * Megmutatja, hogy az utasok leszállhatnak-e a kocsiról, az adott paraméter értékét adja vissza.
+     * @return leszállhat paraméter értéke
+     */
     @Override
     public boolean getLeszállhat(){return leszállhat;}
 }

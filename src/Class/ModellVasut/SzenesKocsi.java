@@ -1,11 +1,14 @@
 package Class.ModellVasut;
 
 /**
+ * SzenesKocsikat megvalósító osztály. Róla nem szállhatnak le utasok.
  * Created by rolac on 2017. 04. 15..
  */
 public class SzenesKocsi extends Kocsi {
 
-
+    /**
+     * SzenesKocsi konstruktor
+     */
     public SzenesKocsi(){
         System.out.println("Új SzenesKocsi jött létre");
     }
@@ -23,6 +26,10 @@ public class SzenesKocsi extends Kocsi {
         }
     }
 
+    /**
+     * Megmutatja, hogy szállhatnak-e le róla utasok - nem.
+     * @return hamis
+     */
     public boolean getLeszállhat(){
         return false;
     }
