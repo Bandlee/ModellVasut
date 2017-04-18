@@ -25,7 +25,8 @@ public class Csomópont {
 		befutóSínek = new ArrayList<SínElem>();
 		id=ids;
 		ids++;
-	}
+        System.out.println(this);
+    }
 
 	public void felhasználóAkció(){
 
@@ -44,24 +45,19 @@ public class Csomópont {
 	 * @param s megmutatja, honnan is érkezett a vonatelem
 	 */
 	public boolean tovább(VonatElem v, SínElem s){
-		try{
-			SínElem hova = null;
-
-			if(befutóSínek.get(0)!=s){
-				hova = befutóSínek.get(0);
-			} else if(befutóSínek.get(1)!=s){
-				hova = befutóSínek.get(1);
-			}
-			if(hova == null){
-				return false;
-			} else{
-				v.setPozíció(hova);
-				if(hova.getSínvég1()==this) v.setIrány(true); else v.setIrány(false);
-				return true;
-			}
-		}catch(Exception e){
-			return false;
-		}
+        SínElem hova = null;
+        if(befutóSínek.get(0)!=s){
+            hova = befutóSínek.get(0);
+        } else if(befutóSínek.get(1)!=s){
+            hova = befutóSínek.get(1);
+        }
+        if(hova == null){
+            return false;
+        } else{
+            v.setPozíció(hova);
+            if(hova.getSínvég1()==this) v.setIrány(true); else v.setIrány(false);
+            return true;
+        }
 	}
 
 	/**

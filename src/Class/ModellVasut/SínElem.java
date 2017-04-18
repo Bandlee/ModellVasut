@@ -67,11 +67,11 @@ public class SínElem {
 	public boolean keresztez(boolean i, VonatElem v){
 		if(i) {
 			if(this.következõ==null){
-				return sínvég1.tovább(aktuálisVonatElem,this);
+				return sínvég2.tovább(v,this);
 			}
 		} else {
 			if(this.elõzõ ==null){
-				return sínvég2.tovább(aktuálisVonatElem,this);
+				return sínvég1.tovább(v,this);
 			}
 		}
 		return false;
@@ -90,9 +90,12 @@ public class SínElem {
 	 * @return megmutatja, hogy fennáll e az ütközésnek a lehetõsége
 	 */
 	public boolean ütközésElõrejelez(){
-
-		VonatElem elõttem = elõzõ.getÁthaladóElem();
-		VonatElem mögöttem = következõ.getÁthaladóElem();
+		VonatElem elõttem = null;
+		if(elõzõ==null) elõttem = null;
+		else elõttem = elõzõ.getÁthaladóElem();
+		VonatElem mögöttem = null;
+		if(következõ==null) mögöttem = null;
+		else mögöttem = következõ.getÁthaladóElem();
 		if(elõttem!=null && elõttem.getIrány()!=aktuálisVonatElem.getIrány()){
 			return false;
 		} else if(mögöttem != null && mögöttem.getIrány()!= aktuálisVonatElem.getIrány()){

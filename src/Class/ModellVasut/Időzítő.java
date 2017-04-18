@@ -34,7 +34,7 @@ public class Idõzítõ {
 	 */
 	public void tick(){
 		for (Mozdony m : mozdonyok)
-			m.mozgat();
+			m.tickAkció();
 	}
 
 }

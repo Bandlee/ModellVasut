@@ -78,7 +78,7 @@ public class VonatElem {
 
 		if(irány) {
 			if(TartózkodásiHely.getKövetkezõ() == null) {
-				boolean tmp = TartózkodásiHely.keresztez(true, this);
+				boolean tmp = TartózkodásiHely.keresztez(irány, this);
 				if(!tmp){
 					JátékVége v = new JátékVége();
 					v.vég();
@@ -88,19 +88,18 @@ public class VonatElem {
 				setPozíció(TartózkodásiHely.getKövetkezõ());
 			}
 		} else {
-			boolean tmp = TartózkodásiHely.keresztez(true, this);
-			if(!tmp){
-				if(!TartózkodásiHely.keresztez(irány, this)){
-					JátékVége v = new JátékVége();
-					v.vég();
-					return;
-				}
-
-			} else {
-				setPozíció(TartózkodásiHely.getElõzõ());
-			}
-
+            if(TartózkodásiHely.getElõzõ() == null) {
+                boolean tmp = TartózkodásiHely.keresztez(irány, this);
+                if (!tmp) {
+                    JátékVége v = new JátékVége();
+                    v.vég();
+                    return;
+                }
+            } else {
+                setPozíció(TartózkodásiHely.getElõzõ());
+            }
 		}
+
 		boolean ütköz = TartózkodásiHely.ütközésElõrejelez();
 		if(!ütköz) {
 			JátékVége v = new JátékVége();
@@ -123,7 +122,8 @@ public class VonatElem {
 	 */
 	public void setPozíció(SínElem s){
 		TartózkodásiHely = s;
-	}
+        System.out.println(s);
+    }
 
 
 	/**

@@ -81,6 +81,7 @@ public class Állomás extends Csomópont {
 	 * @param s: Azt a SínElemet jelöli, amirõl a v VonatElem érkezik.
 	 *
 	 */
+	@Override
 	public boolean tovább(VonatElem v, SínElem s){
 
 		boolean ret;

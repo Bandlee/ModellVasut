@@ -41,16 +41,18 @@ public class PályaGeneráló {
 	 */
 
 	public Idõzítõ kezdés(){
-        bemenet = new File("TesztBe" + String.valueOf(szint) + ".txt");
+        szint++;
+	    bemenet = new File("TesztBe" + String.valueOf(szint) + ".txt");
         BufferedReader br = null;
         List<Csomópont> csomópontList= new ArrayList<>();
+        csomópontList.add(new Csomópont());
 
         List<Mozdony> mozdonyList = new ArrayList<>();
         Idõzítõ idõ = new Idõzítõ(mozdonyList);
         try {
             br=new BufferedReader(new FileReader(bemenet));
             String sor;
-            while((sor=br.readLine()).equals("Start")){
+            while(!(sor=br.readLine()).equals("Start")){
                 String parancs=sor.substring(0,3);
 
                 if(parancs.equals("Csp")){
@@ -82,22 +84,21 @@ public class PályaGeneráló {
                     if (temp_se.size()>1) {
                         for (int i = 0; i < temp_se.size() - 1; i++) {
                             temp_se.get(i).setKövetkezõ(temp_se.get(i+1));
+                            System.out.println(temp_se.get(i));
                         }
+                        System.out.println(temp_se.get(temp_se.size()-1));
                     }
+                    cs1.setBefutóSín(temp_se.get(0));
+                    cs2.setBefutóSín(temp_se.get(temp_se.size()-1));
 
                 } else if(parancs.equals("Ksn")) {
                     csomópontList.add(new KeresztezõSín());
 
                 } else if(parancs.equals("All")) {
                     int db=4;
-                    String szín;
+                    String szín=null;
                     boolean utas;
-
-                    char[] temp = new char[20];
-                    while(sor.charAt(db++) != ','){
-                        temp[db-4]=sor.charAt(db);
-                    }
-                    szín=temp.toString();
+                    szín= sor.substring(4, sor.indexOf(','));
 
                     if (sor.substring(db,db+1)=="1"){
                         utas=true;
@@ -123,34 +124,24 @@ public class PályaGeneráló {
 
 
                 } else if(parancs.equals("Snk")) {
-                    if (mozdonyList.get(mozdonyList.size()-1).getKövetkezõ()==null){
-                        mozdonyList.get(mozdonyList.size()-1).setKövetkezõ(new SzenesKocsi());
-                    }
-
-                    VonatElem iter=mozdonyList.get(mozdonyList.size()-1).getKövetkezõ();
-
-                    while(iter.getKövetkezõ()!=null){
-                        iter= iter.getKövetkezõ();
+                    VonatElem iter = mozdonyList.get(mozdonyList.size() - 1);
+                    while (iter.getKövetkezõ() != null) {
+                        iter = iter.getKövetkezõ();
                     }
 
                     SzenesKocsi s=new SzenesKocsi();
                     s.setPozíció(new SínElem(csomópontList.get(0), mozdonyList.get(mozdonyList.size()-1).getBelépésiPont(),false));
                     s.setIrány(true);
-                    s.getPozíció().setElõzõ(iter.getPozíció());
+                    iter.getPozíció().setKövetkezõ(s.getPozíció());
                     iter.setKövetkezõ(s);
 
 
 
                 } else if(parancs.equals("Smk")) {
                     int db=4;
-                    String szín;
+                    String szín=null;
                     boolean utas;
-
-                    char[] temp = new char[20];
-                    while(sor.charAt(db++) != ','){
-                        temp[db-4]=sor.charAt(db);
-                    }
-                    szín=temp.toString();
+                    szín= sor.substring(4, sor.indexOf(','));
 
                     if (sor.substring(db,db+1)=="1"){
                         utas=true;
@@ -158,20 +149,15 @@ public class PályaGeneráló {
                         utas=false;
                     }
 
-                    if (mozdonyList.get(mozdonyList.size()-1).getKövetkezõ()==null){
-                        mozdonyList.get(mozdonyList.size()-1).setKövetkezõ(new SzemélyKocsi(szín, utas));
+                    VonatElem iter = mozdonyList.get(mozdonyList.size() - 1);
+                    while (iter.getKövetkezõ() != null) {
+                        iter = iter.getKövetkezõ();
                     }
 
-                    VonatElem iter=mozdonyList.get(mozdonyList.size()-1).getKövetkezõ();
-
-                    while(iter.getKövetkezõ()!=null){
-                        iter= iter.getKövetkezõ();
-                    }
-
-                    SzenesKocsi s=new SzenesKocsi();
-                    s.setPozíció(new SínElem(csomópontList.get(0), mozdonyList.get(mozdonyList.size()-1).getBelépésiPont(),false));
+                    SzemélyKocsi s = new SzemélyKocsi(szín, utas);
+                    s.setPozíció(new SínElem(csomópontList.get(0), mozdonyList.get(mozdonyList.size() - 1).getBelépésiPont(), false));
                     s.setIrány(true);
-                    s.getPozíció().setElõzõ(iter.getPozíció());
+                    iter.getPozíció().setElõzõ(s.getPozíció());
                     iter.setKövetkezõ(s);
 
                 } else {
@@ -180,11 +166,11 @@ public class PályaGeneráló {
             }
 
 
-
             while((sor=br.readLine())!=null){
                 String parancs=sor.substring(0,3);
                 String index = sor.substring(4,5);
-                if(sor.equals("tick")){
+                if(sor.equals("tick()")){
+                    System.out.println("tick");
                     idõ.tick();
                 } else if(parancs.equals("Swc")) {
                     csomópontList.get(Integer.parseInt(index)-1).felhasználóAkció();
