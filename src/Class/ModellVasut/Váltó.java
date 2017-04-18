@@ -76,6 +76,10 @@ public class Váltó extends Csomópont {
 			return false;
 		}
 	}
+
+	public void setAktív(SínElem s){aktív = s;}
+	
+	public SínElem getAktív(){return aktív;}
 }
 
 

@@ -103,4 +103,18 @@ public class Állomás extends Csomópont {
 	public void addUtas() {
 		felszálló = true;
 	}
+
+	public void setNemleszállt(int a){
+		nemleszállt = a;
+	}
+
+	public int getNemleszállt(){return nemleszállt;}
+
+	public void setSzín(String a){szín = a;}
+
+	public String getSzín(){return szín;}
+
+	public void setFelszálló(boolean b){felszálló=b;}
+
+	public boolean getFelszálló(){return felszálló;}
 }
