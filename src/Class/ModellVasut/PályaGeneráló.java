@@ -125,9 +125,7 @@ public class PályaGeneráló {
                     if (temp_se.size()>1) {
                         for (int i = 0; i < temp_se.size() - 1; i++) {
                             temp_se.get(i).setKövetkezõ(temp_se.get(i+1));
-                            System.out.println(temp_se.get(i));
                         }
-                        System.out.println(temp_se.get(temp_se.size()-1));
                     }
                     cs1.setBefutóSín(temp_se.get(0));
                     cs2.setBefutóSín(temp_se.get(temp_se.size()-1));
@@ -225,7 +223,6 @@ public class PályaGeneráló {
                 String index = sor.substring(4,5);
                 if(sor.equals("tick()")){
                     /** tick parancs */
-                    System.out.println("tick");
                     idõ.tick();
                 } else if(parancs.equals("Swc")) {
                     csomópontList.get(Integer.parseInt(index)).felhasználóAkció();

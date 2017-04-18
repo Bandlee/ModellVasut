@@ -77,6 +77,11 @@ public class Váltó extends Csomópont {
 		}
 	}
 
+	/**
+	 * a váltóba befutó sínelekehez való hozzáadás.
+	 * speciális szerepe miatt a váltóban különlegesebben mûködik, mint egy sima csomópontban
+	 * @param s a hozzáadandó SínElem
+	 */
 	@Override
     public void setBefutóSín(SínElem s){
 	    if (befutóSínek.size()==0){

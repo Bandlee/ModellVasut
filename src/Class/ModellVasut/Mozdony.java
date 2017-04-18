@@ -20,7 +20,6 @@ public class Mozdony extends VonatElem {
 	public Mozdony(Csomópont b, int k){
 		késleltetés = k;
 		belépésipont = b;
-		System.out.println("Új Mozdony jött létre");
 	}
 
 	public void finalize() throws Throwable {
