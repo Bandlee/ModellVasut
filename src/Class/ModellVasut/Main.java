@@ -9,7 +9,12 @@ public class Main {
 
         PályaGeneráló pg = PályaGeneráló.getInstance();
 
-        Idõzítõ idõ = pg.kezdés();
+        for(int i=0;i<23;i++){
+            System.out.println("Teszteset"+(i+1));
+            Idõzítõ idõ = pg.kezdés();
+
+        }
+
 
     }
 

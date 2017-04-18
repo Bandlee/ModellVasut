@@ -11,6 +11,11 @@ public class Mozdony extends VonatElem {
 	private Csomópont belépésipont;
 	private int késleltetés;
 
+	/**
+	 * Mozdony osztály konstruktora
+	 * @param b a mozdony belépési pontja
+	 * @param k a mozdony 
+	 */
 	public Mozdony(Csomópont b, int k){
 		késleltetés = k;
 		belépésipont = b;
@@ -45,6 +50,10 @@ public class Mozdony extends VonatElem {
 		this.következõ = következõ;
 	}
 
+	/**
+	 * Visszaadja a mozdony késleltetését.
+	 * @return késleltetés
+	 */
 	public int getKésleltetés(){return késleltetés;}
 
 	public Csomópont getBelépésiPont(){
