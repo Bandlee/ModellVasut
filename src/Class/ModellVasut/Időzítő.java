@@ -33,7 +33,6 @@ public class Idõzítõ {
 	 * az idõ eltelését szimbolizálja, idõegységenként hívódik meg
 	 */
 	public void tick(){
-		//System.out.println(">>Mozdony::tickAkció()");
 		for (Mozdony m : mozdonyok)
 			m.mozgat();
 	}

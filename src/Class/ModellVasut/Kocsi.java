@@ -40,6 +40,4 @@ public abstract class Kocsi extends VonatElem {
 	 */
 	protected abstract void setLeszállhat(boolean leszállhat);
 
-	public abstract boolean getLeszállhat();
-
 }

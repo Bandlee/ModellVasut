@@ -41,7 +41,7 @@ public class PályaGeneráló {
 	 */
 
 	public Idõzítõ kezdés(){
-        bemenet = new File("tesztbe" + String.valueOf(szint));
+        bemenet = new File("TesztBe" + String.valueOf(szint) + ".txt");
         BufferedReader br = null;
         List<Csomópont> csomópontList= new ArrayList<>();
         List<Mozdony> mozdonyList = new ArrayList<>();

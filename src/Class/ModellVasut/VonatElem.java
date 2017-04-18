@@ -6,7 +6,7 @@ package Class.ModellVasut;
  * @version 1.0
  * @created 11-márc.-2017 3:39:56
  */
-public abstract class VonatElem {
+public class VonatElem {
 
 	protected boolean irány;
 	protected SínElem TartózkodásiHely;
@@ -129,15 +129,11 @@ public abstract class VonatElem {
 	/**
 	 * Hozzáköti a vonatelemhez a megadott kocsit, ez fog utána következni.
 	 *
-	 * @param következõ a kocsi, ami a vonatelemhez lesz kötve.
+	 * @param _következõ a kocsi, ami a vonatelemhez lesz kötve.
 	 */
 	public void setKövetkezõ(Kocsi _következõ){
 	    következõ=_következõ;
     }
-
-	public Kocsi getKövetkezõ(){
-		return következõ;
-	}
 
 	/**
 	 * Visszaadja a következõ, az aktuális vonatelem után álló kocsit.

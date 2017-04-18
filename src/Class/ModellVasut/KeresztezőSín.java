@@ -34,14 +34,14 @@ public class KeresztezõSín extends Csomópont {
         try{
             SínElem hova = null;
 
-            // a forrás sínelem indexe alapján vizsgálunk
+            /** a forrás sínelem indexe alapján vizsgálunk */
             int i = befutóSínek.indexOf(s);
 
-            // ha az index 2-nél kisebb, akkor a párja (index+2) lesz
+            /** ha az index 2-nél kisebb, akkor a párja (index+2) lesz */
             if(i < 2){
                 hova = befutóSínek.get(i+2);
             }
-            // ha az index legalább 2, akkor a párja (index-2) lesz
+            /** ha az index legalább 2, akkor a párja (index-2) lesz */
             else if(i >= 2){
                 hova = befutóSínek.get(i-2);
             }
