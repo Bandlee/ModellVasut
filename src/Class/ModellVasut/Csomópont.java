@@ -67,6 +67,10 @@ public class Csomópont {
 		befutóSínek.add(s);
 	}
 
+    public void removeBefutóSín(SínElem s){
+        befutóSínek.remove(s);
+    }
+
 	public int getId(){return id;}
 
 	public static void nullId(){

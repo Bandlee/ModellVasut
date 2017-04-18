@@ -77,10 +77,24 @@ public class Váltó extends Csomópont {
 		}
 	}
 
+	@Override
+    public void setBefutóSín(SínElem s){
+	    if (befutóSínek.size()==0){
+	        befutóSínek.add(s);
+	        rögzített=s;
+        } else if(befutóSínek.size()==1){
+            befutóSínek.add(s);
+            aktív=s;
+        } else {
+            befutóSínek.add(s);
+        }
+    }
+
 	/**
 	 * Beállítja a váltó aktív kimenetét a paraméterben átadottra.
 	 * @param s a beállítandó SínElem
 	 */
+
 	public void setAktív(SínElem s){aktív = s;}
 
 	/**

@@ -18,7 +18,7 @@ public class PályaGeneráló {
 	private int szint;
 
 	public PályaGeneráló(){
-		szint =8;
+		szint =17;
 	}
 
 	public void finalize() throws Throwable {
@@ -168,15 +168,15 @@ public class PályaGeneráló {
 
 
             while((sor=br.readLine())!=null){
-                String parancs=sor.substring(0,2);
+                String parancs=sor.substring(0,3);
                 String index = sor.substring(4,5);
                 if(sor.equals("tick()")){
                     System.out.println("tick");
                     idõ.tick();
                 } else if(parancs.equals("Swc")) {
-                    csomópontList.get(Integer.parseInt(index)-1).felhasználóAkció();
+                    csomópontList.get(Integer.parseInt(index)).felhasználóAkció();
                 } else if(parancs.equals("Akt")) {
-                    csomópontList.get(Integer.parseInt(index)-1).felhasználóAkció();
+                    csomópontList.get(Integer.parseInt(index)).felhasználóAkció();
                 }
             }
             br.close();
