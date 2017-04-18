@@ -11,15 +11,7 @@ public class Mozdony extends VonatElem {
 	private Csomópont belépésipont;
 	private int késleltetés;
 
-	/**
-	 * jelenleg csak a tesztesethez állítunk be egy kezdõértéket
-	 * az éles programban nem így fog kinézni
-	 */
-	public Mozdony(){
-		késleltetés = 10;
-	}
-
-	public Mozdony(int k, Csomópont b){
+	public Mozdony(Csomópont b, int k){
 		késleltetés = k;
 		belépésipont = b;
 	}

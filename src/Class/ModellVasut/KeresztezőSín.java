@@ -18,8 +18,8 @@ public class KeresztezõSín extends Csomópont {
      * A sínpárokat azok index-ével fogjuk azonosítani:
      * Összetartoznak a 0, 2 indexû és az 1, 3 indexû SínElemek
      */
-    public KeresztezõSín (int a, int b, List<SínElem> list) {
-        super(a, b, list);
+    public KeresztezõSín () {
+        super();
     }
 
     /**

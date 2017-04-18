@@ -27,6 +27,10 @@ public class Csomópont {
 		id +=1;
 	}
 
+	public void felhasználóAkció(){
+
+	}
+
 	public void finalize() throws Throwable {
 
 	}
