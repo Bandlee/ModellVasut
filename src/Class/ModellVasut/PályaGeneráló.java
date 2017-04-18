@@ -18,7 +18,7 @@ public class PályaGeneráló {
 	private int szint;
 
 	public PályaGeneráló(){
-
+		szint = 0;
 	}
 
 	public void finalize() throws Throwable {
@@ -41,11 +41,11 @@ public class PályaGeneráló {
 	 */
 
 	public Idõzítõ kezdés(){
-        szint++;
-	    bemenet = new File("tesztbe" + String.valueOf(szint));
+        bemenet = new File("tesztbe" + String.valueOf(szint));
         BufferedReader br = null;
         List<Csomópont> csomópontList= new ArrayList<>();
         List<Mozdony> mozdonyList = new ArrayList<>();
+        Idõzítõ idõ = new Idõzítõ(mozdonyList);
         try {
             br=new BufferedReader(new FileReader(bemenet));
             String sor;
@@ -107,15 +107,6 @@ public class PályaGeneráló {
                     csomópontList.add(new Állomás(szín, utas));
 
                 } else if(parancs.equals("Mzd")) {
-                    int csp1=Integer.parseInt(sor.substring(4,5));
-                    Csomópont cs1=null;
-                    for (Csomópont cs: csomópontList) {
-                        if(cs.getId()==csp1) cs1=cs;
-                    }
-
-                    int k=Integer.parseInt(sor.substring(6,7));
-
-                    mozdonyList.add(new Mozdony(cs1, k));
 
                 } else if(parancs.equals("Snk")) {
 
@@ -126,7 +117,7 @@ public class PályaGeneráló {
                 }
             }
 
-            Idõzítõ idõ = new Idõzítõ(mozdonyList);
+
 
             while((sor=br.readLine())!=null){
                 String parancs=sor.substring(0,3);
@@ -139,10 +130,10 @@ public class PályaGeneráló {
                     csomópontList.get(Integer.parseInt(index)-1).felhasználóAkció();
                 }
             }
-
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-	}
+        return idõ;
+    }
 
 }
