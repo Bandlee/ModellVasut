@@ -20,13 +20,13 @@ public class PályaGeneráló {
 	public PályaGeneráló(){
 		bemenet = new File("tesztbe" + String.valueOf(szint));
 		BufferedReader br = null;
+		List<Csomópont> csomópontList= new ArrayList<>();
+		List<Mozdony> mozdonyList = new ArrayList<>();
 		try {
 			br=new BufferedReader(new FileReader(bemenet));
 			String sor;
 			while((sor=br.readLine()).equals("Start")){
 				String parancs=sor.substring(0,3);
-				List<Csomópont> csomópontList= new ArrayList<>();
-
 
 				if(parancs.equals("Csp")){
 					csomópontList.add(new Csomópont());
@@ -77,17 +77,17 @@ public class PályaGeneráló {
 				}
 			}
 
-			Idõzítõ idõ = new Idõzítõ();
+			Idõzítõ idõ = new Idõzítõ(mozdonyList);
 
 			while((sor=br.readLine())!=null){
 				String parancs=sor.substring(0,3);
-
+				String index = sor.substring(5,6);
 				if(sor.equals("tick")){
 					idõ.tick();
 				} else if(parancs.equals("Swc")) {
-					new Váltó();
+					csomópontList.get(Integer.parseInt(index)-1).felhasználóAkció();
 				} else if(parancs.equals("Akt")) {
-					new Váltó();
+					csomópontList.get(Integer.parseInt(index)-1).felhasználóAkció();
 				}
 			}
 
