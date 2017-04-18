@@ -13,6 +13,7 @@ public class Csomópont {
 	protected List<SínElem> befutóSínek;
 	protected int x;
 	protected int y;
+	protected static int id = 0;
 
 	/**
 	 * Konstruktor a Csomópont osztály példányosításához
@@ -24,6 +25,7 @@ public class Csomópont {
 		x = a;
 		y = b;
 		befutóSínek = list;
+		id +=1;
 	}
 
 	public void finalize() throws Throwable {

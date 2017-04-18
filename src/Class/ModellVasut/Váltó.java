@@ -37,15 +37,15 @@ public class Váltó extends Csomópont {
 	 * (vagy az utolsót követve az elsõ) SínElemre változtatja.
 	 */
 	public void felhasználóAkció(){
-		//egy változó segítségével lépünk az elemek között
+		/** egy változó segítségével lépünk az elemek között*/
 		int i = befutóSínek.indexOf(aktív);
-		// léptetjük a változónkat
+		/** léptetjük a változónkat*/
 		i++;
-		// ha túlléptünk a listán, elõrõl kezdjük (1-tõl, mivel a 0. a rögzített)
+		/** ha túlléptünk a listán, elõrõl kezdjük (1-tõl, mivel a 0. a rögzített) */
 		if (i >= befutóSínek.size())
 			i = 1;
-		// ha léptetés után nem az aktívon állunk, akkor lecseréljük azt az aktuálisra
-		// ha léptetés után is az aktív az aktuális, akkor nem változtatunk semmit
+		/** ha léptetés után nem az aktívon állunk, akkor lecseréljük azt az aktuálisra */
+		/** ha léptetés után is az aktív az aktuális, akkor nem változtatunk semmmit */
 		if (befutóSínek.get(i) != aktív)
 			aktív = befutóSínek.get(i);
 	}
