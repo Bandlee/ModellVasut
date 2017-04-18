@@ -1,6 +1,7 @@
 package Class.ModellVasut;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,8 +21,11 @@ public class Alagút {
 	 * @param be2: 2-es számú bejárat
 	 */
 	public Alagút(AlagútSzáj be1, AlagútSzáj be2){
+		alagútelem=new ArrayList<>();
 		bejárat1 = be1;
 		bejárat2 = be2;
+		SínElem s=new SínElem(be1,be2, false);
+		alagútelem.add(s);
 	}
 
 	public void finalize() throws Throwable {
@@ -40,5 +44,9 @@ public class Alagút {
                 return false;
         }
 		return true;
+	}
+
+	public List<SínElem> getAlagútelem(){
+		return alagútelem;
 	}
 }

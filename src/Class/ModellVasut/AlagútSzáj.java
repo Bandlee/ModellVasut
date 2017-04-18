@@ -4,6 +4,7 @@ package Class.ModellVasut;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,6 +29,7 @@ public class AlagútSzáj extends Csomópont {
 	public AlagútSzáj(){
 		super();
 		aktív = false;
+		aktívak = new ArrayList<>();
 	}
 
 	public void finalize() throws Throwable {
@@ -89,17 +91,22 @@ public class AlagútSzáj extends Csomópont {
 	private void épít(){
 		//létrehozzuk az alagutat a két végével
 		alagút = new Alagút(aktívak.get(0), aktívak.get(1));
+        aktívak.get(0).setBefutóSín(alagút.getAlagútelem().get(0));
+        aktívak.get(1).setBefutóSín(alagút.getAlagútelem().get(alagút.getAlagútelem().size()-1));
 
 		//beállítjuk az alagút szájaknak a friss alagutunkat
-		for (AlagútSzáj actual : aktívak)
-			actual.alagút = alagút;
+		for (AlagútSzáj actual : aktívak) {
+		    actual.alagút=alagút;
+        }
 	}
 
 	/**
 	 * Megszünteti (null pointerre cseréli) a létezõ alagutat mindkét végénél.
 	 */
 	private void rombol(){
-		for (AlagútSzáj actual : aktívak)
+        aktívak.get(0).removeBefutóSín(alagút.getAlagútelem().get(0));
+        aktívak.get(1).removeBefutóSín(alagút.getAlagútelem().get(alagút.getAlagútelem().size()-1));
+	    for (AlagútSzáj actual : aktívak)
 			actual.alagút = null;
 	}
 
