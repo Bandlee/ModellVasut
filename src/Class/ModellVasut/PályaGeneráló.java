@@ -2,6 +2,8 @@ package Class.ModellVasut;
 
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Bandi
@@ -23,27 +25,27 @@ public class PályaGeneráló {
 			String sor;
 			while((sor=br.readLine()).equals("Start")){
 				String parancs=sor.substring(0,3);
+				List<Csomópont> csomópontList= new ArrayList<>();
+
 
 				if(parancs.equals("Csp")){
-					new Csomópont();
-
+					csomópontList.add(new Csomópont());
 				} else if(parancs.equals("Vlt")) {
-					new Váltó();
+					csomópontList.add(new Váltó());
 
 				} else if(parancs.equals("Als")) {
-					new AlagútSzáj();
+					csomópontList.add(new AlagútSzáj());
 
 				} else if(parancs.equals("Sel")) {
 					int csp1=Integer.parseInt(sor.substring(4,5));
 					int csp2=Integer.parseInt(sor.substring(6,7));
 					int db=Integer.parseInt(sor.substring(8,9));
 
-					SínElem temp_se =new SínElem(csp1, csp2, null, );
-					for(int i=2;i<db-1;i++){
-
-					}
+					List<SínElem> temp_se =new ArrayList<>();
+					for(int i=0;i<db;i++)
+						temp_se.add(new SínElem(csp1, csp2, true));
 				} else if(parancs.equals("Ksn")) {
-					new KeresztezõSín();
+					csomópontList.add(new KeresztezõSín());
 
 				} else if(parancs.equals("All")) {
 					int db=4;
@@ -62,7 +64,7 @@ public class PályaGeneráló {
 						utas=false;
 					}
 
-					new Állomás(szín, utas);
+					csomópontList.add(new Állomás(szín, utas));
 
 				} else if(parancs.equals("Mzd")) {
 
