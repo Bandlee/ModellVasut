@@ -1,6 +1,7 @@
 package Class.ModellVasut;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,10 +22,8 @@ public class Csomópont {
 	 * @param b a Csomópont x koordinátája
 	 * @param list a Csomópontba futó SínElemek listája
 	 */
-	public Csomópont(int a, int b, List<SínElem> list){
-		x = a;
-		y = b;
-		befutóSínek = list;
+	public Csomópont(){
+		befutóSínek = new ArrayList<SínElem>();
 		id +=1;
 	}
 

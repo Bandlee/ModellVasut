@@ -1,7 +1,7 @@
 package Class.ModellVasut;
 
 
-import java.io.File;
+import java.io.*;
 
 /**
  * @author Bandi
@@ -16,7 +16,40 @@ public class PályaGeneráló {
 	private int szint;
 
 	public PályaGeneráló(){
+		bemenet = new File("tesztbe" + String.valueOf(szint));
+		BufferedReader br = null;
+		try {
+			br=new BufferedReader(new FileReader(bemenet));
+			String sor;
+			while((sor=br.readLine()).equals("Start")){
+				char[] temp = null;
+				for (int i = 0; i < 3; i++) temp[i] = sor.charAt(i);
+				String parancs= temp.toString();
+				if(parancs.equals("Csp")){
 
+				} else if(parancs.equals("Vlt")) {
+
+				} else if(parancs.equals("Als")) {
+
+				} else if(parancs.equals("Sel")) {
+
+				} else if(parancs.equals("Ksn")) {
+
+				} else if(parancs.equals("All")) {
+
+				} else if(parancs.equals("Mzd")) {
+
+				} else if(parancs.equals("Snk")) {
+
+				} else if(parancs.equals("Smk")) {
+
+				} else {
+					System.out.println("Nem megfelelõ parancs.");
+				}
+			}
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	public void finalize() throws Throwable {
