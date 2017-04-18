@@ -22,9 +22,7 @@ public class PályaGeneráló {
 			br=new BufferedReader(new FileReader(bemenet));
 			String sor;
 			while((sor=br.readLine()).equals("Start")){
-				char[] temp = null;
-				for (int i = 0; i < 3; i++) temp[i] = sor.charAt(i);
-				String parancs= temp.toString();
+				String parancs=sor.substring(0,3);
 
 				if(parancs.equals("Csp")){
 					new Csomópont();
@@ -33,29 +31,38 @@ public class PályaGeneráló {
 					new Váltó();
 
 				} else if(parancs.equals("Als")) {
-					int db=4;
-					String szín;
-					boolean utas;
-
-					while(sor.charAt(db++) != ','){
-						temp[db-4]=sor.charAt(0);
-					}
-					szín=temp.toString();
-
-					if (sor.charAt(db)=='0'){
-						utas=false;
-					} else {
-						utas=true;
-					}
-					
-					new Állomás(szín, utas);
+					new AlagútSzáj();
 
 				} else if(parancs.equals("Sel")) {
+					int csp1=Integer.parseInt(sor.substring(4,5));
+					int csp2=Integer.parseInt(sor.substring(6,7));
+					int db=Integer.parseInt(sor.substring(8,9));
 
+					SínElem temp_se =new SínElem(csp1, csp2, null, );
+					for(int i=2;i<db-1;i++){
+
+					}
 				} else if(parancs.equals("Ksn")) {
 					new KeresztezõSín();
 
 				} else if(parancs.equals("All")) {
+					int db=4;
+					String szín;
+					boolean utas;
+
+					char[] temp = new char[20];
+					while(sor.charAt(db++) != ','){
+						temp[db-4]=sor.charAt(db);
+					}
+					szín=temp.toString();
+
+					if (sor.substring(db,db+1)=="1"){
+						utas=true;
+					} else {
+						utas=false;
+					}
+
+					new Állomás(szín, utas);
 
 				} else if(parancs.equals("Mzd")) {
 
