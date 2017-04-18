@@ -11,7 +11,7 @@ public class SínElem {
 	private VonatElem aktuálisVonatElem;
 	private SínElem elõzõ;
 	private SínElem következõ;
-	private boolean látható=true;
+	private boolean látható;
 	private Csomópont sínvég1;
 	private Csomópont sínvég2;
 
@@ -21,11 +21,12 @@ public class SínElem {
 	 * @param csp1 a SínElemek alkotta sín egyik végsõ csomópontja
 	 * @param csp2 a SínElemek alkotta sín másik végsõ csomópontja
 	 */
-	public SínElem( Csomópont csp1, Csomópont csp2, SínElem e, SínElem k){
+	public SínElem( Csomópont csp1, Csomópont csp2, boolean láth){
+		látható = láth;
 		sínvég1 = csp1;
 		sínvég2 = csp2;
-		elõzõ=e;
-		következõ=k;
+		elõzõ = null;
+		következõ = null;
 	}
 
 	public void finalize() throws Throwable {

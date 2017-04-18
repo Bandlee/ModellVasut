@@ -3,12 +3,12 @@ package Class.ModellVasut;
 /**
  * Created by rolac on 2017. 04. 15..
  */
-public class SzemelyKocsi extends Kocsi {
+public class SzemélyKocsi extends Kocsi {
 
     private String szín;
     private boolean utas;
 
-    public SzemelyKocsi(String _szin, boolean utasok) {
+    public SzemélyKocsi(String _szin, boolean utasok) {
         szín = _szin;
         utas = utasok;
     }
@@ -26,7 +26,6 @@ public class SzemelyKocsi extends Kocsi {
      */
     @Override
     public boolean ellenõriz(String s){
-        System.out.println("<<Kocsi::ellenõriz(String s)::boolean");
 
         if (leszállhat && szín.equals(s)) {
             utas = false;
@@ -112,4 +111,16 @@ public class SzemelyKocsi extends Kocsi {
     public void addUtas() {
         utas = true;
     }
+
+    public void setSzín(String s){szín = s;}
+
+    public String getSzín(){return szín;}
+
+    public void setUtas(boolean b){utas = b;}
+
+    @Override
+    public boolean getUtas(){return utas;}
+
+    @Override
+    public boolean getLeszállhat(){return leszállhat;}
 }

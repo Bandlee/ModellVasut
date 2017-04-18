@@ -78,8 +78,12 @@ public class Váltó extends Csomópont {
 	}
 
 	public void setAktív(SínElem s){aktív = s;}
-	
+
 	public SínElem getAktív(){return aktív;}
+
+	public void setRögzített(SínElem s){rögzített = s;}
+
+	public SínElem getRögzített(){return rögzített;}
 }
 
 

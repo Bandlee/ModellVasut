@@ -45,4 +45,5 @@ public class Mozdony extends VonatElem {
 		this.következõ = következõ;
 	}
 
+	public int getKésleltetés(){return késleltetés;}
 }
