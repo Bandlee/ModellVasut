@@ -11,14 +11,14 @@ public class Main {
 
         PályaGeneráló pg = PályaGeneráló.getInstance();
 
-        for(int i=0;i<8;i++){
+        for(int i=0;i<23;i++){
 
             System.out.println("Teszteset"+(i+1));
             Idõzítõ idõ = pg.kezdés();
 
         }
 
-        for(int i=0;i<8;i++){
+        for(int i=0;i<23;i++){
             try{
                 File minta = new File("kimenet/Kimenet" + String.valueOf(i+1) + ".txt");
                 BufferedReader br_m=new BufferedReader(new FileReader(minta));
