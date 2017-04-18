@@ -12,13 +12,23 @@ public abstract class VonatElem {
 	protected SínElem TartózkodásiHely;
 	protected Kocsi következõ;
 
-
+	/**
+	 * VonatElem osztály konstruktora.
+	 */
 	public VonatElem(){
 
 	}
 
+	/**
+	 *
+	 * @return
+	 */
 	public boolean getUtas(){return false;}
 
+	/**
+	 *
+	 * @return
+	 */
 	public boolean getLeszállhat(){return false;}
 
 	public void finalize() throws Throwable {
@@ -44,11 +54,18 @@ public abstract class VonatElem {
 	}
 
 
-
+	/**
+	 * Visszaadja a vonatelem haladási irányát.
+	 * @return a visszaadott irány
+	 */
 	public boolean getIrány(){
 		return irány;
 	}
 
+	/**
+	 * Visszaadja a VonatElem aktuális pozícióját.
+	 * @return az aktuális pozíció - sínelem
+	 */
 	public SínElem getPozíció(){
 		return TartózkodásiHely;
 	}
@@ -121,6 +138,12 @@ public abstract class VonatElem {
 	public Kocsi getKövetkezõ(){
 		return következõ;
 	}
+
+	/**
+	 * Visszaadja a következõ, az aktuális vonatelem után álló kocsit.
+	 * @return a visszaadott kocsi
+	 */
+	public Kocsi getKövetkezõ(){return következõ;}
 
 
 }

@@ -21,6 +21,10 @@ public class SzenesKocsi extends Kocsi {
         }
     }
 
+    public boolean getLeszállhat(){
+        return false;
+    }
+
 
     /**
      * Hozzáköti a szeneskocsihoz a megadott kocsit, ez fog utána következni.
