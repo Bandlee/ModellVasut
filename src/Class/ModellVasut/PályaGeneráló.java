@@ -76,6 +76,21 @@ public class PályaGeneráló {
 					System.out.println("Nem megfelelõ parancs.");
 				}
 			}
+
+			Idõzítõ idõ = new Idõzítõ();
+
+			while((sor=br.readLine())!=null){
+				String parancs=sor.substring(0,3);
+
+				if(sor.equals("tick")){
+					idõ.tick();
+				} else if(parancs.equals("Swc")) {
+					new Váltó();
+				} else if(parancs.equals("Akt")) {
+					new Váltó();
+				}
+			}
+
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
