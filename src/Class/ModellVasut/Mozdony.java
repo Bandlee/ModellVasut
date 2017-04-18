@@ -25,7 +25,6 @@ public class Mozdony extends VonatElem {
 	 * annak már a pályán kellene lennie (késleltetés == 0), különben csökkenti a késleltetést
 	 */
 	public void tickAkció(){
-		System.out.println("Mozdony órajelet kapott");
 		if(késleltetés == 0) {
 			mozgat();
 			if(következõ != null) következõ.tickAkció();

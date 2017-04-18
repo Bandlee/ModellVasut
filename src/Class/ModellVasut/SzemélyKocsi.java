@@ -108,16 +108,6 @@ public class SzemélyKocsi extends Kocsi {
     }
 
 
-    public void addUtas() {
-        utas = true;
-    }
-
-    public void setSzín(String s){szín = s;}
-
-    public String getSzín(){return szín;}
-
-    public void setUtas(boolean b){utas = b;}
-
     @Override
     public boolean getUtas(){return utas;}
 

@@ -101,11 +101,4 @@ public class Állomás extends Csomópont {
 
 		return ret;
 	}
-
-	/**
-	 * Az állomáshoz várakozó utasokat rendelünk.
-	 */
-	public void addUtas() {
-		felszálló = true;
-	}
 }
