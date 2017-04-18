@@ -5,8 +5,6 @@ package Class.ModellVasut;
  */
 public class SzenesKocsi extends Kocsi {
 
-
-
     /**
      * Beállítja a szeneskocsi leszállhat értékét.
      * Üres szemelykocsihoz hasonloan továbbadja a beálított jogot a következõ kocsinak.
