@@ -22,6 +22,7 @@ public class SínElem {
 	 * @param csp2 a SínElemek alkotta sín másik végsõ csomópontja
 	 */
 	public SínElem( Csomópont csp1, Csomópont csp2, boolean láth){
+		System.out.println("Új SínElem jött létre");
 		látható = láth;
 		sínvég1 = csp1;
 		sínvég2 = csp2;

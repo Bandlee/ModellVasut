@@ -11,6 +11,7 @@ public class SzemélyKocsi extends Kocsi {
     public SzemélyKocsi(String _szin, boolean utasok) {
         szín = _szin;
         utas = utasok;
+        System.out.println("Új "+szín+" SzemélyKocsi jött létre");
     }
 
 

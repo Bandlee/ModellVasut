@@ -28,6 +28,7 @@ public class Állomás extends Csomópont {
 		this.szín = szín;
 		this.felszálló = felszálló;
 		this.pg = PályaGeneráló.getInstance();
+		System.out.println("Új "+ szín +" Állomás jött létre "+id+" ID-val");
 	}
 
 	public void finalize() throws Throwable {
@@ -43,6 +44,7 @@ public class Állomás extends Csomópont {
 	 */
 	public boolean leszáll(VonatElem v){
 		nemleszállt--;
+		System.out.println("Utasok szálltak le");
 		if (nemleszállt == 0) {
 			pályaTeljesít();
 		}
@@ -58,6 +60,7 @@ public class Állomás extends Csomópont {
 	 */
 	public boolean felszáll(VonatElem v){
 		felszálló = false;
+		System.out.println("Utasok szálltak fel");
 		return true;
 	}
 
@@ -67,6 +70,7 @@ public class Állomás extends Csomópont {
 	 * PályaGenerálóva betölteti az új pályát, és az elindítja a játékot.
 	 */
 	public void pályaTeljesít(){
+		System.out.println("Szint teljesítve");
 		pg.kezdés();
 	}
 

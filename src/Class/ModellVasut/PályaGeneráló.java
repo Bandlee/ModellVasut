@@ -57,6 +57,7 @@ public class PályaGeneráló {
 
                 if(parancs.equals("Csp")){
                     csomópontList.add(new Csomópont());
+                    System.out.println("Új Csomópont jött létre "+id+" ID-val");
                 } else if(parancs.equals("Vlt")) {
                     csomópontList.add(new Váltó());
 
