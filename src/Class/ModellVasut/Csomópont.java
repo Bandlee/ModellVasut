@@ -23,8 +23,8 @@ public class Csomópont {
 	 */
 	public Csomópont(){
 		befutóSínek = new ArrayList<SínElem>();
-		ids+=1;
 		id=ids;
+		ids++;
 	}
 
 	public void felhasználóAkció(){

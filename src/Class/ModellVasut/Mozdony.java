@@ -46,4 +46,8 @@ public class Mozdony extends VonatElem {
 	}
 
 	public int getKésleltetés(){return késleltetés;}
+
+	public Csomópont getBelépésiPont(){
+		return belépésipont;
+	}
 }

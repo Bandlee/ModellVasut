@@ -44,6 +44,7 @@ public class PályaGeneráló {
         bemenet = new File("tesztbe" + String.valueOf(szint));
         BufferedReader br = null;
         List<Csomópont> csomópontList= new ArrayList<>();
+
         List<Mozdony> mozdonyList = new ArrayList<>();
         Idõzítõ idõ = new Idõzítõ(mozdonyList);
         try {
@@ -115,7 +116,10 @@ public class PályaGeneráló {
 
                     int k=Integer.parseInt(sor.substring(6,7));
 
-                    mozdonyList.add(new Mozdony(cs1, k));
+                    Mozdony m=new Mozdony(cs1, k);
+                    m.setPozíció(new SínElem(csomópontList.get(0), cs1,false));
+                    m.setIrány(true);
+                    mozdonyList.add(m);
 
 
                 } else if(parancs.equals("Snk")) {
@@ -123,7 +127,17 @@ public class PályaGeneráló {
                         mozdonyList.get(mozdonyList.size()-1).setKövetkezõ(new SzenesKocsi());
                     }
 
-                    
+                    VonatElem iter=mozdonyList.get(mozdonyList.size()-1).getKövetkezõ();
+
+                    while(iter.getKövetkezõ()!=null){
+                        iter= iter.getKövetkezõ();
+                    }
+
+                    SzenesKocsi s=new SzenesKocsi();
+                    s.setPozíció(new SínElem(csomópontList.get(0), mozdonyList.get(mozdonyList.size()-1).getBelépésiPont(),false));
+                    s.setIrány(true);
+                    s.getPozíció().setElõzõ(iter.getPozíció());
+                    iter.setKövetkezõ(s);
 
 
 
@@ -148,6 +162,18 @@ public class PályaGeneráló {
                         mozdonyList.get(mozdonyList.size()-1).setKövetkezõ(new SzemélyKocsi(szín, utas));
                     }
 
+                    VonatElem iter=mozdonyList.get(mozdonyList.size()-1).getKövetkezõ();
+
+                    while(iter.getKövetkezõ()!=null){
+                        iter= iter.getKövetkezõ();
+                    }
+
+                    SzenesKocsi s=new SzenesKocsi();
+                    s.setPozíció(new SínElem(csomópontList.get(0), mozdonyList.get(mozdonyList.size()-1).getBelépésiPont(),false));
+                    s.setIrány(true);
+                    s.getPozíció().setElõzõ(iter.getPozíció());
+                    iter.setKövetkezõ(s);
+
                 } else {
                     System.out.println("Nem megfelelõ parancs.");
                 }
@@ -157,7 +183,7 @@ public class PályaGeneráló {
 
             while((sor=br.readLine())!=null){
                 String parancs=sor.substring(0,3);
-                String index = sor.substring(5,6);
+                String index = sor.substring(4,5);
                 if(sor.equals("tick")){
                     idõ.tick();
                 } else if(parancs.equals("Swc")) {
