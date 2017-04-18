@@ -23,7 +23,7 @@ public class JátékVége {
 	 * ezesetben a felhasználó vesztett, ezt fogja majd kezelni
 	 */
 	public void vég(){
-		System.out.println(">>JátékVége::vég()");
+		System.out.println("JátékVége");
 	}
 
 }

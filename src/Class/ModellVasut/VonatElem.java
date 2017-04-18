@@ -129,7 +129,7 @@ public class VonatElem {
 	/**
 	 * Hozzáköti a vonatelemhez a megadott kocsit, ez fog utána következni.
 	 *
-	 * @param következõ a kocsi, ami a vonatelemhez lesz kötve.
+	 * @param _következõ a kocsi, ami a vonatelemhez lesz kötve.
 	 */
 	public void setKövetkezõ(Kocsi _következõ){
 	    következõ=_következõ;
