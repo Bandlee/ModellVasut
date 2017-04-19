@@ -220,25 +220,28 @@ public class PályaGeneráló {
             }
 
             /** fájl végéig a parancsok beolvasása és feldolgozása */
-            while((sor=br.readLine())!=null){
-                String parancs=sor.substring(0,3);
-                String index = sor.substring(4,5);
-                if(sor.equals("tick()")){
-                    /** tick parancs */
-                    System.out.println("tick");
-                    idõ.tick();
-                } else if(parancs.equals("Swc")) {
-                    csomópontList.get(Integer.parseInt(index)).felhasználóAkció();
-                    /** váltó állítása */
-                    bw.write("Váltás történt");
-                    bw.newLine();
-                } else if(parancs.equals("Akt")) {
-                    /** alagútszáj-aktivitás állítása */
-                    csomópontList.get(Integer.parseInt(index)).felhasználóAkció();
-                    bw.write("Alagútszáj aktivitás változott");
-                    bw.newLine();
+
+            try {
+                while ((sor = br.readLine()) != null) {
+                    String parancs = sor.substring(0, 3);
+                    String index = sor.substring(4, 5);
+                    if (sor.equals("tick()")) {
+                        /** tick parancs */
+                        System.out.println("tick");
+                        idõ.tick();
+                    } else if (parancs.equals("Swc")) {
+                        csomópontList.get(Integer.parseInt(index)).felhasználóAkció();
+                        /** váltó állítása */
+                        bw.write("Váltás történt");
+                        bw.newLine();
+                    } else if (parancs.equals("Akt")) {
+                        /** alagútszáj-aktivitás állítása */
+                        csomópontList.get(Integer.parseInt(index)).felhasználóAkció();
+                        bw.write("Alagútszáj aktivitás változott");
+                        bw.newLine();
+                    }
                 }
-            } catch (VegException v){
+            }catch (VegException v){
                 bw.write(v.getMessage());
             }
 
