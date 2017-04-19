@@ -56,6 +56,7 @@ public class PályaGeneráló {
         Csomópont.nullId();
         szint++;
 	    bemenet = new File("bemenet/TesztBe" + String.valueOf(szint) + ".txt");
+	    int összutas=0;
         BufferedReader br = null;
         List<Csomópont> csomópontList= new ArrayList<>();
         csomópontList.add(new Csomópont());
@@ -217,6 +218,12 @@ public class PályaGeneráló {
 
                 } else {
                     System.out.println("Nem megfelelõ parancs.");
+                }
+            }
+
+            for (Mozdony m: mozdonyList) {
+                if (m.getKövetkezõ()!=null){
+                    m.getKövetkezõ().setLeszállhat(true);
                 }
             }
 

@@ -113,7 +113,7 @@ public class Állomás extends Csomópont {
 			leszáll(v);
 		}
 
-		if ( v.felEllenõriz(szín)) {
+		if ( v.felEllenõriz(szín) && felszálló!=false) {
 			felszáll(v);
 
 		}
