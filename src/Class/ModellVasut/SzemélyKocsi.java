@@ -32,7 +32,7 @@ public class SzemélyKocsi extends Kocsi {
      */
     @Override
     public boolean ellenõriz(String s){
-
+        if (utas==false) return false;
         if (leszállhat && szín.equals(s)) {
             utas = false;
 
