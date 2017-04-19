@@ -32,30 +32,37 @@ public class KeresztezõSín extends Csomópont {
      * @param s megmutatja, honnan is érkezett a vonatelem
      */
     public boolean tovább(VonatElem v, SínElem s){
-        try{
-            SínElem hova = null;
+        SínElem hova = null;
 
-            /** a forrás sínelem indexe alapján vizsgálunk */
-            int i = befutóSínek.indexOf(s);
+        /** a forrás sínelem indexe alapján vizsgálunk */
+        int i = befutóSínek.indexOf(s);
 
-            /** ha az index 2-nél kisebb, akkor a párja (index+2) lesz */
-            if(i < 2){
-                hova = befutóSínek.get(i+2);
-            }
-            /** ha az index legalább 2, akkor a párja (index-2) lesz */
-            else if(i >= 2){
-                hova = befutóSínek.get(i-2);
-            }
-            if(hova == null){
-                return false;
-            } else{
-                v.setPozíció(hova);
-                if(hova.getSínvég1()==this) v.setIrány(true); else v.setIrány(false);
-                return true;
-            }
-        }catch(Exception e){
-            return false;
+        /** ha az index 2-nél kisebb, akkor a párja (index+2) lesz */
+        if(i < 2){
+            hova = befutóSínek.get(i+2);
         }
-    }
+        /** ha az index legalább 2, akkor a párja (index-2) lesz */
+        else if(i >= 2){
+            hova = befutóSínek.get(i-2);
+        }
+        if(hova == null){
+            return false;
+        } else{
+            v.setPozíció(hova);
+            if(hova.getSínvég1()==this) v.setIrány(true); else v.setIrány(false);
+        }
 
+        if(s.getÁthaladóElem()!=null && hova.getÁthaladóElem()!=null){
+            if(s.getÁthaladóElem().getIrány()!=hova.getÁthaladóElem().getIrány()){
+                return false;
+            }
+        }
+
+        for (SínElem se: befutóSínek) {
+            if (se != s && se!=hova) {
+                if(se.getÁthaladóElem()!=null) return false;
+            }
+        }
+        return true;
+    }
 }

@@ -24,7 +24,7 @@ public class PályaGeneráló {
      * Konstruktor. Mivel csak egyetlen példány létezik az osztályból, a konstruktor privát.
      */
 	private PályaGeneráló(){
-		szint = 0;
+		szint =0;
 	}
 
 	public void finalize() throws Throwable {
@@ -92,12 +92,12 @@ public class PályaGeneráló {
                 } else if(parancs.equals("Vlt")) {
                     /** váltó elõállítása */
                     csomópontList.add(new Váltó());
-                    bw.write("Új Váltó jött létre "+csomópontList.get(csomópontList.size()-1).getId()+"ID-val");
+                    bw.write("Új Váltó jött létre "+csomópontList.get(csomópontList.size()-1).getId()+" ID-val");
                     bw.newLine();
                 } else if(parancs.equals("Asz")) {
                     /** alagútszáj elõállítása */
                     csomópontList.add(new AlagútSzáj());
-                    bw.write("Új AlagútSzáj jött létre "+csomópontList.get(csomópontList.size()-1).getId()+"ID-val");
+                    bw.write("Új AlagútSzáj jött létre "+csomópontList.get(csomópontList.size()-1).getId()+" ID-val");
                     bw.newLine();
                 } else if(parancs.equals("Sel")) {
                     /** sínelem elõállítása, sínelemek bekapcsoláa a csomópontok közé */
@@ -127,15 +127,16 @@ public class PályaGeneráló {
                             temp_se.get(i).setKövetkezõ(temp_se.get(i+1));
                             System.out.println(temp_se.get(i));
                         }
-                        System.out.println(temp_se.get(temp_se.size()-1));
                     }
+                    System.out.println(temp_se.get(temp_se.size()-1));
+
                     cs1.setBefutóSín(temp_se.get(0));
                     cs2.setBefutóSín(temp_se.get(temp_se.size()-1));
 
                 } else if(parancs.equals("Ksn")) {
                     /** keresztezõsín elõállítása */
                     csomópontList.add(new KeresztezõSín());
-                    bw.write("Új KeresztezõSín jött létre "+csomópontList.get(csomópontList.size()-1).getId()+"ID-val");
+                    bw.write("Új KeresztezõSín jött létre "+csomópontList.get(csomópontList.size()-1).getId()+" ID-val");
                     bw.newLine();
                 } else if(parancs.equals("All")) {
                     /** állomás elõállítása */
@@ -151,7 +152,7 @@ public class PályaGeneráló {
                     }
 
                     csomópontList.add(new Állomás(szín, utas));
-                    bw.write("Új "+szín+" Állomás jött létre "+csomópontList.get(csomópontList.size()-1).getId()+"ID-val");
+                    bw.write("Új "+szín+" Állomás jött létre "+csomópontList.get(csomópontList.size()-1).getId()+" ID-val");
                     bw.newLine();
                 } else if(parancs.equals("Mzd")) {
                     /** mozdony elõállítása */
@@ -219,6 +220,9 @@ public class PályaGeneráló {
                 }
             }
 
+            bw.write("Start");
+            bw.newLine();
+
             /** fájl végéig a parancsok beolvasása és feldolgozása */
 
             try {
@@ -228,6 +232,8 @@ public class PályaGeneráló {
                     if (sor.equals("tick()")) {
                         /** tick parancs */
                         System.out.println("tick");
+                        bw.write("tick");
+                        bw.newLine();
                         idõ.tick();
                     } else if (parancs.equals("Swc")) {
                         csomópontList.get(Integer.parseInt(index)).felhasználóAkció();
@@ -243,6 +249,7 @@ public class PályaGeneráló {
                 }
             }catch (VegException v){
                 bw.write(v.getMessage());
+                System.out.println(v.getMessage());
             }
 
             br.close();

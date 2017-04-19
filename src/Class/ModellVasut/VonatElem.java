@@ -10,7 +10,7 @@ package Class.ModellVasut;
 public class VonatElem {
 
 	protected boolean irány;
-	protected SínElem TartózkodásiHely;
+	protected SínElem tartózkodásiHely;
 	protected Kocsi következõ;
 
 
@@ -66,7 +66,7 @@ public class VonatElem {
 	 * @return az aktuális pozíció - sínelem
 	 */
 	public SínElem getPozíció(){
-		return TartózkodásiHely;
+		return tartózkodásiHely;
 	}
 
 	/**
@@ -74,38 +74,44 @@ public class VonatElem {
 	 *	benne kerül sor ütközésdetektálásra is. érzékeli, ha játék végét jelentõ eset következik be
 	 */
 	public void mozgat()throws VegException{
-
 		if(irány) {
-			if(TartózkodásiHely.getKövetkezõ() == null) {
-				boolean tmp = TartózkodásiHely.keresztez(irány, this);
+			if(tartózkodásiHely.getKövetkezõ() == null) {
+				boolean tmp = tartózkodásiHely.keresztez(irány, this);
 				if(!tmp){
 					JátékVége v = new JátékVége();
 					v.vég();
 					return;
 				}
 			} else {
-				setPozíció(TartózkodásiHely.getKövetkezõ());
+				setPozíció(tartózkodásiHely.getKövetkezõ());
 			}
 		} else {
-            if(TartózkodásiHely.getElõzõ() == null) {
-                boolean tmp = TartózkodásiHely.keresztez(irány, this);
+            if(tartózkodásiHely.getElõzõ() == null) {
+                boolean tmp = tartózkodásiHely.keresztez(irány, this);
                 if (!tmp) {
                     JátékVége v = new JátékVége();
                     v.vég();
                     return;
                 }
             } else {
-                setPozíció(TartózkodásiHely.getElõzõ());
+                setPozíció(tartózkodásiHely.getElõzõ());
             }
 		}
 
-		boolean ütköz = TartózkodásiHely.ütközésElõrejelez();
+        if (tartózkodásiHely.getÁthaladóElem()!=null && tartózkodásiHely.getÁthaladóElem().getIrány()!=this.getIrány()){
+            JátékVége v = new JátékVége();
+            v.vég();
+        } else {
+            tartózkodásiHely.setÁthaladóElem(this);
+        }
+
+        boolean ütköz = tartózkodásiHely.ütközésElõrejelez();
 		if(!ütköz) {
 			JátékVége v = new JátékVége();
 			v.vég();
-
 		}
-	}
+
+}
 
 	/**
 	 * beállítja a vonatelem mozgásának irányát
@@ -120,7 +126,7 @@ public class VonatElem {
 	 * @param s az aktuális tartózkodási helyet reprezentáló paraméter
 	 */
 	public void setPozíció(SínElem s){
-		TartózkodásiHely = s;
+		tartózkodásiHely = s;
         System.out.println(s);
     }
 

@@ -23,7 +23,6 @@ public class SínElem {
 	 * @param csp2 a SínElemek alkotta sín másik végsõ csomópontja
 	 */
 	public SínElem( Csomópont csp1, Csomópont csp2, boolean láth){
-		System.out.println("Új SínElem jött létre");
 		látható = láth;
 		sínvég1 = csp1;
 		sínvég2 = csp2;
@@ -92,18 +91,29 @@ public class SínElem {
 	 * @return megmutatja, hogy fennáll e az ütközésnek a lehetõsége
 	 */
 	public boolean ütközésElõrejelez(){
-		VonatElem elõttem = null;
-		if(elõzõ==null) elõttem = null;
-		else elõttem = elõzõ.getÁthaladóElem();
-		VonatElem mögöttem = null;
-		if(következõ==null) mögöttem = null;
-		else mögöttem = következõ.getÁthaladóElem();
-		if(elõttem!=null && elõttem.getIrány()!=aktuálisVonatElem.getIrány()){
-			return false;
-		} else if(mögöttem != null && mögöttem.getIrány()!= aktuálisVonatElem.getIrány()){
-			return false;
-		} else return true;
+        VonatElem mögöttem=null;
+	    if(elõzõ!=null){
+            if(elõzõ.getÁthaladóElem()!=null){
+                mögöttem=elõzõ.getÁthaladóElem();
+            }
+        }
 
+        VonatElem elõttem=null;
+        if(következõ!=null){
+            if(következõ.getÁthaladóElem()!=null){
+                elõttem=következõ.getÁthaladóElem();
+            }
+        }
+
+        if(elõttem!=null){
+            if(elõttem.getIrány()!=aktuálisVonatElem.getIrány()) return false;
+        }
+
+        if(mögöttem!=null){
+            if(mögöttem.getIrány()!=aktuálisVonatElem.getIrány()) return false;
+        }
+
+        return true;
 	}
 
 	/**

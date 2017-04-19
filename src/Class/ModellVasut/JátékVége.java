@@ -7,7 +7,6 @@ package Class.ModellVasut;
  * @created 11-márc.-2017 3:39:56
  */
 
-import com.sun.org.apache.bcel.internal.generic.GOTO;
 
 /** A játék végét megvalósító osztály */
 public class JátékVége {
