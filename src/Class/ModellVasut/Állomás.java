@@ -46,7 +46,6 @@ public class Állomás extends Csomópont {
 	public boolean leszáll(VonatElem v){
 		try{
 			nemleszállt--;
-			System.out.println("Utasok szálltak le");
 			pg.getBw().write("Utasok szálltak le");
 			pg.getBw().newLine();
 			if (nemleszállt == 0) {
@@ -69,7 +68,6 @@ public class Állomás extends Csomópont {
 	public boolean felszáll(VonatElem v){
 		try{
 			felszálló = false;
-			System.out.println("Utasok szálltak fel");
 			pg.getBw().write("Utasok szálltak SzemélyKocsira");
 			pg.getBw().newLine();
 			return true;
@@ -86,7 +84,6 @@ public class Állomás extends Csomópont {
 	 */
 	public void pályaTeljesít(){
 		try {
-            System.out.println("Szint teljesítve");
             pg.getBw().write("Szint teljesítve");
             pg.getBw().newLine();
         } catch (IOException e){

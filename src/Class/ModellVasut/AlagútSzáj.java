@@ -73,7 +73,7 @@ public class AlagútSzáj extends Csomópont {
 				}
 				// ha nem üres, nem törlünk
 				else {
-					System.out.println("Az alagút nem szüntethetõ meg, mivel vonat halad benne!");
+					//System.out.println("Az alagút nem szüntethetõ meg, mivel vonat halad benne!");
 				}
 			}
 

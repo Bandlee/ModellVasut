@@ -51,11 +51,15 @@ public class PályaGeneráló {
      * Mellette a kimeneti fájlban jelezzük, hogy éppen mi történik.
 	 */
 
-	public Idõzítõ kezdés(){
+	public Idõzítõ kezdés(boolean auto){
 	    /** OLvasás és írás inicializálása */
         Csomópont.nullId();
         szint++;
-	    bemenet = new File("bemenet/TesztBe" + String.valueOf(szint) + ".txt");
+        if(auto) {
+            bemenet = new File("bemenet/TesztBe" + String.valueOf(szint) + ".txt");
+        } else {
+            bemenet = new File("SajatBemenet.txt");
+        }
 	    int összutas=0;
         BufferedReader br = null;
         List<Csomópont> csomópontList= new ArrayList<>();
@@ -68,8 +72,12 @@ public class PályaGeneráló {
          *  Benne a fájlok sorokénti feldolgozása
          */
         try {
-
-            File file = new File("kimenet/Kimenet"+szint+".txt");
+            File file=null;
+            if(auto) {
+                 file = new File("kimenet/Kimenet" + szint + ".txt");
+            } else {
+                file = new File("SajatKimenet.txt");
+            }
 
             if (!file.exists()) {
                 file.createNewFile();
@@ -126,10 +134,10 @@ public class PályaGeneráló {
                     if (temp_se.size()>1) {
                         for (int i = 0; i < temp_se.size() - 1; i++) {
                             temp_se.get(i).setKövetkezõ(temp_se.get(i+1));
-                            System.out.println(temp_se.get(i));
+                            //System.out.println(temp_se.get(i));
                         }
                     }
-                    System.out.println(temp_se.get(temp_se.size()-1));
+                    //System.out.println(temp_se.get(temp_se.size()-1));
 
                     cs1.setBefutóSín(temp_se.get(0));
                     cs2.setBefutóSín(temp_se.get(temp_se.size()-1));
@@ -240,7 +248,6 @@ public class PályaGeneráló {
                     String index = sor.substring(4, 5);
                     if (sor.equals("tick()")) {
                         /** tick parancs */
-                        System.out.println("tick");
                         bw.write("tick");
                         bw.newLine();
                         idõ.tick();
@@ -256,9 +263,8 @@ public class PályaGeneráló {
                         bw.newLine();
                     }
                 }
-            }catch (VegException v){
+            } catch (VegException v){
                 bw.write(v.getMessage());
-                System.out.println(v.getMessage());
             }
 
             br.close();

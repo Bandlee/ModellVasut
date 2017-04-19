@@ -127,7 +127,6 @@ public class VonatElem {
 	 */
 	public void setPozíció(SínElem s){
 		tartózkodásiHely = s;
-        System.out.println(s);
     }
 
 
