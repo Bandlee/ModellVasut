@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class Állomás extends Csomópont {
 
-	private static int nemleszállt;
+	private static int nemleszállt=0;
 	private PályaGeneráló pg;
 	private String szín;
 	boolean felszálló;
@@ -50,8 +50,6 @@ public class Állomás extends Csomópont {
 			pg.getBw().write("Utasok szálltak le");
 			pg.getBw().newLine();
 			if (nemleszállt == 0) {
-				pg.getBw().write("Szint teljesítve");
-				pg.getBw().newLine();
 				pályaTeljesít();
 			}
 			return true;
@@ -87,8 +85,13 @@ public class Állomás extends Csomópont {
 	 * PályaGenerálóva betölteti az új pályát, és az elindítja a játékot.
 	 */
 	public void pályaTeljesít(){
-		System.out.println("Szint teljesítve");
-		pg.kezdés();
+		try {
+            System.out.println("Szint teljesítve");
+            pg.getBw().write("Szint teljesítve");
+            pg.getBw().newLine();
+        } catch (IOException e){
+            System.out.println(e.getMessage());
+        }
 	}
 
 	/**
@@ -120,4 +123,8 @@ public class Állomás extends Csomópont {
 
 		return ret;
 	}
+
+	public static void setNemleszállt(int n){
+	    nemleszállt = n;
+    }
 }

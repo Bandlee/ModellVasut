@@ -141,13 +141,14 @@ public class PályaGeneráló {
                     bw.newLine();
                 } else if(parancs.equals("All")) {
                     /** állomás elõállítása */
-                    int db=4;
                     String szín=null;
                     boolean utas;
-                    szín= sor.substring(4, sor.indexOf(','));
+                    int db=sor.indexOf(',');
+                    szín= sor.substring(4, db);
 
-                    if (sor.substring(db,db+1)=="1"){
+                    if (sor.substring(db+1,db+2).equals("1")){
                         utas=true;
+                        összutas++;
                     } else {
                         utas=false;
                     }
@@ -192,13 +193,14 @@ public class PályaGeneráló {
 
                 } else if(parancs.equals("Smk")) {
                     /** személykocsi elõállítása */
-                    int db=4;
                     String szín=null;
                     boolean utas;
-                    szín= sor.substring(4, sor.indexOf(','));
+                    int db=sor.indexOf(',');
+                    szín= sor.substring(4, db);
 
-                    if (sor.substring(db,db+1)=="1"){
+                    if (sor.substring(db+1,db+2).equals("1")){
                         utas=true;
+                        összutas++;
                     } else {
                         utas=false;
                     }
@@ -226,7 +228,7 @@ public class PályaGeneráló {
                     m.getKövetkezõ().setLeszállhat(true);
                 }
             }
-
+            Állomás.setNemleszállt(összutas);
             bw.write("Start");
             bw.newLine();
 
