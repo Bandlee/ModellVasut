@@ -8,13 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Alagútszájakat megvalósító osztály
  * @author Bandi
  * @version 1.0
  * @created 11-márc.-2017 3:39:55
- */
-
-/**
- * Az alagút szájat megvalóító osztály
  */
 public class AlagútSzáj extends Csomópont {
 

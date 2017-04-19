@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
+ * A kocsikat megvalósító osztály, a vonatlemebõl öröklõdik
+ * van abstract metódusa, így absztrakt osztály
  * @author Bandi
  * @version 1.0
  * @created 11-márc.-2017 3:39:56

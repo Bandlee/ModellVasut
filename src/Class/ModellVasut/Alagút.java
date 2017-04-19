@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Alagutat megvalósító osztály.
  * @author Bandi
  * @version 1.0
  * @created 11-márc.-2017 3:39:55
@@ -46,6 +47,10 @@ public class Alagút {
 		return true;
 	}
 
+	/**
+	 * Visszaadja az alagutat alkotó alagútszájakat egy listában
+	 * @return az alagútszájakat tároló lista
+	 */
 	public List<SínElem> getAlagútelem(){
 		return alagútelem;
 	}

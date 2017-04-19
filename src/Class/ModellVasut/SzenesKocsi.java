@@ -6,12 +6,7 @@ package Class.ModellVasut;
  */
 public class SzenesKocsi extends Kocsi {
 
-    /**
-     * SzenesKocsi konstruktor
-     */
-    public SzenesKocsi(){
-        System.out.println("Új SzenesKocsi jött létre");
-    }
+
     /**
      * Beállítja a szeneskocsi leszállhat értékét.
      * Üres szemelykocsihoz hasonloan továbbadja a beálított jogot a következõ kocsinak.

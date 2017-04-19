@@ -2,6 +2,7 @@ package Class.ModellVasut;
 
 
 /**
+ * VonatElemet megvalósító osztály
  * @author Bandi
  * @version 1.0
  * @created 11-márc.-2017 3:39:56
@@ -12,22 +13,16 @@ public class VonatElem {
 	protected SínElem TartózkodásiHely;
 	protected Kocsi következõ;
 
-	/**
-	 * VonatElem osztály konstruktora.
-	 */
-	public VonatElem(){
-
-	}
 
 	/**
-	 *
-	 * @return
+	 * megmutatja, hogy van-e utas a vonatelemen.
+	 * @return hamissal tér vissza, azokban az esetekben, ahol lehet utas, felülírjuk a metódust
 	 */
 	public boolean getUtas(){return false;}
 
 	/**
-	 *
-	 * @return
+	 * megmutatja, hogy szállhat-e le utas a vonatelemrõl
+	 * @return hamis - ha speciális eset van, akkor felülíródik majd a metódus
 	 */
 	public boolean getLeszállhat(){return false;}
 

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Csomópontokat megvalósító osztály
  * @author Bandi
  * @version 1.0
  * @created 11-márc.-2017 3:39:55
@@ -19,7 +20,6 @@ public class Csomópont {
 
 	/**
 	 * Konstruktor a Csomópont osztály példányosításához
-	 *
 	 */
 	public Csomópont(){
 		befutóSínek = new ArrayList<SínElem>();
@@ -27,6 +27,9 @@ public class Csomópont {
 		ids++;
     }
 
+	/**
+	 * felhasználói interakciót kezeli, egyelõre nem használt
+	 */
 	public void felhasználóAkció(){
 
 	}
@@ -69,12 +72,24 @@ public class Csomópont {
 		befutóSínek.add(s);
 	}
 
+	/**
+	 * a csomópontba befutó sínelemek közül az adott elvátolítása
+	 * @param s az eltávolítandó sínelem
+	 */
     public void removeBefutóSín(SínElem s){
         befutóSínek.remove(s);
     }
 
+	/**
+	 * visszaadja a csomópont azonosítóját
+	 * @return a csomópont azonosítója
+	 */
 	public int getId(){return id;}
 
+	/**
+	 * ahhoz, hogy az egymás után következõ tesztesetek mindig elõrõl kezdjék a csomópontok számozását, szükség van egy statikus változóra,
+	 * amit mindig ki kell nullázni az új szint elején. ezt valósítja  meg ez a függvény
+	 */
 	public static void nullId(){
 	    ids=0;
     }

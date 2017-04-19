@@ -10,7 +10,7 @@ public class Main {
     public static void main(String[] args){
 
         PályaGeneráló pg = PályaGeneráló.getInstance();
-
+        int mennyi =  0;
         for(int i=0;i<23;i++){
 
             System.out.println("Teszteset"+(i+1));

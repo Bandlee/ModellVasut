@@ -3,6 +3,7 @@ package Class.ModellVasut;
 import java.util.List;
 
 /**
+ * A keresztezõ síneket megvalósító osztály
  * @author Peti
  * @version 1.0
  * @created 15-ápr.-2017 17:02:41
