@@ -1,36 +1,45 @@
 package Class.ModellVasut;
 
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 /**
+ * A kocsikat megvalósító osztály, a vonatlemebõl öröklõdik
+ * van abstract metódusa, így absztrakt osztály
  * @author Bandi
  * @version 1.0
  * @created 11-márc.-2017 3:39:56
  */
-public class Kocsi extends Class.ModellVasut.VonatElem {
+public abstract class Kocsi extends VonatElem {
 
-	private Kocsi következõ;
-	private boolean leszállhat;
-	private String szín;
-	private boolean utas;
+	//létrehozáskor legyen true, láncolásnál majd beállítódik.
+	protected boolean leszállhat;
 
-	public Kocsi(){
-
-	}
 
 	public void finalize() throws Throwable {
 		super.finalize();
 	}
 
+
 	/**
-	 * 
-	 * @param s
+	 * A metódus meghívódik minden alkalommal, mikor az elõtte lévõ vonat elem átadja neki az órajelet
+	 * Meghívja az elem mozgatásáért felelõs függvényt, és továbbadja a jelet a következõ vonat elemnek, ha létezik.
 	 */
-	public boolean ellenõriz(String s){
-		return false;
+	public void tickAkció() throws VegException{
+		mozgat();
+		if(következõ != null) következõ.tickAkció();
 	}
 
-	public void tickAkció(){
 
-	}
+
+
+	/**
+	 * Kocsi leszállhat értékének beállíitására használandó.
+	 *
+	 * @param leszállhat erre az értékre állítjuk be a kocsi leszállhat értékét
+	 */
+	protected abstract void setLeszállhat(boolean leszállhat);
 
 }

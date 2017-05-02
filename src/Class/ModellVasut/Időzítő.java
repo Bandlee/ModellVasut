@@ -8,12 +8,20 @@ import java.util.List;
  * @version 1.0
  * @created 11-márc.-2017 3:39:56
  */
+
+/**
+ * Az idõ múlását megvalósító osztály
+ */
 public class Idõzítõ {
 
 	private List<Mozdony> mozdonyok;
-	public Class.ModellVasut.Mozdony m_Mozdony;
 
-	public Idõzítõ(){
+	/**
+	 * Konstruktor az Idõzítõ osztály példányosításához
+	 * @param list pályán lévõ összes Mozdonyt tartalmazó lista
+	 */
+	public Idõzítõ( List<Mozdony> list){
+		mozdonyok = list;
 
 	}
 
@@ -21,8 +29,12 @@ public class Idõzítõ {
 
 	}
 
-	public void tick(){
-
+	/**
+	 * az idõ eltelését szimbolizálja, idõegységenként hívódik meg
+	 */
+	public void tick() throws  VegException{
+		for (Mozdony m : mozdonyok)
+			m.tickAkció();
 	}
 
 }

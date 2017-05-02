@@ -1,20 +1,35 @@
 package Class.ModellVasut;
 
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.List;
+
 /**
+ * Az állomásokat megvalósító osztály, a Csomópont leszármazottja.
+ * Az állomáson utasok szállhatnak fel, illetve le a megfelelõ szabályok szerint
  * @author Bandi
  * @version 1.0
  * @created 11-márc.-2017 3:39:55
  */
 public class Állomás extends Csomópont {
 
-	private static int nemleszállt;
+	private static int nemleszállt=0;
 	private PályaGeneráló pg;
 	private String szín;
-	public PályaGeneráló m_PályaGeneráló;
+	boolean felszálló;
 
-	public Állomás(){
-
+	/**
+	 * Konstruktor az Állomás osztály példányosításához
+	 * @param szín az Állomás színe
+	 * @param felszálló megadja, hogy az Állomáson várakoznak-e utasok felszállásra
+	 * @param pg pályageneráló, amit az állomás értesít, ha sikeresen teljesül a szint
+	 */
+	public Állomás(String szín, boolean felszálló){
+		this.szín = szín;
+		this.felszálló = felszálló;
+		this.pg = PályaGeneráló.getInstance();
 	}
 
 	public void finalize() throws Throwable {
@@ -22,24 +37,91 @@ public class Állomás extends Csomópont {
 	}
 
 	/**
-	 * 
-	 * @param v
+	 * A függvényt akkor hívjuk meg, amikor egy VonatElemrõl (SzemélyKocsiról) leszállás történt.
+	 * Regisztráljuk a válozást, majd megnézzük, hogy van-e még utas a pályán lévö vonatokban.
+	 * Amennyiben azok kiürültek, jelezzük hogy a pályát sikeresen teljesítettük.
+	 *
+	 * @param v: Az állomáson áthaladó VonatElemet jelöli.
 	 */
 	public boolean leszáll(VonatElem v){
+		try{
+			nemleszállt--;
+			pg.getBw().write("Utasok szálltak le");
+			pg.getBw().newLine();
+			if (nemleszállt == 0) {
+				pályaTeljesít();
+			}
+			return true;
+		}catch(IOException e){
+			System.out.println(e.getMessage());
+		}
 		return false;
-	}
-
-	public void pályaTeljesít(){
 
 	}
 
 	/**
-	 * 
-	 * @param v
-	 * @param s
+	 * A függvényt akkor hívjuk meg, amikor egy VonatElemre (SzemélyKocsira) felszálláss történt.
+	 * Regisztráljuk a válozást, beállítjuk a felszálló értéket hamisra.
+	 *
+	 * @param v: Az állomáson áthaladó VonatElemet jelöli.
 	 */
-	public boolean tovább(VonatElem v, SínElem s){
+	public boolean felszáll(VonatElem v){
+		try{
+			felszálló = false;
+			pg.getBw().write("Utasok szálltak SzemélyKocsira");
+			pg.getBw().newLine();
+			return true;
+		}catch(IOException e){
+			System.out.println(e.getMessage());
+		}
 		return false;
 	}
 
+
+	/**
+	 * Játék sikeres teljesítése esetén meghívandó függvény.
+	 * PályaGenerálóva betölteti az új pályát, és az elindítja a játékot.
+	 */
+	public void pályaTeljesít(){
+		try {
+            pg.getBw().write("Szint teljesítve");
+            pg.getBw().newLine();
+        } catch (IOException e){
+            System.out.println(e.getMessage());
+        }
+	}
+
+	/**
+	 * Csomóponthoz hasonlóan továbbadja az áthaladó VonatElem-et a következõ SínElemre,
+	 * ez után ellenözi, hogy szálltak-e le utasok az áthaladó VonatElemrõl, illetve,
+	 * hogy szálltak-e fel rá. Történteket az Állomás a megfelelõ függvényeivel
+	 * (leszáll/felszáll) regisztrálja magának. Visszatérési értéke azonos a Csomópont
+	 * tovább függvényével.
+	 *
+	 * @param v: Az állomáson áthaladó VonatElemet jelöli.
+	 * @param s: Azt a SínElemet jelöli, amirõl a v VonatElem érkezik.
+	 *
+	 */
+	@Override
+	public boolean tovább(VonatElem v, SínElem s){
+
+		boolean ret;
+
+		ret = super.tovább(v, s);
+
+		if ( v.ellenõriz(szín)) {
+			leszáll(v);
+		}
+
+		if ( v.felEllenõriz(szín) && felszálló!=false) {
+			felszáll(v);
+
+		}
+
+		return ret;
+	}
+
+	public static void setNemleszállt(int n){
+	    nemleszállt = n;
+    }
 }
