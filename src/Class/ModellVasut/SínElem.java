@@ -1,13 +1,16 @@
 package Class.ModellVasut;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A SínElemeket megvalósító osztály. Feladataihoz tartozik az ütközésdetektálás és a vonatelemtovábbítás is.
  * @author Bandi
  * @version 1.0
  * @created 11-márc.-2017 3:39:56
  */
-public class SínElem {
+public class SínElem extends Hely {
 
 	private VonatElem aktuálisVonatElem;
 	private SínElem elõzõ;
@@ -18,11 +21,28 @@ public class SínElem {
 
 	/**
 	 * A SínElem osztály konstruktora.
+	 * Belépés segítéséhez létrehozott konstruktor
+	 * @param csp1 a SínElemek alkotta sín egyik végsõ csomópontja
+	 * @param csp2 a SínElemek alkotta sín másik végsõ csomópontja
+	 */
+	public SínElem( Csomópont csp1, Csomópont csp2){
+		super(0,0);
+		látható = false;
+		sínvég1 = csp1;
+		sínvég2 = csp2;
+		elõzõ = null;
+		következõ = null;
+	}
+
+
+	/**
+	 * A SínElem osztály konstruktora.
 	 * @param láth a SínElem láthatósága
 	 * @param csp1 a SínElemek alkotta sín egyik végsõ csomópontja
 	 * @param csp2 a SínElemek alkotta sín másik végsõ csomópontja
 	 */
-	public SínElem( Csomópont csp1, Csomópont csp2, boolean láth){
+	public SínElem( Csomópont csp1, Csomópont csp2, boolean láth, int x, int y){
+		super(x,y);
 		látható = láth;
 		sínvég1 = csp1;
 		sínvég2 = csp2;
@@ -149,6 +169,59 @@ public class SínElem {
 	 * @return a SínElem sínvég2 attribútumával
 	 */
 	public Csomópont getSínvég2() { return sínvég2; }
+
+
+	public static List<SínElem> összeköt(Csomópont cs1, Csomópont cs2, boolean láth){
+
+		/**távolság sínelemek között*/
+		int táv = 40;
+
+		int x_dist = (cs2.getX()-cs1.getX());
+		int y_dist = (cs2.getY()-cs1.getY());
+
+
+		/** 2 csomópont közti szakasz hossza*/
+		int szh = (int) Math.sqrt(x_dist*x_dist + y_dist*y_dist);
+
+		/** hány sínelem fér a két csomópont közé, (az utolsó a csomópontba lenne, vagy nagyon közel) */
+		int sedb = szh /táv ;
+
+
+		double x_szorz = x_dist/(double)szh;
+		double y_szorz = y_dist/(double)szh;
+		List<SínElem> temp_se =new ArrayList<>();
+
+		/** pont a két csomópont közé kerüljön, ha kevés a hely */
+		if (sedb < 1) {
+			int _x = (int) (cs1.getX() + Math.round(szh/2 * x_szorz));
+			int _y = (int) (cs1.getY() + Math.round(szh/2 * y_szorz));
+			temp_se.add(new SínElem(cs1, cs2, láth, _x, _y));
+
+		}
+
+		else {
+
+			for (int i = 1; i <= sedb; i++) {
+
+				int _x = (int) (cs1.getX() + Math.round(i * táv * x_szorz));
+				int _y = (int) (cs1.getY() + Math.round(i * táv * y_szorz));
+				temp_se.add(new SínElem(cs1, cs2, láth, _x, _y));
+			}
+			for (int i = 0; i < temp_se.size() - 1; i++) {
+				temp_se.get(i).setKövetkezõ(temp_se.get(i + 1));
+			}
+		}
+
+		cs1.setBefutóSín(temp_se.get(0));
+		cs2.setBefutóSín(temp_se.get(temp_se.size()-1));
+
+		return temp_se;
+	}
+
+
+
+
+
 
 
 }

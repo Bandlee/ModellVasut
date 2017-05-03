@@ -1,6 +1,11 @@
 package Class.ModellVasut;
 
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,18 +15,17 @@ import java.util.List;
  * @version 1.0
  * @created 11-márc.-2017 3:39:55
  */
-public class Csomópont {
+public class Csomópont extends Hely implements IMegjeleníthetõ {
 
 	protected List<SínElem> befutóSínek;
-	protected int x;
-	protected int y;
 	private static int ids = 0;
 	protected int id;
 
 	/**
 	 * Konstruktor a Csomópont osztály példányosításához
 	 */
-	public Csomópont(){
+	public Csomópont(int x,int y){
+		super(x,y);
 		befutóSínek = new ArrayList<SínElem>();
 		id=ids;
 		ids++;
@@ -94,4 +98,19 @@ public class Csomópont {
 	    ids=0;
     }
 
+	@Override
+	public void rajzol(Graphics g) {
+
+		//try {
+
+			//final BufferedImage image = ImageIO.read(new File("csp.png"));
+			//g.drawImage(image, x,y,null);
+			g.setColor(Color.BLACK);
+			g.fillOval(x-20,y-20,40,40);
+
+		/*} catch (IOException e) {
+			e.printStackTrace();
+		}*/
+
+	}
 }

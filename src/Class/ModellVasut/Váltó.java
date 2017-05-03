@@ -21,8 +21,8 @@ public class Váltó extends Csomópont {
 	 * A konstruktorban beállítjuk a lista elsõ elemét rögzítettnek, a másodikat aktívnak.
 	 * A Váltót Csomópontként, annak konstruktorával hozzuk létre.
 	 */
-	public Váltó(){
-		super();
+	public Váltó(int x, int y){
+		super(x, y);
 	}
 
 	public void finalize() throws Throwable {

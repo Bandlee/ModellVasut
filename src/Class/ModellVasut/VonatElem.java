@@ -1,13 +1,19 @@
 package Class.ModellVasut;
 
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
 /**
  * VonatElemet megvalósító osztály
  * @author Bandi
  * @version 1.0
  * @created 11-márc.-2017 3:39:56
  */
-public class VonatElem {
+public class VonatElem implements IMegjeleníthetõ {
 
 	protected boolean irány;
 	protected SínElem tartózkodásiHely;
@@ -97,7 +103,10 @@ public class VonatElem {
                 setPozíció(tartózkodásiHely.getElõzõ());
             }
 		}
-
+		//cs1-cs2, cs2-cs3, cs1-cs3 összekötési sorrendekre vonat nem tud körbeérni, ütközést detektál
+		//mellékesen ha egy mozdony iránya hirtelen megváltozik, akkor 5 lépéssel utána lévö mozdony simán kiváltaná a játék végét
+		//(mivel sínelemnél áthaladó eleme nem lesz nullázva ha valami elment fölötte
+		//korrigálva setPozició -nál, ütközés ellenörzés lehet nem teljes most
         if (tartózkodásiHely.getÁthaladóElem()!=null && tartózkodásiHely.getÁthaladóElem().getIrány()!=this.getIrány()){
             JátékVége v = new JátékVége();
             v.vég();
@@ -126,6 +135,10 @@ public class VonatElem {
 	 * @param s az aktuális tartózkodási helyet reprezentáló paraméter
 	 */
 	public void setPozíció(SínElem s){
+		//modified, might be bad
+ 		if (tartózkodásiHely!=null)
+		tartózkodásiHely.setÁthaladóElem(null);
+		//
 		tartózkodásiHely = s;
     }
 
@@ -145,5 +158,18 @@ public class VonatElem {
 	 */
 	public Kocsi getKövetkezõ(){return következõ;}
 
+	//placeholder, nem lesz megvalósítva
+	@Override
+	public void rajzol(Graphics g) {
+		try {
 
+			if (tartózkodásiHely!=null && tartózkodásiHely.getLátható()) {
+				//System.out.println(tartózkodásiHely.getX()+" , " +tartózkodásiHely.getY());
+				BufferedImage img = ImageIO.read(new File("ve.png"));
+				g.drawImage(img, tartózkodásiHely.getX()-img.getWidth()/2, tartózkodásiHely.getY()-img.getHeight()/2, null);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

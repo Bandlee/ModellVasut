@@ -1,6 +1,12 @@
 package Class.ModellVasut;
 
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
 /**
  * A mozdonyokat megvalósító osztály. A vonatelem leszármazottja
  * @author Bandi
@@ -63,4 +69,22 @@ public class Mozdony extends VonatElem {
 	public Csomópont getBelépésiPont(){
 		return belépésipont;
 	}
+
+	@Override
+	public void rajzol(Graphics g) {
+		try {
+
+			if (tartózkodásiHely!=null && tartózkodásiHely.getLátható()) {
+				//System.out.println(tartózkodásiHely.getX()+" , " +tartózkodásiHely.getY());
+				BufferedImage img;
+				if (irány) img = ImageIO.read(new File("ikonok/Mozdony_jobb.png"));
+				else img = ImageIO.read(new File("ikonok/Mozdony_bal.png"));
+
+				g.drawImage(img, tartózkodásiHely.getX()-img.getWidth()/2, tartózkodásiHely.getY()-img.getHeight()/2, null);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 }

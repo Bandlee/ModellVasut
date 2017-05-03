@@ -1,5 +1,11 @@
 package Class.ModellVasut;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
 /**
  * SzenesKocsikat megvalósító osztály. Róla nem szállhatnak le utasok.
  * Created by rolac on 2017. 04. 15..
@@ -41,5 +47,24 @@ public class SzenesKocsi extends Kocsi {
     public void setKövetkezõ(Kocsi következõ) {
         this.következõ = következõ;
         következõ.setLeszállhat(leszállhat);
+    }
+
+
+
+    @Override
+    public void rajzol(Graphics g) {
+        try {
+
+            if (tartózkodásiHely!=null && tartózkodásiHely.getLátható()) {
+                //System.out.println(tartózkodásiHely.getX()+" , " +tartózkodásiHely.getY());
+                BufferedImage img;
+                img = ImageIO.read(new File("ikonok/szenes.png"));
+
+
+                g.drawImage(img, tartózkodásiHely.getX()-img.getWidth()/2, tartózkodásiHely.getY()-img.getHeight()/2, null);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -23,8 +23,8 @@ public class AlagútSzáj extends Csomópont {
 	 * A konstruktorban alapértelmezettként inaktívra állítjuk az alagút szájat.
 	 * Az AlagútSzájat Csomópontként, annak konstruktorával hozzuk létre.
 	 */
-	public AlagútSzáj(){
-		super();
+	public AlagútSzáj(int x, int y){
+		super(x,y);
 		aktív = false;
 		aktívak = new ArrayList<>();
 	}

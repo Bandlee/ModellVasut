@@ -26,7 +26,8 @@ public class Állomás extends Csomópont {
 	 * @param felszálló megadja, hogy az Állomáson várakoznak-e utasok felszállásra
 	 * @param pg pályageneráló, amit az állomás értesít, ha sikeresen teljesül a szint
 	 */
-	public Állomás(String szín, boolean felszálló){
+	public Állomás(String szín, boolean felszálló, int x, int y){
+		super(x,y);
 		this.szín = szín;
 		this.felszálló = felszálló;
 		this.pg = PályaGeneráló.getInstance();
