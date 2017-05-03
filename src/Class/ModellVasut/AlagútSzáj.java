@@ -1,7 +1,12 @@
 package Class.ModellVasut;
 
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -13,7 +18,7 @@ import java.util.List;
  * @version 1.0
  * @created 11-márc.-2017 3:39:55
  */
-public class AlagútSzáj extends Csomópont {
+public class AlagútSzáj extends Csomópont implements IKattintható {
 
 	private boolean aktív;
 	private static List<AlagútSzáj> aktívak;
@@ -76,6 +81,11 @@ public class AlagútSzáj extends Csomópont {
 					//System.out.println("Az alagút nem szüntethetõ meg, mivel vonat halad benne!");
 				}
 			}
+			else {
+				// 1 alagút aktív és bezárjuk (ez az alagút)
+				aktívak.remove(this);
+				aktív = false;
+			}
 
 		}
 	}
@@ -88,8 +98,8 @@ public class AlagútSzáj extends Csomópont {
 	private void épít(){
 		//létrehozzuk az alagutat a két végével
 		alagút = new Alagút(aktívak.get(0), aktívak.get(1));
-        aktívak.get(0).setBefutóSín(alagút.getAlagútelem().get(0));
-        aktívak.get(1).setBefutóSín(alagút.getAlagútelem().get(alagút.getAlagútelem().size()-1));
+        //aktívak.get(0).setBefutóSín(alagút.getAlagútelem().get(0));
+        //aktívak.get(1).setBefutóSín(alagút.getAlagútelem().get(alagút.getAlagútelem().size()-1));
 
 		//beállítjuk az alagút szájaknak a friss alagutunkat
 		for (AlagútSzáj actual : aktívak) {
@@ -103,8 +113,41 @@ public class AlagútSzáj extends Csomópont {
 	private void rombol(){
         aktívak.get(0).removeBefutóSín(alagút.getAlagútelem().get(0));
         aktívak.get(1).removeBefutóSín(alagút.getAlagútelem().get(alagút.getAlagútelem().size()-1));
+//		aktívak.get(0).befutóSínek.remove(1);
+//		aktívak.get(1).befutóSínek.remove(1);
 	    for (AlagútSzáj actual : aktívak)
 			actual.alagút = null;
+	}
+
+
+	@Override
+	public boolean voltKattintva(MouseEvent e) {
+		int r = 100;
+
+		if(Math.sqrt((x-e.getX())*(x-e.getX())+(y-e.getY())*(y-e.getY())) < r) {
+			felhasználóAkció();
+			return true;
+		}
+
+		return false;
+	}
+
+
+	@Override
+	public void rajzol(Graphics g) {
+		try {
+
+
+			//System.out.println(tartózkodásiHely.getX()+" , " +tartózkodásiHely.getY());
+			BufferedImage img;
+			if (aktív) img = ImageIO.read(new File("ikonok/Alagutszaj_on.png"));
+			else img = ImageIO.read(new File("ikonok/Alagutszaj_off.png"));
+
+			g.drawImage(img, x-img.getWidth()/2, y-img.getHeight()/2, null);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

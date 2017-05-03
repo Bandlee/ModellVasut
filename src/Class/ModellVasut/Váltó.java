@@ -7,12 +7,14 @@ package Class.ModellVasut;
  * @created 11-márc.-2017 3:39:56
  */
 
+import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.util.List;
 
 /**
  * A váltót megvalósító osztály
  */
-public class Váltó extends Csomópont {
+public class Váltó extends Csomópont implements IKattintható {
 
 	private SínElem aktív;
 	private SínElem rögzített;
@@ -119,6 +121,37 @@ public class Váltó extends Csomópont {
 	 * @return  a visszaadott SínElem
 	 */
 	public SínElem getRögzített(){return rögzített;}
+
+	@Override
+	public boolean voltKattintva(MouseEvent e) {
+		int r = 100;
+
+		if(Math.sqrt((x-e.getX())*(x-e.getX())+(y-e.getY())*(y-e.getY())) < r) {
+			felhasználóAkció();
+			return true;
+		}
+
+		return false;
+	}
+
+	@Override
+	public void rajzol(Graphics g) {
+
+		//try {
+
+		//final BufferedImage image = ImageIO.read(new File("csp.png"));
+		//g.drawImage(image, x,y,null);
+		//g.setColor(Color.BLACK);
+		//g.fillOval(x-20,y-20,40,40);
+
+		/*} catch (IOException e) {
+			e.printStackTrace();
+		}*/
+		super.rajzol(g);
+		g.setColor(Color.green);
+		g.fillOval(rögzített.getX()-10,rögzített.getY()-10,20,20);
+		g.fillOval(aktív.getX()-10,aktív.getY()-10,20,20);
+	}
 }
 
 

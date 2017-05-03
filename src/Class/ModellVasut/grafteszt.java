@@ -1,7 +1,10 @@
 package Class.ModellVasut;
 
 import javax.swing.*;
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by Akos on 2017.05.02..
@@ -14,15 +17,22 @@ public class grafteszt {
     public static void main (String args[]) {
         View tv1 = new View();
 
-        Csomópont csp1 = new Csomópont(200,200);
-        Csomópont csp2 = new Csomópont(456, 600);
-        Csomópont csp3 = new Csomópont(1000, 50);
+        Csomópont csp1 = new Csomópont(100,100);
+        Csomópont csp2 = new Csomópont(300, 300);
+        //Csomópont csp3 = new Csomópont(1000, 50);
+        Csomópont csp3 = new Csomópont(1000, 600);
+        Váltó vlt1 = new Váltó(1000, 50);
+        AlagútSzáj alsz1 = new AlagútSzáj(1050,300);
+        AlagútSzáj alsz2 = new AlagútSzáj(200,500);
+
 
 //        SínElem.összeköt(csp1,csp2,true);
 //        SínElem.összeköt(csp2,csp3,true);
         GrafSín gs1 = new GrafSín(csp1,csp2);
-        GrafSín gs2= new GrafSín(csp2,csp3);
-        GrafSín gs3= new GrafSín(csp1,csp3);
+        GrafSín gs2= new GrafSín(csp2,vlt1);
+        GrafSín gs3= new GrafSín(csp1,vlt1);
+        GrafSín gs4 = new GrafSín(vlt1, alsz1);
+        GrafSín gs5 = new GrafSín(alsz2,csp3);
 
         Mozdony m1 = new Mozdony(csp1,2);
         m1.setIrány(true);
@@ -43,17 +53,32 @@ public class grafteszt {
         m1.getPozíció().setElõzõ(sznk1.getPozíció());
 
         ArrayList<IMegjeleníthetõ> lista = new ArrayList<IMegjeleníthetõ>();
-        lista.add(csp1);
-        lista.add(csp2);
-        lista.add(csp3);
+
         lista.add(gs1);
         lista.add(gs2);
         lista.add(gs3);
+        lista.add(gs4);
+        lista.add(gs5);
+
+        lista.add(csp1);
+        lista.add(csp2);
+        lista.add(csp3);
+        lista.add(vlt1);
+        lista.add(alsz1);
+        lista.add(alsz2);
+
 
         lista.add(sznk1);
         lista.add(m1);
         lista.add(m2);
         tv1.setElemek(lista);
+
+        ArrayList<IKattintható> listakatt = new ArrayList<IKattintható>();
+        listakatt.add(vlt1);
+        listakatt.add(alsz1);
+        listakatt.add(alsz2);
+
+        tv1.akcióCs = listakatt;
 
         tv1.mindenRajzolása();
         try {
@@ -73,6 +98,24 @@ public class grafteszt {
         {
             System.out.println("gameover");
         }
+
+//        Timer idöz = new Timer();
+//        idöz.schedule(new TimerTask() {
+//            @Override
+//            public void run() {
+//
+//
+//                     try {
+//                         m2.tickAkció();
+//                         m1.tickAkció();
+//                     } catch (VegException e) {
+//                         e.printStackTrace();
+//                     }
+//                     tv1.mindenRajzolása();
+//                }
+//        },1000,200);
+
+
 
 
 
