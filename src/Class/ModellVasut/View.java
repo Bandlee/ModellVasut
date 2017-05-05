@@ -39,7 +39,7 @@ public class View {
         ablak.add(pane);
 
         //controllernek lesz továbbadva majd, aki ugyanezt fogja csinálni
-        ablak.addMouseListener(new MouseAdapter() {
+        pane.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
 
