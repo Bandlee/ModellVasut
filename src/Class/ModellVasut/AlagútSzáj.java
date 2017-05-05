@@ -122,7 +122,7 @@ public class AlagútSzáj extends Csomópont implements IKattintható {
 
 	@Override
 	public boolean voltKattintva(MouseEvent e) {
-		int r = 100;
+		int r = (int) (50*Ikonok.getNagyításCsp());
 
 		if(Math.sqrt((x-e.getX())*(x-e.getX())+(y-e.getY())*(y-e.getY())) < r) {
 			felhasználóAkció();
