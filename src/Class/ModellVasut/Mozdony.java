@@ -26,6 +26,7 @@ public class Mozdony extends VonatElem {
 	public Mozdony(Csomópont b, int k){
 		késleltetés = k;
 		belépésipont = b;
+		irány = true;
 	}
 
 	public void finalize() throws Throwable {
@@ -72,7 +73,17 @@ public class Mozdony extends VonatElem {
 
 	@Override
 	public void rajzol(Graphics g) {
-		try {
+		if (tartózkodásiHely!=null && tartózkodásiHely.getLátható()) {
+
+			BufferedImage img;
+			if (irány) img = Ikonok.getIkon("Mozdony_jobb.png");
+			else img = Ikonok.getIkon("Mozdony_bal.png");
+			int w = (int) (img.getWidth() * Ikonok.getNagyításVe());
+			int h = (int) (img.getWidth() * Ikonok.getNagyításVe());
+			g.drawImage(img, tartózkodásiHely.getX() - w / 2, tartózkodásiHely.getY() - h / 2, w, h, null);
+
+		}
+		/*try {
 
 			if (tartózkodásiHely!=null && tartózkodásiHely.getLátható()) {
 				//System.out.println(tartózkodásiHely.getX()+" , " +tartózkodásiHely.getY());
@@ -84,7 +95,8 @@ public class Mozdony extends VonatElem {
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		}*/
+
 	}
 
 }

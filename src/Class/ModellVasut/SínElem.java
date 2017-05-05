@@ -22,16 +22,30 @@ public class SínElem extends Hely {
 	/**
 	 * A SínElem osztály konstruktora.
 	 * Belépés segítéséhez létrehozott konstruktor
-	 * @param csp1 a SínElemek alkotta sín egyik végsõ csomópontja
-	 * @param csp2 a SínElemek alkotta sín másik végsõ csomópontja
+	 * @param csp Belpési pont
 	 */
-	public SínElem( Csomópont csp1, Csomópont csp2){
+	public SínElem( Csomópont csp){
 		super(0,0);
 		látható = false;
-		sínvég1 = csp1;
-		sínvég2 = csp2;
+		sínvég1 = null;
+		sínvég2 = csp;
 		elõzõ = null;
 		következõ = null;
+	}
+
+	/**
+	 * A SínElem osztály konstruktora.
+	 * Belépés segítéséhez létrehozott konstruktor, nem kell minden irányban járhatónak lennie
+	 * @param se a SínElemek ami mögé leteszzük a következõt
+	 */
+	public SínElem( SínElem se){
+		super(0,0);
+		látható = false;
+		sínvég1 = null;
+		sínvég2 = se.sínvég2;
+		elõzõ = null;
+		következõ = se;
+
 	}
 
 
@@ -49,6 +63,8 @@ public class SínElem extends Hely {
 		elõzõ = null;
 		következõ = null;
 	}
+
+
 
 	public void finalize() throws Throwable {
 
@@ -174,7 +190,7 @@ public class SínElem extends Hely {
 	public static List<SínElem> összeköt(Csomópont cs1, Csomópont cs2, boolean láth){
 
 		/**távolság sínelemek között*/
-		int táv = 40;
+		int táv = (int) Math.round(40*Ikonok.getNagyításVe());
 
 		int x_dist = (cs2.getX()-cs1.getX());
 		int y_dist = (cs2.getY()-cs1.getY());

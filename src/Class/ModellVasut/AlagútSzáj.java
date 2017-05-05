@@ -135,19 +135,17 @@ public class AlagútSzáj extends Csomópont implements IKattintható {
 
 	@Override
 	public void rajzol(Graphics g) {
-		try {
 
 
-			//System.out.println(tartózkodásiHely.getX()+" , " +tartózkodásiHely.getY());
-			BufferedImage img;
-			if (aktív) img = ImageIO.read(new File("ikonok/Alagutszaj_on.png"));
-			else img = ImageIO.read(new File("ikonok/Alagutszaj_off.png"));
+		//System.out.println(tartózkodásiHely.getX()+" , " +tartózkodásiHely.getY());
+		BufferedImage img;
+		if (aktív) img = Ikonok.getIkon("Alagutszaj_on.png");
+		else img = Ikonok.getIkon("Alagutszaj_off.png");
+		int w = (int) (img.getWidth() * Ikonok.getNagyításCsp());
+		int h = (int) (img.getWidth() * Ikonok.getNagyításCsp());
+		g.drawImage(img, x - w/2, y - h/2, w, h, null);
 
-			g.drawImage(img, x-img.getWidth()/2, y-img.getHeight()/2, null);
 
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 
 }

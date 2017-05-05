@@ -106,7 +106,9 @@ public class Csomópont extends Hely implements IMegjeleníthetõ {
 			//final BufferedImage image = ImageIO.read(new File("csp.png"));
 			//g.drawImage(image, x,y,null);
 			g.setColor(Color.BLACK);
-			g.fillOval(x-20,y-20,40,40);
+			int w = (int) (40 * Ikonok.getNagyításCsp());
+			int h = (int) (40 * Ikonok.getNagyításCsp());
+			g.fillOval(x-w/2,y-h/2,w,h);
 
 		/*} catch (IOException e) {
 			e.printStackTrace();

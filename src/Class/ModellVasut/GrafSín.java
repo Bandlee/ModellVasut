@@ -35,6 +35,8 @@ public class GrafSín implements IMegjeleníthetõ {
 
             at.rotate(rad);
 
+            at.scale(1,Ikonok.getNagyításVe());
+
             at.translate(-img.getWidth()/2,-img.getHeight()/2);
 
         } catch (IOException e)

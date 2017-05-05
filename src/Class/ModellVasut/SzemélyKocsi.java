@@ -1,5 +1,8 @@
 package Class.ModellVasut;
 
+import java.awt.*;
+import java.awt.image.BufferedImage;
+
 /**
  * Utasokat szállító kocsikat megvalósító osztály, a kocsi osztály leszármazottja
  * Created by rolac on 2017. 04. 15..
@@ -19,6 +22,20 @@ public class SzemélyKocsi extends Kocsi {
         utas = utasok;
     }
 
+    /**
+     *
+     * SzemélyKocsi konstruktor - belpésére váró SzemályKocsihoz
+     * @param _szin a kocsi színe
+     * @param utasok megmutatja, hogy vannak-e utasok a kocsin
+     * @param ve a vonat elem, ami után kerül a a kocsi
+     */
+    public SzemélyKocsi(String _szin, boolean utasok, VonatElem ve) {
+        szín = _szin;
+        utas = utasok;
+        irány = true;
+        setPozíció(new SínElem(ve.getPozíció()));
+        ve.setKövetkezõ(this);
+    }
 
 
 
@@ -126,4 +143,41 @@ public class SzemélyKocsi extends Kocsi {
      */
     @Override
     public boolean getLeszállhat(){return leszállhat;}
+
+
+    @Override
+    public void rajzol(Graphics g) {
+        if (tartózkodásiHely!=null && tartózkodásiHely.getLátható()) {
+
+            BufferedImage img;
+            img = Ikonok.getIkon("Kocsi_"+szín + (utas ? "_tele.png" : "_ures.png") );
+
+            if (img == null){
+                //ha a kép nem lett beolvasva
+                g.setColor(Color.MAGENTA);
+                g.drawRect(tartózkodásiHely.getX()-15,tartózkodásiHely.getY()-15,30,30);
+                return;
+            }
+
+            int w = (int) (img.getWidth() * Ikonok.getNagyításVe());
+            int h = (int) (img.getWidth() * Ikonok.getNagyításVe());
+            g.drawImage(img, tartózkodásiHely.getX() - w / 2, tartózkodásiHely.getY() - h / 2, w, h, null);
+
+        }
+		/*try {
+
+			if (tartózkodásiHely!=null && tartózkodásiHely.getLátható()) {
+				//System.out.println(tartózkodásiHely.getX()+" , " +tartózkodásiHely.getY());
+				BufferedImage img;
+				if (irány) img = ImageIO.read(new File("ikonok/Mozdony_jobb.png"));
+				else img = ImageIO.read(new File("ikonok/Mozdony_bal.png"));
+
+				g.drawImage(img, tartózkodásiHely.getX()-img.getWidth()/2, tartózkodásiHely.getY()-img.getHeight()/2, null);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}*/
+
+    }
+
 }

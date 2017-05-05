@@ -16,7 +16,7 @@ public class grafteszt {
      */
     public static void main (String args[]) {
         View tv1 = new View();
-
+        Ikonok.Init(0.7,0.6);
         Csomópont csp1 = new Csomópont(100,100);
         Csomópont csp2 = new Csomópont(300, 300);
         //Csomópont csp3 = new Csomópont(1000, 50);
@@ -36,21 +36,28 @@ public class grafteszt {
 
         Mozdony m1 = new Mozdony(csp1,2);
         m1.setIrány(true);
-        m1.setPozíció(new SínElem(csp2,csp1));
+        m1.setPozíció(new SínElem(csp1));
 
 
 
         Mozdony m2 = new Mozdony(csp1,8);
         m2.setIrány(true);
-        m2.setPozíció(new SínElem(csp2,csp1));
+        m2.setPozíció(new SínElem(csp1));
 
 
 
-        SzenesKocsi sznk1 = new SzenesKocsi();
-        sznk1.setIrány(true);
-        sznk1.setPozíció(new SínElem(csp2,csp1));
-        m1.setKövetkezõ(sznk1);
-        m1.getPozíció().setElõzõ(sznk1.getPozíció());
+        SzenesKocsi sznk1 = new SzenesKocsi(m1);
+
+       // sznk1.setIrány(true);
+        //sznk1.setPozíció(new SínElem(csp1));
+        //m1.setKövetkezõ(sznk1);
+        //m1.getPozíció().setElõzõ(sznk1.getPozíció());
+
+
+        SzemélyKocsi szmk1 = new SzemélyKocsi("piros",true,sznk1);
+
+
+
 
         ArrayList<IMegjeleníthetõ> lista = new ArrayList<IMegjeleníthetõ>();
 
@@ -67,7 +74,7 @@ public class grafteszt {
         lista.add(alsz1);
         lista.add(alsz2);
 
-
+        lista.add(szmk1);
         lista.add(sznk1);
         lista.add(m1);
         lista.add(m2);

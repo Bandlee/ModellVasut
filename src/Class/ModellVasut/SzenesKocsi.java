@@ -13,6 +13,20 @@ import java.io.IOException;
 public class SzenesKocsi extends Kocsi {
 
 
+    public SzenesKocsi() {}
+
+    /**
+     *
+     * SzemélyKocsi konstruktor - belpésére váró SzemályKocsihoz
+     * @param ve a vonat elem, ami után kerül a a kocsi
+     */
+    public SzenesKocsi( VonatElem ve) {
+        irány = true;
+        setPozíció(new SínElem(ve.getPozíció()));
+        ve.setKövetkezõ(this);
+    }
+
+
     /**
      * Beállítja a szeneskocsi leszállhat értékét.
      * Üres szemelykocsihoz hasonloan továbbadja a beálított jogot a következõ kocsinak.
@@ -53,18 +67,14 @@ public class SzenesKocsi extends Kocsi {
 
     @Override
     public void rajzol(Graphics g) {
-        try {
+        if (tartózkodásiHely!=null && tartózkodásiHely.getLátható()) {
 
-            if (tartózkodásiHely!=null && tartózkodásiHely.getLátható()) {
-                //System.out.println(tartózkodásiHely.getX()+" , " +tartózkodásiHely.getY());
-                BufferedImage img;
-                img = ImageIO.read(new File("ikonok/szenes.png"));
+            BufferedImage img;
+            img = Ikonok.getIkon("Szenes.png");
+            int w = (int) (img.getWidth() * Ikonok.getNagyításVe());
+            int h = (int) (img.getWidth() * Ikonok.getNagyításVe());
+            g.drawImage(img, tartózkodásiHely.getX() - w / 2, tartózkodásiHely.getY() - h / 2, w, h, null);
 
-
-                g.drawImage(img, tartózkodásiHely.getX()-img.getWidth()/2, tartózkodásiHely.getY()-img.getHeight()/2, null);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 }
