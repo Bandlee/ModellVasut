@@ -29,7 +29,7 @@ public class Idõzítõ extends Timer {
 	public Idõzítõ( List<Mozdony> list,int sebesség){
 		super();
 		mozdonyok = list;
-		ciklusidõ = 240/sebesség;
+		ciklusidõ = 480/sebesség;
 
 	}
 
