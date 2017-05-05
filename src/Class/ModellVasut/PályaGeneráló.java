@@ -22,7 +22,7 @@ public class PályaGeneráló {
 	private int szint;
 	private int sebesség;
 
-    private BufferedWriter bw;
+    //private BufferedWriter bw;
     /**
      * Konstruktor. Mivel csak egyetlen példány létezik az osztályból, a konstruktor privát.
      */
@@ -150,7 +150,7 @@ public class PályaGeneráló {
 				case "Smk":
 					vonatelemek.add(0,new SzemélyKocsi(
 							params[0],
-							params[1].equals(1),
+							params[1].equals("1"),
 							vonatelemek.get(0)
 					));
 					break;
@@ -425,6 +425,6 @@ public class PályaGeneráló {
      * a tesztesetek kimenetelének kiírásához használatos, visszaadja a használt bufferedreadert
      * @return bw
      */
-    public BufferedWriter getBw(){return bw;}
+    //public BufferedWriter getBw(){return bw;}
 
 }

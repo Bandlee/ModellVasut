@@ -1,6 +1,8 @@
 package Class.ModellVasut;
 
 
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -45,17 +47,13 @@ public class Állomás extends Csomópont {
 	 * @param v: Az állomáson áthaladó VonatElemet jelöli.
 	 */
 	public boolean leszáll(VonatElem v){
-		try{
-			nemleszállt--;
-			pg.getBw().write("Utasok szálltak le");
-			pg.getBw().newLine();
-			if (nemleszállt == 0) {
-				pályaTeljesít();
-			}
+		nemleszállt--;
+		if (nemleszállt == 0) {
+			pályaTeljesít();
 			return true;
-		}catch(IOException e){
-			System.out.println(e.getMessage());
 		}
+
+
 		return false;
 
 	}
@@ -67,15 +65,9 @@ public class Állomás extends Csomópont {
 	 * @param v: Az állomáson áthaladó VonatElemet jelöli.
 	 */
 	public boolean felszáll(VonatElem v){
-		try{
+
 			felszálló = false;
-			pg.getBw().write("Utasok szálltak SzemélyKocsira");
-			pg.getBw().newLine();
 			return true;
-		}catch(IOException e){
-			System.out.println(e.getMessage());
-		}
-		return false;
 	}
 
 
@@ -84,12 +76,7 @@ public class Állomás extends Csomópont {
 	 * PályaGenerálóva betölteti az új pályát, és az elindítja a játékot.
 	 */
 	public void pályaTeljesít(){
-		try {
-            pg.getBw().write("Szint teljesítve");
-            pg.getBw().newLine();
-        } catch (IOException e){
-            System.out.println(e.getMessage());
-        }
+		pg.kezdés();
 	}
 
 	/**
@@ -114,7 +101,7 @@ public class Állomás extends Csomópont {
 			leszáll(v);
 		}
 
-		if ( v.felEllenõriz(szín) && felszálló!=false) {
+		if (felszálló!=false && v.felEllenõriz(szín)) {
 			felszáll(v);
 
 		}
@@ -125,4 +112,26 @@ public class Állomás extends Csomópont {
 	public static void setNemleszállt(int n){
 	    nemleszállt = n;
     }
+
+
+	@Override
+	public void rajzol(Graphics g) {
+
+
+		BufferedImage img;
+		img = Ikonok.getIkon("Allomas_" + szín + (felszálló ? "_tele.png" : "_ures.png"));
+
+		if (img == null) {
+			//ha a kép nem lett beolvasva
+			g.setColor(Color.MAGENTA);
+			g.drawRect(x - 15, y - 15, 30, 30);
+			return;
+		}
+
+		int w = (int) (img.getWidth() * Ikonok.getNagyításCsp());
+		int h = (int) (img.getHeight() * Ikonok.getNagyításCsp());
+		g.drawImage(img, x - w / 2, y - h / 2, w, h, null);
+
+
+	}
 }

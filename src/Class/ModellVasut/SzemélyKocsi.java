@@ -33,6 +33,7 @@ public class SzemélyKocsi extends Kocsi {
         szín = _szin;
         utas = utasok;
         irány = true;
+        leszállhat= true;
         setPozíció(new SínElem(ve.getPozíció()));
         ve.setKövetkezõ(this);
     }
@@ -160,7 +161,7 @@ public class SzemélyKocsi extends Kocsi {
             }
 
             int w = (int) (img.getWidth() * Ikonok.getNagyításVe());
-            int h = (int) (img.getWidth() * Ikonok.getNagyításVe());
+            int h = (int) (img.getHeight() * Ikonok.getNagyításVe());
             g.drawImage(img, tartózkodásiHely.getX() - w / 2, tartózkodásiHely.getY() - h / 2, w, h, null);
 
         }
