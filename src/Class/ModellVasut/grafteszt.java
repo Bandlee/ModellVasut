@@ -20,7 +20,7 @@ public class grafteszt {
         Csomópont csp1 = new Csomópont(100,100);
         Csomópont csp2 = new Csomópont(300, 300);
         //Csomópont csp3 = new Csomópont(1000, 50);
-        Csomópont csp3 = new Csomópont(1000, 600);
+        Csomópont csp3 = new Csomópont(1300, 700);
         Váltó vlt1 = new Váltó(1000, 50);
         AlagútSzáj alsz1 = new AlagútSzáj(1050,300);
         AlagútSzáj alsz2 = new AlagútSzáj(200,500);
