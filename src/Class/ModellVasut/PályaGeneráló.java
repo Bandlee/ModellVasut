@@ -1,8 +1,11 @@
 package Class.ModellVasut;
 
 
+import javax.crypto.Cipher;
+import javax.smartcardio.CardTerminal;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -15,9 +18,9 @@ import java.util.List;
 public class PályaGeneráló {
 
 	private static PályaGeneráló me = null;
-
-	private File bemenet;
+	static private Controller ctrl;
 	private int szint;
+	private int sebesség;
 
     private BufferedWriter bw;
     /**
@@ -42,6 +45,145 @@ public class PályaGeneráló {
 		}
 
 		return me;
+	}
+
+
+
+	public Idõzítõ kezdés() {
+		szint++;
+		Idõzítõ idõ= null;
+		try {
+			idõ = kezdés(szint,sebesség);
+		} catch (IOException e) {
+			ctrl.játékVége();
+		}
+		return idõ;
+	}
+
+	//graf version
+	public Idõzítõ kezdés(int _szint, int _sebesség) throws IOException {
+
+		szint = _szint;
+		sebesség = _sebesség;
+		File pályaFile = new File("Palya" +szint +".txt");
+
+		//elejére szurunk be mindig
+		List<VonatElem> vonatelemek = new LinkedList<>(); //->elemekbe majd
+
+		List<Mozdony> mozdonyok = new LinkedList<>(); //->idõzítõnek csak
+		List<Csomópont> csomópontok = new ArrayList<>(); //->elemekbe majd + pályagenhez kell (noid)
+
+		List<IMegjeleníthetõ> elemek = new LinkedList<>(); //->Controllernek
+		List<IKattintható> kattinthatók = new LinkedList<>(); //->Controllernek
+
+
+		BufferedReader br = null;
+		String sor;
+
+
+		br = new BufferedReader(new FileReader(pályaFile));
+		sor = br.readLine();
+		while(sor != null) {
+			sor = sor.replaceAll("\\s","");
+			String parancs=sor.substring(0,3);
+			String params[] = getParams(sor);
+			switch (parancs) {
+
+
+
+				case "Csp":
+					csomópontok.add(new Csomópont(
+							Integer.parseInt(params[0]),
+							Integer.parseInt(params[1])
+					));
+					break;
+
+				case "Ksn":
+					csomópontok.add(new KeresztezõSín(
+							Integer.parseInt(params[0]),
+							Integer.parseInt(params[1])
+					));
+					break;
+
+				case "Vlt":
+					Váltó vlt = new Váltó(Integer.parseInt(params[0]), Integer.parseInt(params[1]));
+					csomópontok.add(vlt);
+					kattinthatók.add(vlt);
+					break;
+
+				case "Asz":
+					AlagútSzáj asz = new AlagútSzáj(Integer.parseInt(params[0]), Integer.parseInt(params[1]));
+					csomópontok.add(asz);
+					kattinthatók.add(asz);
+					break;
+
+				case "All":
+					csomópontok.add(new Állomás(
+							params[0],
+							params[1].equals("1"),
+							Integer.parseInt(params[2]),
+							Integer.parseInt(params[3])
+					));
+					break;
+
+					//harmadik paramétert nem veszi még figyelembe
+				case "Sel":
+					elemek.add(new GrafSín(
+						csomópontok.get(Integer.parseInt(params[0])-1),
+						csomópontok.get(Integer.parseInt(params[1])-1)
+					));
+					break;
+
+				case "Mzd":
+					Mozdony mzd = new Mozdony(
+							csomópontok.get(Integer.parseInt(params[0])-1),
+							Integer.parseInt(params[1])
+					);
+					vonatelemek.add(0,mzd);
+					mozdonyok.add(mzd);
+					break;
+
+				case "Snk":
+					vonatelemek.add(0,new SzenesKocsi(vonatelemek.get(0)));
+					break;
+
+				case "Smk":
+					vonatelemek.add(0,new SzemélyKocsi(
+							params[0],
+							params[1].equals(1),
+							vonatelemek.get(0)
+					));
+					break;
+			}
+			sor = br.readLine();
+		}
+		for (Csomópont csp : csomópontok)
+			elemek.add(csp);
+
+		for (VonatElem ve : vonatelemek)
+			elemek.add(ve);
+
+		Idõzítõ idõ = new Idõzítõ(mozdonyok,sebesség);
+
+		ctrl.setElemek(elemek);
+		ctrl.setKattinthatók(kattinthatók);
+		ctrl.setIdõzítõ(idõ);
+		ctrl.start();
+
+
+
+		return idõ;
+	}
+
+	private String[] getParams(String sor){
+		int start = sor.indexOf('(')+1;
+		int end = sor.indexOf(')');
+		return sor.substring(start,end).split(",");
+	}
+
+
+	static public void setController(Controller _ctrl){
+		ctrl = _ctrl;
 	}
 
 	/**

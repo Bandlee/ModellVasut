@@ -28,6 +28,7 @@ public class Controller {
                 public void run() {
                     try {
                         idõzítõ.tick();
+                        nézet.mindenRajzolása();
                     } catch (VegException e) {
                         játékVége(); //Controller::játékVége()
                     }

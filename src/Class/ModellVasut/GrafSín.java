@@ -15,8 +15,10 @@ public class GrafSín implements IMegjeleníthetõ {
     BufferedImage img;
 
     GrafSín(Csomópont cs1, Csomópont cs2){
-
-        SínElem.összeköt(cs1,cs2,true);
+        if (cs1.getX()<=cs2.getX())
+            SínElem.összeköt(cs1,cs2,true);
+        else
+            SínElem.összeköt(cs2,cs1,true);
 
         double x_dist = (cs2.getX()-cs1.getX());
         double y_dist = (cs2.getY()-cs1.getY());

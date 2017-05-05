@@ -27,6 +27,7 @@ public class Mozdony extends VonatElem {
 		késleltetés = k;
 		belépésipont = b;
 		irány = true;
+		setPozíció(new SínElem(b)); //láthatatlan sín amirõl tovább lép, ha elindult
 	}
 
 	public void finalize() throws Throwable {

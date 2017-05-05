@@ -62,7 +62,11 @@ public class Menü implements IMegjeleníthetõ, IKattintható {
 		
 		if (rect.contains(e.getPoint())){
 			if (e.getY()<rect.y+rect.height/4){
-				//kezdés
+				try {
+					PályaGeneráló.getInstance().kezdés(szint,sebesség);
+				} catch (IOException e1) {
+					msg = e1.getMessage();
+				}
 			}
 			else if (e.getY()<rect.y+rect.height*2/4){
 				if (szint <5) szint++;

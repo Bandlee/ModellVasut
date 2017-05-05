@@ -7,6 +7,9 @@ import java.util.ArrayList;
  */
 public class GrafMain {
     public static void main(String args[]) {
+        Ikonok.Init(0.7,0.6);
+
         Controller ctrl = new Controller();
+        PályaGeneráló.setController(ctrl);
     }
 }
