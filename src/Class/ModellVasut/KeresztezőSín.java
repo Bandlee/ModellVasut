@@ -1,5 +1,6 @@
 package Class.ModellVasut;
 
+import java.awt.*;
 import java.util.List;
 
 /**
@@ -64,5 +65,25 @@ public class KeresztezõSín extends Csomópont {
             }
         }
         return true;
+    }
+
+
+
+    @Override
+    public void rajzol(Graphics g) {
+
+        //try {
+
+        //final BufferedImage image = ImageIO.read(new File("csp.png"));
+        //g.drawImage(image, x,y,null);
+        g.setColor(Color.orange);
+        int w = (int) (40 * Ikonok.getNagyításCsp());
+        int h = (int) (40 * Ikonok.getNagyításCsp());
+        g.fillOval(x-w/2,y-h/2,w,h);
+
+		/*} catch (IOException e) {
+			e.printStackTrace();
+		}*/
+
     }
 }

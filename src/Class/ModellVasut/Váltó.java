@@ -148,9 +148,15 @@ public class Váltó extends Csomópont implements IKattintható {
 			e.printStackTrace();
 		}*/
 		super.rajzol(g);
+
+
+		int w = (int) (30 * Ikonok.getNagyításVe());
+		int h = (int) (30 * Ikonok.getNagyításVe());
+
+		g.setColor(Color.blue);
+		g.fillOval(rögzített.getX()-w/2,rögzített.getY()-h/2,w,h);
 		g.setColor(Color.green);
-		g.fillOval(rögzített.getX()-10,rögzített.getY()-10,20,20);
-		g.fillOval(aktív.getX()-10,aktív.getY()-10,20,20);
+		g.fillOval(aktív.getX()-w/2,aktív.getY()-h/2,w,h);
 	}
 }
 
