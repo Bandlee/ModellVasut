@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class menüteszt {
     public static void main(String args[]) {
-        View tv1 = new View();
+        View tv1 = new View(null); //out of order
 
         Menü mü1 = new Menü("kiírás");
 
@@ -25,7 +25,6 @@ public class menüteszt {
         listakatt.add(mü1);
 
 
-        tv1.akcióCs = listakatt;
         tv1.mindenRajzolása();
     }
 }

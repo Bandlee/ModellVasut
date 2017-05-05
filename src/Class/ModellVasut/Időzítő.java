@@ -2,6 +2,7 @@ package Class.ModellVasut;
 
 
 import java.util.List;
+import java.util.Timer;
 
 /**
  * @author Bandi
@@ -12,16 +13,23 @@ import java.util.List;
 /**
  * Az idõ múlását megvalósító osztály
  */
-public class Idõzítõ {
+public class Idõzítõ extends Timer {
 
 	private List<Mozdony> mozdonyok;
-
+	private int ciklusidõ;
 	/**
 	 * Konstruktor az Idõzítõ osztály példányosításához
 	 * @param list pályán lévõ összes Mozdonyt tartalmazó lista
 	 */
 	public Idõzítõ( List<Mozdony> list){
+		super();
 		mozdonyok = list;
+	}
+
+	public Idõzítõ( List<Mozdony> list,int sebesség){
+		super();
+		mozdonyok = list;
+		ciklusidõ = 240/sebesség;
 
 	}
 
@@ -35,6 +43,10 @@ public class Idõzítõ {
 	public void tick() throws  VegException{
 		for (Mozdony m : mozdonyok)
 			m.tickAkció();
+	}
+
+	public int getCiklusidõ(){
+		return ciklusidõ;
 	}
 
 }

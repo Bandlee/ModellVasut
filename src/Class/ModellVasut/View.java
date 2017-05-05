@@ -18,9 +18,13 @@ public class View {
 
     private JFrame ablak;
     private List<IMegjeleníthetõ> elemek;
-    public List<IKattintható> akcióCs; //temp, nem fog itt maradni
+   // public List<IKattintható> akcióCs; //temp, nem fog itt maradni
+    private Controller ctrl;
 
-    View(){
+
+    //valódi megvalósítás
+    public View(Controller _ctrl){
+        ctrl = _ctrl;
         ablak = new JFrame();
         ablak.setSize(1200,800);
         ablak.setVisible(true);
@@ -30,9 +34,9 @@ public class View {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 if (elemek!=null)
-                for (IMegjeleníthetõ elem : elemek) {
-                    elem.rajzol(g);
-                }
+                    for (IMegjeleníthetõ elem : elemek) {
+                        elem.rajzol(g);
+                    }
 
             }
         };
@@ -40,22 +44,17 @@ public class View {
 
         //controllernek lesz továbbadva majd, aki ugyanezt fogja csinálni
         pane.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-
-                super.mouseClicked(e);
-                boolean refresh = false;
-                if (akcióCs!=null)
-                for (IKattintható ik : akcióCs){
-                    if (ik.voltKattintva(e)) refresh = true;
-                }
-                if (refresh) mindenRajzolása();
-
-            }
-        }
-        );
+                                  @Override
+                                  public void mouseClicked(MouseEvent e) {
+                                      super.mouseClicked(e);
+                                      ctrl.katt(e);
+                                  }
+                              });
 
     }
+
+
+
 
 
     public void mindenRajzolása() {

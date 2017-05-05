@@ -15,7 +15,7 @@ public class grafteszt {
      * @param args
      */
     public static void main (String args[]) {
-        View tv1 = new View();
+        View tv1 = new View(null);//out of order
         Ikonok.Init(0.7,0.6);
         Csomópont csp1 = new Csomópont(100,100);
         Csomópont csp2 = new Csomópont(300, 300);
@@ -85,7 +85,7 @@ public class grafteszt {
         listakatt.add(alsz1);
         listakatt.add(alsz2);
 
-        tv1.akcióCs = listakatt;
+       // tv1.akcióCs = listakatt;
 
         tv1.mindenRajzolása();
         try {
