@@ -9,7 +9,7 @@ public class menüteszt {
     public static void main(String args[]) {
         View tv1 = new View(null); //out of order
 
-        Menü mü1 = new Menü("kiírás");
+        Menü mü1 = new Menü("kiírás",null);
 
 
 

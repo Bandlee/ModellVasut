@@ -17,14 +17,15 @@ public class Menü implements IMegjeleníthetõ, IKattintható {
 	private Rectangle rect;
 	private String msg;
 	private BufferedImage bimg;
-	private static Controller ctrl;
+	//private static Controller ctrl;
+	private Controller ctrl;
+//	public static void setController(Controller _ctrl){
+//		ctrl = _ctrl;
+//	}
 
-	public static void setController(Controller _ctrl){
+
+	Menü(String message, Controller _ctrl){
 		ctrl = _ctrl;
-	}
-
-
-	Menü(String message){
 		msg = message;
         bimg = Ikonok.getIkon("menubuttons.png");
 

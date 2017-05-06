@@ -17,7 +17,6 @@ public class Controller {
 
     public Controller(){
         nézet = new View(this);
-        Menü.setController(this);
         menüMegnyitása("Welcome");
     }
 
@@ -79,7 +78,7 @@ public class Controller {
     }
 
     public void menüMegnyitása(String msg){
-        Menü menü = new Menü(msg);
+        Menü menü = new Menü(msg,this);
         ArrayList<IMegjeleníthetõ> lista = new ArrayList<IMegjeleníthetõ>();
         ArrayList<IKattintható> listakatt = new ArrayList<IKattintható>();
 
