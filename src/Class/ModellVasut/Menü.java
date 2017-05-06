@@ -19,12 +19,8 @@ public class Menü implements IMegjeleníthetõ, IKattintható {
 	BufferedImage bimg;
 	Menü(String message){
 		msg = message;
-		try {
-			bimg = ImageIO.read(new File("Ikonok/menubuttons.png"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        bimg = Ikonok.getIkon("menubuttons.png");
+
 		int x = 250;
 		int y = 100;
 		int w = 600;
