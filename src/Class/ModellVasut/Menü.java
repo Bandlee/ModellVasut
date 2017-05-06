@@ -14,9 +14,16 @@ import javax.imageio.ImageIO;
 public class Menü implements IMegjeleníthetõ, IKattintható {
 	private int szint=1;
 	private int sebesség=1;
-	Rectangle rect;
-	String msg;
-	BufferedImage bimg;
+	private Rectangle rect;
+	private String msg;
+	private BufferedImage bimg;
+	private static Controller ctrl;
+
+	public static void setController(Controller _ctrl){
+		ctrl = _ctrl;
+	}
+
+
 	Menü(String message){
 		msg = message;
         bimg = Ikonok.getIkon("menubuttons.png");
@@ -26,8 +33,6 @@ public class Menü implements IMegjeleníthetõ, IKattintható {
 		int w = 600;
 		int h = 600;
 		rect= new Rectangle(x,y,w,h);
-		
-		
 	}
 	
 	public void rajzol(Graphics g){
@@ -61,7 +66,7 @@ public class Menü implements IMegjeleníthetõ, IKattintható {
 				try {
 					PályaGeneráló.getInstance().kezdés(szint,sebesség);
 				} catch (IOException e1) {
-					msg = e1.getMessage();
+					msg = szint + ". pálya nem található :(";
 				}
 			}
 			else if (e.getY()<rect.y+rect.height*2/4){
@@ -72,7 +77,10 @@ public class Menü implements IMegjeleníthetõ, IKattintható {
 				if (sebesség <4) sebesség++;
 				else sebesség = 1;
 			}
-			
+
+			else ctrl.kilépés();
+
+
 			return true;
 		}	
 		return false;

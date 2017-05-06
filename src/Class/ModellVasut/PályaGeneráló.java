@@ -18,7 +18,7 @@ import java.util.List;
 public class PályaGeneráló {
 
 	private static PályaGeneráló me = null;
-	static private Controller ctrl;
+	private static Controller ctrl;
 	private int szint;
 	private int sebesség;
 
@@ -55,7 +55,9 @@ public class PályaGeneráló {
 		try {
 			idõ = kezdés(szint,sebesség);
 		} catch (IOException e) {
-			ctrl.játékVége();
+			ctrl.játékVége("Nincs következõ pálya :(");
+			//String szint = e.getMessage().substring(5,6);
+			//ctrl.játékVége("Nincs " +szint + ". pálya :(");
 		}
 		return idõ;
 	}

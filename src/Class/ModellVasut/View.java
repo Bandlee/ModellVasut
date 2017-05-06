@@ -72,5 +72,8 @@ public class View {
     }
 
 
-
+    public void bezárás() {
+        ablak.setVisible(false);
+        ablak.dispose();
+    }
 }

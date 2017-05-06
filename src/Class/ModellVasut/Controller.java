@@ -17,11 +17,13 @@ public class Controller {
 
     public Controller(){
         nézet = new View(this);
+        Menü.setController(this);
         menüMegnyitása("Welcome");
     }
 
     public void start(){
-        if (idõzítõ != null) {
+        if (idõzítõ != null)
+        {
             idõzítõ.schedule(new TimerTask() {
 
                 @Override
@@ -30,22 +32,21 @@ public class Controller {
                         idõzítõ.tick();
                         nézet.mindenRajzolása();
                     } catch (VegException e) {
-                        játékVége(); //Controller::játékVége()
+                        játékVége("Game over!"); //Controller::játékVége()
                     }
                 }
             }, idõzítõ.getCiklusidõ(), idõzítõ.getCiklusidõ());
         }
-
         else {
-
+            menüMegnyitása("Controller nem kapott idõzítõt");
         }
 
     }
 
 
-    public  void játékVége() {
+    public  void játékVége(String msg) {
         idõzítõ.cancel();
-        menüMegnyitása("Game Over!");
+        menüMegnyitása(msg);
     }
 
     public void setElemek(List<IMegjeleníthetõ> elemek){
@@ -56,7 +57,11 @@ public class Controller {
         kattinthatók = _kattinthatók;
     }
 
-    public void setIdõzítõ(Idõzítõ _idõzítõ) {
+    public void setIdõzítõ(Idõzítõ _idõzítõ)
+    {
+        if (idõzítõ != null)
+            idõzítõ.cancel();
+
         idõzítõ = _idõzítõ;
     }
 
@@ -85,8 +90,11 @@ public class Controller {
         setKattinthatók(listakatt);
 
         nézet.mindenRajzolása();
+    }
 
 
+    public void kilépés(){
+        nézet.bezárás();
     }
 
 

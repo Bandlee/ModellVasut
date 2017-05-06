@@ -53,9 +53,10 @@ public class AlagútSzáj extends Csomópont implements IKattintható {
 		// ha inaktív volt:
 		if (!aktív){
 			// max. 2 aktív lehet
-			if (aktívak.size() >= 2)
-				System.out.println("Nem hozható létre több alagút!");
-			else {
+			//if (aktívak.size() >= 2)
+		//		System.out.println("Nem hozható létre több alagút!");
+			//else
+			if (aktívak.size()<2){
 				// hozzáadjuk a listához és aktiváljuk
 				aktívak.add(this);
 				aktív = true;
