@@ -67,6 +67,8 @@ public class PályaGeneráló {
 		sebesség = _sebesség;
 		File pályaFile = new File("Palya" +szint +".txt");
 
+		int nemleszállt = 0;
+
 		//elejére szurunk be mindig
 		List<VonatElem> vonatelemek = new LinkedList<>(); //->elemekbe majd
 
@@ -124,6 +126,7 @@ public class PályaGeneráló {
 							Integer.parseInt(params[2]),
 							Integer.parseInt(params[3])
 					));
+					if (params[1].equals("1")) nemleszállt++;
 					break;
 
 					//harmadik paramétert nem veszi még figyelembe
@@ -153,6 +156,7 @@ public class PályaGeneráló {
 							params[1].equals("1"),
 							vonatelemek.get(0)
 					));
+					if (params[1].equals("1")) nemleszállt++;
 					break;
 			}
 			sor = br.readLine();
@@ -164,7 +168,7 @@ public class PályaGeneráló {
 			elemek.add(ve);
 
 		Idõzítõ idõ = new Idõzítõ(mozdonyok,sebesség);
-
+		Állomás.setNemleszállt(nemleszállt);
 		ctrl.setElemek(elemek);
 		ctrl.setKattinthatók(kattinthatók);
 		ctrl.setIdõzítõ(idõ);
