@@ -190,43 +190,36 @@ public class SínElem extends Hely {
 	public static List<SínElem> összeköt(Csomópont cs1, Csomópont cs2, boolean láth){
 
 		/**távolság sínelemek között*/
-		int táv = (int) Math.round(40*Ikonok.getNagyításVe());
+		double táv = 40*Ikonok.getNagyításVe();
 
 		int x_dist = (cs2.getX()-cs1.getX());
 		int y_dist = (cs2.getY()-cs1.getY());
 
 
 		/** 2 csomópont közti szakasz hossza*/
-		int szh = (int) Math.sqrt(x_dist*x_dist + y_dist*y_dist);
+		double szh =  Math.sqrt(x_dist*x_dist + y_dist*y_dist);
 
-		/** hány sínelem fér a két csomópont közé, (az utolsó a csomópontba lenne, vagy nagyon közel) */
-		int sedb = szh /táv ;
 
+		int sedb = (int) ((szh/táv));
+		táv = szh/sedb;
 
 		double x_szorz = x_dist/(double)szh;
 		double y_szorz = y_dist/(double)szh;
 		List<SínElem> temp_se =new ArrayList<>();
 
-		/** pont a két csomópont közé kerüljön, ha kevés a hely */
-		if (sedb < 1) {
-			int _x = (int) (cs1.getX() + Math.round(szh/2 * x_szorz));
-			int _y = (int) (cs1.getY() + Math.round(szh/2 * y_szorz));
-			temp_se.add(new SínElem(cs1, cs2, láth, _x, _y));
+		double _x = cs1.getX() +0.5* táv * x_szorz;
+		double _y = cs1.getY() + 0.5* táv * y_szorz;
+		temp_se.add(new SínElem(cs1, cs2, láth,(int)Math.round(_x),(int) Math.round(_y)));
 
+		for (int i = 1; i < sedb; i++) {
+			_x += táv * x_szorz;
+			_y +=  táv * y_szorz;
+			temp_se.add(new SínElem(cs1, cs2, láth,(int)Math.round(_x),(int) Math.round(_y)));
+		}
+		for (int i = 0; i < temp_se.size() - 1; i++) {
+			temp_se.get(i).setKövetkezõ(temp_se.get(i + 1));
 		}
 
-		else {
-
-			for (int i = 1; i <= sedb; i++) {
-
-				int _x = (int) (cs1.getX() + Math.round(i * táv * x_szorz));
-				int _y = (int) (cs1.getY() + Math.round(i * táv * y_szorz));
-				temp_se.add(new SínElem(cs1, cs2, láth, _x, _y));
-			}
-			for (int i = 0; i < temp_se.size() - 1; i++) {
-				temp_se.get(i).setKövetkezõ(temp_se.get(i + 1));
-			}
-		}
 
 		cs1.setBefutóSín(temp_se.get(0));
 		cs2.setBefutóSín(temp_se.get(temp_se.size()-1));
