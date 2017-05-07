@@ -1,6 +1,8 @@
 package Class.ModellVasut;
 
 
+import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -80,6 +82,11 @@ public class VonatElem implements IMegjeleníthetõ {
 	 *	benne kerül sor ütközésdetektálásra is. érzékeli, ha játék végét jelentõ eset következik be
 	 */
 	public void mozgat()throws VegException{
+
+
+
+
+
 		if(irány) {
 			if(tartózkodásiHely.getKövetkezõ() == null) {
 				boolean tmp = tartózkodásiHely.keresztez(irány, this);
@@ -103,22 +110,27 @@ public class VonatElem implements IMegjeleníthetõ {
                 setPozíció(tartózkodásiHely.getElõzõ());
             }
 		}
-		//cs1-cs2, cs2-cs3, cs1-cs3 összekötési sorrendekre vonat nem tud körbeérni, ütközést detektál
-		//mellékesen ha egy mozdony iránya hirtelen megváltozik, akkor 5 lépéssel utána lévö mozdony simán kiváltaná a játék végét
-		//(mivel sínelemnél áthaladó eleme nem lesz nullázva ha valami elment fölötte
-		//korrigálva setPozició -nál, ütközés ellenörzés lehet nem teljes most
-        if (tartózkodásiHely.getÁthaladóElem()!=null && tartózkodásiHely.getÁthaladóElem().getIrány()!=this.getIrány()){
+
+
+
+		/**ellenörzi, hogy ahova került ott van-e olyan vonatelem, ami ellentétes irányú
+		 * azonos irányú vonatelemmel történõ ütközést nem detektál, helyes pályafileoknál nem okoz gondot*/
+        if (tartózkodásiHely.getÁthaladóElem()!=null &&tartózkodásiHely.getÁthaladóElem().irány != this.irány){
             JátékVége v = new JátékVége();
             v.vég();
         } else {
             tartózkodásiHely.setÁthaladóElem(this);
         }
 
-        boolean ütköz = tartózkodásiHely.ütközésElõrejelez();
+        //redundáns a feljebb lévõ 6 sor mellett
+		//átlépés nem lehet, mivel a vonatokat "egyenként" léptetjük és nem egyszerre
+		//tesztelést igényelhet
+		/*boolean ütköz = tartózkodásiHely.ütközésElõrejelez();
 		if(!ütköz) {
 			JátékVége v = new JátékVége();
 			v.vég();
-		}
+		}*/
+
 
 }
 
@@ -135,10 +147,17 @@ public class VonatElem implements IMegjeleníthetõ {
 	 * @param s az aktuális tartózkodási helyet reprezentáló paraméter
 	 */
 	public void setPozíció(SínElem s){
-		//modified, might be bad
- 		if (tartózkodásiHely!=null)
-		tartózkodásiHely.setÁthaladóElem(null);
-		//
+		//kírja magát, ha a tartozkodási helyre nem ö van beregisztrálva
+//		if (tartózkodásiHely!=null)
+//		if (tartózkodásiHely.getÁthaladóElem() !=this) {
+//			System.out.println(this.toString());
+//		}
+		/**csak akkor jelentkezik le a sínelemrõl ha õ van oda beregisztrálva
+		 * (megakadályozva, hogy pl mögötte haladó elemet (ami elõbb lépett) jelentkeztessen le*/
+ 		if (tartózkodásiHely!=null && tartózkodásiHely.getÁthaladóElem()== this)
+			tartózkodásiHely.setÁthaladóElem(null);
+
+
 		tartózkodásiHely = s;
     }
 
