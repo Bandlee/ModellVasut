@@ -22,11 +22,8 @@ public class Alagút {
 	 * @param be2: 2-es számú bejárat
 	 */
 	public Alagút(AlagútSzáj be1, AlagútSzáj be2){
-		//alagútelem=new ArrayList<>();
 		bejárat1 = be1;
 		bejárat2 = be2;
-		//SínElem s=new SínElem(be1,be2);
-		//alagútelem.add(s);
 		alagútelem = SínElem.összeköt(be1,be2,false);
 	}
 

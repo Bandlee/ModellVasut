@@ -99,8 +99,6 @@ public class AlagútSzáj extends Csomópont implements IKattintható {
 	private void épít(){
 		//létrehozzuk az alagutat a két végével
 		alagút = new Alagút(aktívak.get(0), aktívak.get(1));
-        //aktívak.get(0).setBefutóSín(alagút.getAlagútelem().get(0));
-        //aktívak.get(1).setBefutóSín(alagút.getAlagútelem().get(alagút.getAlagútelem().size()-1));
 
 		//beállítjuk az alagút szájaknak a friss alagutunkat
 		for (AlagútSzáj actual : aktívak) {
@@ -114,8 +112,6 @@ public class AlagútSzáj extends Csomópont implements IKattintható {
 	private void rombol(){
         aktívak.get(0).removeBefutóSín(alagút.getAlagútelem().get(0));
         aktívak.get(1).removeBefutóSín(alagút.getAlagútelem().get(alagút.getAlagútelem().size()-1));
-//		aktívak.get(0).befutóSínek.remove(1);
-//		aktívak.get(1).befutóSínek.remove(1);
 	    for (AlagútSzáj actual : aktívak)
 			actual.alagút = null;
 	}
@@ -138,7 +134,7 @@ public class AlagútSzáj extends Csomópont implements IKattintható {
 	public void rajzol(Graphics g) {
 
 
-		//System.out.println(tartózkodásiHely.getX()+" , " +tartózkodásiHely.getY());
+
 		BufferedImage img;
 		if (aktív) img = Ikonok.getIkon("Alagutszaj_on.png");
 		else img = Ikonok.getIkon("Alagutszaj_off.png");

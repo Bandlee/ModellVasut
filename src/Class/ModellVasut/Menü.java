@@ -81,8 +81,8 @@ public class Menü implements IMegjeleníthetõ, IKattintható {
 	}
 
 	/**
-	 * Kattintás relevanciájának ellenörzése, valamint szükség szerint
-	 * az érvényes kattintás utáni müveletek elvégzése
+	 * Függvény megnézi, hogy a kattintás a menübe történt-e, ha igen pontosan hova,
+	 * majd aszerint végzi a következõ müveletet.
 	 * @param e kattintást leíró érték
 	 * @return kattintás okozott-e változást
 	 */
@@ -94,7 +94,7 @@ public class Menü implements IMegjeleníthetõ, IKattintható {
 			/** Indítás - játék elindítása */
 			if (e.getY()<rect.y+rect.height/4){
 				try {
-					PályaGeneráló.getInstance().kezdés(szint,sebesség);
+					PályaGeneráló.getInstance().kezdés(szint,sebesség,ctrl);
 				} catch (IOException e1) {
 					msg = szint + ". pálya nem található :(";
 				}

@@ -14,10 +14,16 @@ import java.util.Timer;
  * Az idõ múlását megvalósító osztály
  */
 public class Idõzítõ extends Timer {
-
+	/** mozdonyok, amiknek órajelet kell adni */
 	private List<Mozdony> mozdonyok;
+
+	/** keresztezõ sinek, amiket órajelenként resetelni kell */
 	private List<KeresztezõSín> ksínek;
+
+	/** megadja, hány ms-onként kap órajelet a model*/
 	private int ciklusidõ;
+
+
 	/**
 	 * Konstruktor az Idõzítõ osztály példányosításához
 	 * @param list pályán lévõ összes Mozdonyt tartalmazó lista
@@ -27,6 +33,12 @@ public class Idõzítõ extends Timer {
 		mozdonyok = list;
 	}
 
+	/**
+	 * Konstruktor az Idõzítõ osztály példányosításához.
+	 * @param list pályán lévõ összes Mozdonyt tartalmazó lista
+	 * @param _ksínek pályán lévõ összes KeresztezõSínt tartalmazó lista
+	 * @param sebesség a játék sebessége
+	 */
 	public Idõzítõ( List<Mozdony> list,List<KeresztezõSín> _ksínek,int sebesség){
 		super();
 		mozdonyok = list;
@@ -49,6 +61,10 @@ public class Idõzítõ extends Timer {
 			m.tickAkció();
 	}
 
+	/**
+	 * Ciklusidõ lekérdezésére használatos függvény
+	 * @return ciklusidõ
+	 */
 	public int getCiklusidõ(){
 		return ciklusidõ;
 	}
