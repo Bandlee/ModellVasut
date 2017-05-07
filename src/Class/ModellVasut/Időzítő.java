@@ -16,6 +16,7 @@ import java.util.Timer;
 public class Idõzítõ extends Timer {
 
 	private List<Mozdony> mozdonyok;
+	private List<KeresztezõSín> ksínek;
 	private int ciklusidõ;
 	/**
 	 * Konstruktor az Idõzítõ osztály példányosításához
@@ -26,9 +27,10 @@ public class Idõzítõ extends Timer {
 		mozdonyok = list;
 	}
 
-	public Idõzítõ( List<Mozdony> list,int sebesség){
+	public Idõzítõ( List<Mozdony> list,List<KeresztezõSín> _ksínek,int sebesség){
 		super();
 		mozdonyok = list;
+		ksínek = _ksínek;
 		ciklusidõ = 480/sebesség;
 
 	}
@@ -41,6 +43,8 @@ public class Idõzítõ extends Timer {
 	 * az idõ eltelését szimbolizálja, idõegységenként hívódik meg
 	 */
 	public void tick() throws  VegException{
+		for (KeresztezõSín ksn : ksínek )
+			ksn.reset();
 		for (Mozdony m : mozdonyok)
 			m.tickAkció();
 	}

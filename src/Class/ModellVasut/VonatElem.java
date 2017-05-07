@@ -22,6 +22,7 @@ public class VonatElem implements IMegjeleníthetõ {
 	protected Kocsi következõ;
 
 
+
 	/**
 	 * megmutatja, hogy van-e utas a vonatelemen.
 	 * @return hamissal tér vissza, azokban az esetekben, ahol lehet utas, felülírjuk a metódust
@@ -114,7 +115,8 @@ public class VonatElem implements IMegjeleníthetõ {
 
 
 		/**ellenörzi, hogy ahova került ott van-e olyan vonatelem, ami ellentétes irányú
-		 * azonos irányú vonatelemmel történõ ütközést nem detektál, helyes pályafileoknál nem okoz gondot*/
+		 * azonos irányú vonatelemmel történõ ütközést nem detektál, helyes pályafileoknál nem okoz gondot
+		 * megoldja a csomopontnál lévõ ütközésdetektálást is*/
         if (tartózkodásiHely.getÁthaladóElem()!=null &&tartózkodásiHely.getÁthaladóElem().irány != this.irány){
             JátékVége v = new JátékVége();
             v.vég();

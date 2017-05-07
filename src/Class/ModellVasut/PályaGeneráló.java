@@ -76,6 +76,7 @@ public class PályaGeneráló {
 
 		List<Mozdony> mozdonyok = new LinkedList<>(); //->idõzítõnek csak
 		List<Csomópont> csomópontok = new ArrayList<>(); //->elemekbe majd + pályagenhez kell (noid)
+		List<KeresztezõSín> ksínek = new LinkedList<>();
 
 		List<IMegjeleníthetõ> elemek = new LinkedList<>(); //->Controllernek
 		List<IKattintható> kattinthatók = new LinkedList<>(); //->Controllernek
@@ -103,10 +104,9 @@ public class PályaGeneráló {
 					break;
 
 				case "Ksn":
-					csomópontok.add(new KeresztezõSín(
-							Integer.parseInt(params[0]),
-							Integer.parseInt(params[1])
-					));
+					KeresztezõSín ksn = new KeresztezõSín(Integer.parseInt(params[0]), Integer.parseInt(params[1]));
+					csomópontok.add(ksn);
+					ksínek.add(ksn);
 					break;
 
 				case "Vlt":
@@ -169,7 +169,7 @@ public class PályaGeneráló {
 		for (VonatElem ve : vonatelemek)
 			elemek.add(ve);
 
-		Idõzítõ idõ = new Idõzítõ(mozdonyok,sebesség);
+		Idõzítõ idõ = new Idõzítõ(mozdonyok,ksínek,sebesség);
 		Állomás.setNemleszállt(nemleszállt);
 		ctrl.setElemek(elemek);
 		ctrl.setKattinthatók(kattinthatók);

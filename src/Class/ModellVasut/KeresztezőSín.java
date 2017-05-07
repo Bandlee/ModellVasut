@@ -15,13 +15,23 @@ import java.util.List;
  */
 public class KeresztezõSín extends Csomópont {
 
+
+    private boolean voltHasználva;
+
     /**
      * A KeresztezõSínt Csomópontként, annak konstruktorával hozzuk létre.
      * A sínpárokat azok index-ével fogjuk azonosítani:
      * Összetartoznak a 0, 2 indexû és az 1, 3 indexû SínElemek
      */
     public KeresztezõSín (int x, int y) {
+
         super(x,y);
+        voltHasználva = false;
+    }
+
+
+    public void reset(){
+        voltHasználva =false;
     }
 
     /**
@@ -52,18 +62,23 @@ public class KeresztezõSín extends Csomópont {
             v.setPozíció(hova);
             if(hova.getSínvég1()==this) v.setIrány(true); else v.setIrány(false);
         }
+            //vonatelemben megoldva
+//        if(s.getÁthaladóElem()!=null && hova.getÁthaladóElem()!=null){
+//            if(s.getÁthaladóElem().getIrány()!=hova.getÁthaladóElem().getIrány()){
+//                return false;
+//            }
+//        }
+        if (voltHasználva)
+            return false;
 
-        if(s.getÁthaladóElem()!=null && hova.getÁthaladóElem()!=null){
-            if(s.getÁthaladóElem().getIrány()!=hova.getÁthaladóElem().getIrány()){
-                return false;
-            }
-        }
-
-        for (SínElem se: befutóSínek) {
+        voltHasználva = true;
+        /*for (SínElem se: befutóSínek) {
             if (se != s && se!=hova) {
-                if(se.getÁthaladóElem()!=null) return false;
+                if(se.getÁthaladóElem()!=null && se.getÁthaladóElem().getLépett())
+                    z++;
             }
         }
+        if (z==2) return  false;*/
         return true;
     }
 
