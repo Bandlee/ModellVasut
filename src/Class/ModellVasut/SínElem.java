@@ -20,8 +20,8 @@ public class SínElem extends Hely {
 	private Csomópont sínvég2;
 
 	/**
-	 * A SínElem osztály konstruktora.
-	 * Belépés segítéséhez létrehozott konstruktor
+	 * Belépés segítéséhez létrehozott konstruktor, nem kell minden irányban járhatónak lennie
+	 * (csak true irányba járható)
 	 * @param csp Belpési pont
 	 */
 	public SínElem( Csomópont csp){
@@ -34,8 +34,8 @@ public class SínElem extends Hely {
 	}
 
 	/**
-	 * A SínElem osztály konstruktora.
 	 * Belépés segítéséhez létrehozott konstruktor, nem kell minden irányban járhatónak lennie
+	 * (csak true irányba járható)
 	 * @param se a SínElemek ami mögé leteszzük a következõt
 	 */
 	public SínElem( SínElem se){
@@ -48,12 +48,15 @@ public class SínElem extends Hely {
 
 	}
 
-
 	/**
 	 * A SínElem osztály konstruktora.
-	 * @param láth a SínElem láthatósága
+	 * Létrehoz egy sínelemet az adott láthatósággal,
+	 * ami a két megadott csomópont között található, x,y helyen.
 	 * @param csp1 a SínElemek alkotta sín egyik végsõ csomópontja
 	 * @param csp2 a SínElemek alkotta sín másik végsõ csomópontja
+	 * @param láth a SínElem láthatósága
+	 * @param x a SínElem x koordinátája
+	 * @param y a SínElem y koordinátája
 	 */
 	public SínElem( Csomópont csp1, Csomópont csp2, boolean láth, int x, int y){
 		super(x,y);
@@ -186,7 +189,14 @@ public class SínElem extends Hely {
 	 */
 	public Csomópont getSínvég2() { return sínvég2; }
 
-
+	/**
+	 * Két csomópont között létrehoz egymástól egyenlõ távolságra lévõ
+	 * SínElemekbõl álló egybefüggõ sínt. cs1-bõl cs2-be vezet a true irány.
+	 * @param cs1 sín egyik vége
+	 * @param cs2 sín másik vége
+	 * @param láth létrehozandó sínelemek láthatósága
+	 * @return létrehozott sínelemek listája
+	 */
 	public static List<SínElem> összeköt(Csomópont cs1, Csomópont cs2, boolean láth){
 
 		/**távolság sínelemek között*/
@@ -196,31 +206,41 @@ public class SínElem extends Hely {
 		int y_dist = (cs2.getY()-cs1.getY());
 
 
-		/** 2 csomópont közti szakasz hossza*/
+		/** A két csomópont közti szakasz hossza*/
 		double szh =  Math.sqrt(x_dist*x_dist + y_dist*y_dist);
 
-
+		/** Hány darab sínelem rakható le a két csomópont között (egész db)*/
 		int sedb = (int) ((szh/táv));
+
+		/** táv illesztése a darabszámhoz*/
 		táv = szh/sedb;
 
 		double x_szorz = x_dist/(double)szh;
 		double y_szorz = y_dist/(double)szh;
+
 		List<SínElem> temp_se =new ArrayList<>();
 
+
+		/** 1. sínelem elhelyezése a csomóponttól fél távnyira, így
+		 * az utolsó is fél távnyira lesz a hozzá közel esõ csomóponthoz
+		 */
 		double _x = cs1.getX() +0.5* táv * x_szorz;
 		double _y = cs1.getY() + 0.5* táv * y_szorz;
 		temp_se.add(new SínElem(cs1, cs2, láth,(int)Math.round(_x),(int) Math.round(_y)));
 
+		/** sínelemek létrehozása egymás után, szomszédok között táv távolsággal */
 		for (int i = 1; i < sedb; i++) {
 			_x += táv * x_szorz;
 			_y +=  táv * y_szorz;
 			temp_se.add(new SínElem(cs1, cs2, láth,(int)Math.round(_x),(int) Math.round(_y)));
 		}
+
+		/** sínelemek összekötése egymással */
 		for (int i = 0; i < temp_se.size() - 1; i++) {
 			temp_se.get(i).setKövetkezõ(temp_se.get(i + 1));
 		}
 
-
+		/** sínvégek megadása a csomópontoknak */
 		cs1.setBefutóSín(temp_se.get(0));
 		cs2.setBefutóSín(temp_se.get(temp_se.size()-1));
 

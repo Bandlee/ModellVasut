@@ -27,7 +27,8 @@ public class Mozdony extends VonatElem {
 		késleltetés = k;
 		belépésipont = b;
 		irány = true;
-		setPozíció(new SínElem(b)); //láthatatlan sín amirõl tovább lép, ha elindult
+		/**láthatatlan SínElem amirõl tovább lép a belépési pontba, ha elindulhat*/
+		setPozíció(new SínElem(b));
 	}
 
 	public void finalize() throws Throwable {
@@ -72,31 +73,27 @@ public class Mozdony extends VonatElem {
 		return belépésipont;
 	}
 
+	/**
+	 * Mozdony kirajzolása a képernyõre
+	 * @param g Graphic objektum amivel kirajzolunk a képernyõre.
+	 */
 	@Override
 	public void rajzol(Graphics g) {
-		if (tartózkodásiHely!=null && tartózkodásiHely.getLátható()) {
 
+		/** kirajzolás csak ha látható SínElemen tartozkodik*/
+		if (tartózkodásiHely!=null && tartózkodásiHely.getLátható()) {
 			BufferedImage img;
+			/** irány szerint képválasztás*/
 			if (irány) img = Ikonok.getIkon("Mozdony_jobb.png");
 			else img = Ikonok.getIkon("Mozdony_bal.png");
+
+			/** méretezés */
 			int w = (int) (img.getWidth() * Ikonok.getNagyításVe());
 			int h = (int) (img.getWidth() * Ikonok.getNagyításVe());
+
+			/** kirajzolás középre igazítva, az számolt méretekkel*/
 			g.drawImage(img, tartózkodásiHely.getX() - w / 2, tartózkodásiHely.getY() - h / 2, w, h, null);
-
 		}
-		/*try {
-
-			if (tartózkodásiHely!=null && tartózkodásiHely.getLátható()) {
-				//System.out.println(tartózkodásiHely.getX()+" , " +tartózkodásiHely.getY());
-				BufferedImage img;
-				if (irány) img = ImageIO.read(new File("ikonok/Mozdony_jobb.png"));
-				else img = ImageIO.read(new File("ikonok/Mozdony_bal.png"));
-
-				g.drawImage(img, tartózkodásiHely.getX()-img.getWidth()/2, tartózkodásiHely.getY()-img.getHeight()/2, null);
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}*/
 
 	}
 

@@ -13,16 +13,19 @@ import java.io.IOException;
 public class SzenesKocsi extends Kocsi {
 
 
-    public SzenesKocsi() {}
-
     /**
      *
-     * SzemélyKocsi konstruktor - belpésére váró SzemályKocsihoz
+     * SzemélyKocsi konstruktor - belpésére váró SzenesKocsihoz
      * @param ve a vonat elem, ami után kerül a a kocsi
      */
     public SzenesKocsi( VonatElem ve) {
         irány = true;
+        leszállhat = true;
+
+        /** láthatatlan SínElem amirõl tovább lépve egyszer eljut a mozdony belépési pontjához */
         setPozíció(new SínElem(ve.getPozíció()));
+
+        /** Bekötia SzemélyKocsit a megadott VonatElem mögé */
         ve.setKövetkezõ(this);
     }
 
@@ -64,17 +67,26 @@ public class SzenesKocsi extends Kocsi {
     }
 
 
-
+    /**
+     * SzenesKocsi kirajzolása a képernyõre
+     * @param g Graphic objektum amivel kirajzolunk a képernyõre.
+     */
     @Override
     public void rajzol(Graphics g) {
-        if (tartózkodásiHely!=null && tartózkodásiHely.getLátható()) {
 
+        /** kirajzolás csak ha látható SínElemen tartozkodik*/
+        if (tartózkodásiHely!=null && tartózkodásiHely.getLátható()) {
             BufferedImage img;
             img = Ikonok.getIkon("Szenes.png");
+
+            /** méretezés */
             int w = (int) (img.getWidth() * Ikonok.getNagyításVe());
             int h = (int) (img.getWidth() * Ikonok.getNagyításVe());
+
+            /** kirajzolás középre igazítva, az számolt méretekkel*/
             g.drawImage(img, tartózkodásiHely.getX() - w / 2, tartózkodásiHely.getY() - h / 2, w, h, null);
 
         }
     }
+
 }

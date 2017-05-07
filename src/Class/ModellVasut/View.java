@@ -42,11 +42,11 @@ public class View {
         };
         ablak.add(pane);
 
-        //controllernek lesz továbbadva majd, aki ugyanezt fogja csinálni
+
         pane.addMouseListener(new MouseAdapter() {
                                   @Override
-                                  public void mouseClicked(MouseEvent e) {
-                                      super.mouseClicked(e);
+                                  public void mousePressed(MouseEvent e) {
+                                      super.mousePressed(e);
                                       ctrl.katt(e);
                                   }
                               });

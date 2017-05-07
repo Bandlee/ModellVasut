@@ -8,8 +8,10 @@ import java.awt.image.BufferedImage;
  * Created by rolac on 2017. 04. 15..
  */
 public class SzemélyKocsi extends Kocsi {
-
+    /** SzemélyKocsi színe */
     private String szín;
+
+    /** Megadja, hogy vannak-e utasok a vonaton*/
     private boolean utas;
 
     /**
@@ -24,7 +26,7 @@ public class SzemélyKocsi extends Kocsi {
 
     /**
      *
-     * SzemélyKocsi konstruktor - belpésére váró SzemályKocsihoz
+     * SzemélyKocsi konstruktor - belpésére váró SzemélyKocsihoz
      * @param _szin a kocsi színe
      * @param utasok megmutatja, hogy vannak-e utasok a kocsin
      * @param ve a vonat elem, ami után kerül a a kocsi
@@ -34,7 +36,11 @@ public class SzemélyKocsi extends Kocsi {
         utas = utasok;
         irány = true;
         leszállhat= true;
+
+        /** láthatatlan SínElem amirõl tovább lépve egyszer eljut a mozdony belépési pontjához */
         setPozíció(new SínElem(ve.getPozíció()));
+
+        /** Bekötia SzemélyKocsit a megadott VonatElem mögé */
         ve.setKövetkezõ(this);
     }
 
@@ -55,7 +61,7 @@ public class SzemélyKocsi extends Kocsi {
             utas = false;
 
             if (következõ != null) {
-                //leszálltak -> következõ engedélyezése
+                /**leszálltak -> következõ engedélyezése*/
                 következõ.setLeszállhat(true);
             }
             return true;
@@ -69,6 +75,7 @@ public class SzemélyKocsi extends Kocsi {
      * A metódus megadja, hogy adott színû állomás mellett elhaladva szállnak-e fel a SzemélyKocsira utasok.
      * Amennyiben igen, ezt jelzi az utas tulajdonság beállításával, valamit tíltja az utána következõ
      * kocsinak a leszállást.
+     * Függvényben feltételezzük, hogy az állomáson vannak utasok.
      *
      * @param s: Az állomás színét jelöli a paraméter, ez alapján fogjuk eldönteni,
      *           hogy szállhatnak-e fel utasok az adott SzemélyKocsira a megadott színû állomáson.
@@ -79,12 +86,11 @@ public class SzemélyKocsi extends Kocsi {
         if (utas == false && szín.equals(s)) {
             utas = true;
             if (következõ != null) {
-                //felszálltak -> következõ tiltása
+                /**felszálltak -> következõ tiltása*/
                 következõ.setLeszállhat(false);
             }
             return true;
         }
-
         return false;
     }
 
@@ -102,11 +108,11 @@ public class SzemélyKocsi extends Kocsi {
 
         this.leszállhat = leszállhat;
         if (következõ != null) {
-            //tiltás továbbadása pl ha felszállás történik
+            /** tiltás továbbadása pl ha felszállás történik */
             if (leszállhat == false) {
                 következõ.setLeszállhat(false);
             }
-            //engedély továbbadása, csak akkor, ha az aktuális SzemélyKocsi üres
+            /** engedély továbbadása, csak akkor, ha az aktuális SzemélyKocsi üres */
             else if (utas == false) {
                 következõ.setLeszállhat(true);
             }
@@ -145,40 +151,36 @@ public class SzemélyKocsi extends Kocsi {
     @Override
     public boolean getLeszállhat(){return leszállhat;}
 
-
+    /**
+     * SzemélyKocsi kirajzolása a képernyõre
+     * @param g Graphic objektum amivel kirajzolunk a képernyõre.
+     */
     @Override
     public void rajzol(Graphics g) {
-        if (tartózkodásiHely!=null && tartózkodásiHely.getLátható()) {
 
+        /** kirajzolás csak ha látható SínElemen tartozkodik*/
+        if (tartózkodásiHely!=null && tartózkodásiHely.getLátható()) {
             BufferedImage img;
+
+            /** képválasztás a kocsi tulajdonságai szerint */
             img = Ikonok.getIkon("Kocsi_"+szín + (utas ? "_tele.png" : "_ures.png") );
 
             if (img == null){
-                //ha a kép nem lett beolvasva
+                /** ha nincs megfelelõ kép */
                 g.setColor(Color.MAGENTA);
                 g.drawRect(tartózkodásiHely.getX()-15,tartózkodásiHely.getY()-15,30,30);
                 return;
             }
-
+            /** méretezés */
             int w = (int) (img.getWidth() * Ikonok.getNagyításVe());
             int h = (int) (img.getHeight() * Ikonok.getNagyításVe());
+
+            /** kirajzolás középre igazítva, az számolt méretekkel*/
             g.drawImage(img, tartózkodásiHely.getX() - w / 2, tartózkodásiHely.getY() - h / 2, w, h, null);
-
         }
-		/*try {
-
-			if (tartózkodásiHely!=null && tartózkodásiHely.getLátható()) {
-				//System.out.println(tartózkodásiHely.getX()+" , " +tartózkodásiHely.getY());
-				BufferedImage img;
-				if (irány) img = ImageIO.read(new File("ikonok/Mozdony_jobb.png"));
-				else img = ImageIO.read(new File("ikonok/Mozdony_bal.png"));
-
-				g.drawImage(img, tartózkodásiHely.getX()-img.getWidth()/2, tartózkodásiHely.getY()-img.getHeight()/2, null);
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}*/
 
     }
+
+
 
 }
