@@ -137,19 +137,7 @@ public class SzemélyKocsi extends Kocsi {
         //leszálhat létrehozáskor true
     }
 
-    /**
-     * Megmutatja, hogy van-e utas a SzemélyKocsiban
-     * @return utas paraméter
-     */
-    @Override
-    public boolean getUtas(){return utas;}
 
-    /**
-     * Megmutatja, hogy az utasok leszállhatnak-e a kocsiról, az adott paraméter értékét adja vissza.
-     * @return leszállhat paraméter értéke
-     */
-    @Override
-    public boolean getLeszállhat(){return leszállhat;}
 
     /**
      * SzemélyKocsi kirajzolása a képernyõre

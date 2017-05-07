@@ -8,18 +8,28 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
+ * Ikonok betöltésére, és megjelenített képek méretarányainak
+ * számontartására létrehozott osztály.
  * Created by Akos on 2017.05.05..
  */
 public class Ikonok {
+    /** Ikonokat tároló map, a képekhez a fájlnevük tartozik */
     static private HashMap<String,BufferedImage> imgMap;
+    /** Csomópontok nagyítását megadó változó */
     static private double ScaleCsp;
+    /** VonatElemek nagyítását megadó változó */
     static private double ScaleVe ;
-   // static private double ScaleCsp;
+
+    /**
+     * Inicializálja az osztályt.
+     * Beolvassa az Ikonok mappában található képeket, beállítja a méretarányokat.
+     * @param nagyításCsp csomópontok nagyításda
+     * @param nagyításVe vonatelemek nagyítása
+     */
     static public void Init(double nagyításCsp, double nagyításVe){
         imgMap = new HashMap<>();
         File folder = new File("Ikonok");
         File[] ik = folder.listFiles();
-        //HashMap<String,BufferedImage> im = new HashMap<>();
         for (File f : ik) {
             try {
                 BufferedImage bimg = ImageIO.read(f);
@@ -35,16 +45,27 @@ public class Ikonok {
         //return false;
     }
 
-
+    /**
+     * Adott stringhez tartozó kép lekérése.
+     * @param fájlnév kép fájlneve
+     * @return kért kép
+     */
     static public BufferedImage getIkon(String fájlnév) {
         return imgMap.get(fájlnév);
     }
 
-
+    /**
+     * Csomópontok nagyításának lekérésre használt függvény
+     * @return csomópontok nagyítása
+     */
     static public double getNagyításCsp(){
         return ScaleCsp;
     }
 
+    /**
+     * VonatElemek nagyításának lekérésre használt függvény
+     * @return vonatelemek nagyítása
+     */
     static public double getNagyításVe(){
         return ScaleVe;
     }
