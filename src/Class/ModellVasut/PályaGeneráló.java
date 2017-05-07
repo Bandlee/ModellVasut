@@ -1,6 +1,7 @@
 package Class.ModellVasut;
 
 
+import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -92,6 +93,13 @@ public class PályaGeneráló {
 
 		List<IKattintható> kattinthatók = new LinkedList<>(); //->Controllernek
 
+		/** háttér hozzáadása */
+		elemek.add(new IMegjeleníthetõ() {
+			@Override
+			public void rajzol(Graphics g) {
+				g.drawImage(Ikonok.getIkon("Background.jpg"),0,0,null);
+			}
+		});
 
 		BufferedReader br = null;
 		String sor;

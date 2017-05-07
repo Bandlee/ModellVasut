@@ -129,17 +129,25 @@ public class AlagútSzáj extends Csomópont implements IKattintható {
 		return false;
 	}
 
-
+	/**
+	 * AlagútSzáj kirajzolása a képernyõre
+	 * @param g Graphic objektum amivel kirajzolunk a képernyõre.
+	 */
 	@Override
 	public void rajzol(Graphics g) {
 
 
 
 		BufferedImage img;
+		/** képválasztás a alagút aktivitása szerint */
 		if (aktív) img = Ikonok.getIkon("Alagutszaj_on.png");
 		else img = Ikonok.getIkon("Alagutszaj_off.png");
+
+		/** méretezés */
 		int w = (int) (img.getWidth() * Ikonok.getNagyításCsp());
 		int h = (int) (img.getWidth() * Ikonok.getNagyításCsp());
+
+		/** kirajzolás középre igazítva, az számolt méretekkel*/
 		g.drawImage(img, x - w/2, y - h/2, w, h, null);
 
 

@@ -44,14 +44,6 @@ public class SzenesKocsi extends Kocsi {
         }
     }
 
-    /**
-     * Megmutatja, hogy szállhatnak-e le róla utasok - nem.
-     * @return hamis
-     */
-    public boolean getLeszállhat(){
-        return false;
-    }
-
 
     /**
      * Hozzáköti a szeneskocsihoz a megadott kocsit, ez fog utána következni.
