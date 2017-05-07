@@ -101,7 +101,7 @@ public class Menü implements IMegjeleníthetõ, IKattintható {
 			}
 			/** Szint: - játék szintjének növelése */
 			else if (e.getY()<rect.y+rect.height*2/4){
-				if (szint <5) szint++;
+				if (szint <6) szint++;
 				else szint = 1;
 			}
 			/** Sebesség: - játék sebességének növelése */
