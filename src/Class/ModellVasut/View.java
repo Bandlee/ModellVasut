@@ -1,15 +1,11 @@
 package Class.ModellVasut;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.io.File;
 import java.util.List;
 
-import static java.lang.Thread.sleep;
 
 /**
  * Megjelenítésért felelõs oztály.
@@ -76,8 +72,10 @@ public class View {
 
     /** újrarajzoltatja az ablakot */
     public void mindenRajzolása() {
-        ablak.revalidate();
-        System.out.println("Repaint called");
+        ablak.repaint();
+        //repaint nélkül semmit nem fog újra rajzolni
+        //legalábbis nekem teszteléskor
+        //új komponenst egyetlen egyszer kap csak futási idõ alatt az ablak
     }
 
     /**
