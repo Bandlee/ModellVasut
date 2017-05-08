@@ -1,10 +1,6 @@
 package Class.ModellVasut;
 
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
 /**
  * A kocsikat megvalósító osztály, a vonatlemebõl öröklõdik
  * van abstract metódusa, így absztrakt osztály

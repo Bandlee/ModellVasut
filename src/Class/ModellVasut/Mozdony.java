@@ -1,11 +1,7 @@
 package Class.ModellVasut;
 
-
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 /**
  * A mozdonyokat megvalósító osztály. A vonatelem leszármazottja

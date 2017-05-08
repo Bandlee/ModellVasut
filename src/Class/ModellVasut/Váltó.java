@@ -9,7 +9,6 @@ package Class.ModellVasut;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
-import java.util.List;
 
 /**
  * A váltót megvalósító osztály
@@ -37,6 +36,7 @@ public class Váltó extends Csomópont implements IKattintható {
 	 * (vagy az utolsót követve az elsõ) SínElemre változtatja.
 	 */
 	public void felhasználóAkció(){
+
 
 		if (aktív.getÁthaladóElem() == null || rögzített.getÁthaladóElem() == null) {
 			/** egy változó segítségével lépünk az elemek között*/
@@ -125,37 +125,43 @@ public class Váltó extends Csomópont implements IKattintható {
 	 */
 	public SínElem getRögzített(){return rögzített;}
 
+
+	/**
+	 * Függvény megnézi, hogy a kattintás a váltonál történt-e,
+	 * ha igen, akkor pedig végrehajtja a felhasznlóAkciót.
+	 * @param e kattintást leíró érték
+	 * @return kattintás okozott-e változást
+	 */
 	@Override
 	public boolean voltKattintva(MouseEvent e) {
+
+		/** r sugarú körön belül vizsgálunk */
 		int r = (int) (50*Ikonok.getNagyításCsp());
 
 		if(Math.sqrt((x-e.getX())*(x-e.getX())+(y-e.getY())*(y-e.getY())) < r) {
 			felhasználóAkció();
 			return true;
 		}
-
 		return false;
 	}
 
+
+	/**
+	 * Váltó kirajzolása a képernyõre.
+	 * A váltót ugyan úgy jelenik meg, mint a csomópont,a zzal a kiegészítéssel,
+	 * hogy be vannak színezve az összekötött sínelemek.
+	 * @param g Graphic objektum amivel kirajzolunk a képernyõre.
+	 */
 	@Override
 	public void rajzol(Graphics g) {
 
-		//try {
-
-		//final BufferedImage image = ImageIO.read(new File("csp.png"));
-		//g.drawImage(image, x,y,null);
-		//g.setColor(Color.BLACK);
-		//g.fillOval(x-20,y-20,40,40);
-
-		/*} catch (IOException e) {
-			e.printStackTrace();
-		}*/
+		/** Csomópont kirajzolás */
 		super.rajzol(g);
-
 
 		int w = (int) (30 * Ikonok.getNagyításVe());
 		int h = (int) (30 * Ikonok.getNagyításVe());
 
+		/** aktív SínElemek jelölése a képernyõn*/
 		g.setColor(Color.blue);
 		g.fillOval(rögzített.getX()-w/2,rögzített.getY()-h/2,w,h);
 		g.setColor(Color.green);

@@ -3,10 +3,6 @@ package Class.ModellVasut;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.List;
 
 /**
  * Az állomásokat megvalósító osztály, a Csomópont leszármazottja.
@@ -113,25 +109,28 @@ public class Állomás extends Csomópont {
 	    nemleszállt = n;
     }
 
-
+	/**
+	 * Állomás kirajzolása a képernyõre
+	 * @param g Graphic objektum amivel kirajzolunk a képernyõre.
+	 */
 	@Override
 	public void rajzol(Graphics g) {
 
-
 		BufferedImage img;
+		/** képválasztás az állomás tulajdonságai szerint */
 		img = Ikonok.getIkon("Allomas_" + szín + (felszálló ? "_tele.png" : "_ures.png"));
 
 		if (img == null) {
-			//ha a kép nem lett beolvasva
+			/** ha nincs megfelelõ kép */
 			g.setColor(Color.MAGENTA);
 			g.drawRect(x - 15, y - 15, 30, 30);
 			return;
 		}
-
+		/** méretezés */
 		int w = (int) (img.getWidth() * Ikonok.getNagyításCsp());
 		int h = (int) (img.getHeight() * Ikonok.getNagyításCsp());
+
+		/** kirajzolás középre igazítva, az számolt méretekkel*/
 		g.drawImage(img, x - w / 2, y - h / 2, w, h, null);
-
-
 	}
 }

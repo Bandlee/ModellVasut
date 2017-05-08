@@ -1,7 +1,6 @@
 package Class.ModellVasut;
 
 import java.awt.*;
-import java.util.List;
 
 /**
  * A keresztezõ síneket megvalósító osztály
@@ -15,7 +14,7 @@ import java.util.List;
  */
 public class KeresztezõSín extends Csomópont {
 
-
+    /** Megadja, hogy az adott ciklusban volt-e már használva a KeresztezõSín */
     private boolean voltHasználva;
 
     /**
@@ -30,6 +29,9 @@ public class KeresztezõSín extends Csomópont {
     }
 
 
+    /**
+     * voltHasználva értéket hamisra állítja, minden léptetés elõtt hívni kell.
+     */
     public void reset(){
         voltHasználva =false;
     }
@@ -44,6 +46,10 @@ public class KeresztezõSín extends Csomópont {
      */
     public boolean tovább(VonatElem v, SínElem s){
         SínElem hova = null;
+
+        /** Ha már volt használva, akkor ütközés törént ebben a ciklusban */
+        if (voltHasználva)
+            return false;
 
         /** a forrás sínelem indexe alapján vizsgálunk */
         int i = befutóSínek.indexOf(s);
@@ -62,43 +68,25 @@ public class KeresztezõSín extends Csomópont {
             v.setPozíció(hova);
             if(hova.getSínvég1()==this) v.setIrány(true); else v.setIrány(false);
         }
-            //vonatelemben megoldva
-//        if(s.getÁthaladóElem()!=null && hova.getÁthaladóElem()!=null){
-//            if(s.getÁthaladóElem().getIrány()!=hova.getÁthaladóElem().getIrány()){
-//                return false;
-//            }
-//        }
-        if (voltHasználva)
-            return false;
 
         voltHasználva = true;
-        /*for (SínElem se: befutóSínek) {
-            if (se != s && se!=hova) {
-                if(se.getÁthaladóElem()!=null && se.getÁthaladóElem().getLépett())
-                    z++;
-            }
-        }
-        if (z==2) return  false;*/
         return true;
     }
 
 
-
+    /**
+     * KeresztezõSín kirajzolása a képernyõre (narancssárga pont).
+     * @param g Graphic objektum amivel kirajzolunk a képernyõre.
+     */
     @Override
     public void rajzol(Graphics g) {
 
-        //try {
+        /** középre igazított narancssárga telikör a számolt méretekkel*/
 
-        //final BufferedImage image = ImageIO.read(new File("csp.png"));
-        //g.drawImage(image, x,y,null);
         g.setColor(Color.orange);
         int w = (int) (40 * Ikonok.getNagyításCsp());
         int h = (int) (40 * Ikonok.getNagyításCsp());
         g.fillOval(x-w/2,y-h/2,w,h);
-
-		/*} catch (IOException e) {
-			e.printStackTrace();
-		}*/
 
     }
 }

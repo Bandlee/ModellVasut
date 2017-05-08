@@ -1,14 +1,8 @@
 package Class.ModellVasut;
 
-
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -116,9 +110,16 @@ public class AlagútSzáj extends Csomópont implements IKattintható {
 			actual.alagút = null;
 	}
 
-
+	/**
+	 * Függvény megnézi, hogy a kattintás az alagútszájnál történt-e,
+	 * ha igen, akkor pedig végrehajtja a felhasznlóAkciót.
+	 * @param e kattintást leíró érték
+	 * @return kattintás okozott-e változást
+	 */
 	@Override
 	public boolean voltKattintva(MouseEvent e) {
+
+		/** r sugarú körön belül vizsgálunk */
 		int r = (int) (50*Ikonok.getNagyításCsp());
 
 		if(Math.sqrt((x-e.getX())*(x-e.getX())+(y-e.getY())*(y-e.getY())) < r) {

@@ -102,14 +102,6 @@ public abstract class VonatElem implements IMegjeleníthetõ {
             tartózkodásiHely.setÁthaladóElem(this);
         }
 
-        //redundáns a feljebb lévõ 6 sor mellett
-		//átlépés nem lehet, mivel a vonatokat "egyenként" léptetjük és nem egyszerre
-		/*boolean ütköz = tartózkodásiHely.ütközésElõrejelez();
-		if(!ütköz) {
-			throw new VegException("Játék Vége");
-		}*/
-
-
 }
 
 	/**

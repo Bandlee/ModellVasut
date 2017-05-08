@@ -1,11 +1,6 @@
 package Class.ModellVasut;
 
-
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -98,21 +93,19 @@ public class Csomópont extends Hely implements IMegjeleníthetõ {
 	    ids=0;
     }
 
+	/**
+	 * Csomópont kirajzolása a képernyõre (fekete pont).
+	 * @param g Graphic objektum amivel kirajzolunk a képernyõre.
+	 */
 	@Override
 	public void rajzol(Graphics g) {
 
-		//try {
+		/** középre igazított fekete telikör a számolt méretekkel*/
 
-			//final BufferedImage image = ImageIO.read(new File("csp.png"));
-			//g.drawImage(image, x,y,null);
-			g.setColor(Color.BLACK);
-			int w = (int) (40 * Ikonok.getNagyításCsp());
-			int h = (int) (40 * Ikonok.getNagyításCsp());
-			g.fillOval(x-w/2,y-h/2,w,h);
-
-		/*} catch (IOException e) {
-			e.printStackTrace();
-		}*/
+		g.setColor(Color.BLACK);
+		int w = (int) (40 * Ikonok.getNagyításCsp());
+		int h = (int) (40 * Ikonok.getNagyításCsp());
+		g.fillOval(x-w/2,y-h/2,w,h);
 
 	}
 }
