@@ -39,7 +39,7 @@ public class View {
         ablak.setVisible(true);
 
         /** Megjelenítõ felület*/
-        JPanel pane = new JPanel() {
+        JPanel panel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
@@ -51,7 +51,7 @@ public class View {
             }
         };
         /** eseménykezelõ kattintásra */
-        pane.addMouseListener(new MouseAdapter() {
+        panel.addMouseListener(new MouseAdapter() {
                                   @Override
                                   public void mousePressed(MouseEvent e) {
                                       super.mousePressed(e);
@@ -59,13 +59,25 @@ public class View {
                                   }
                               });
         /** felület hozzáadása az ablakhoz */
-        ablak.add(pane);
+        ablak.add(panel);
+
+        ablak.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                if (JOptionPane.showConfirmDialog(ablak,
+                        "Biztos ki akarsz lépni a játékból?", "Kilépés megerõsítése",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
+                    bezárás();
+                }
+            }
+        });
     }
 
     /** újrarajzoltatja az ablakot */
     public void mindenRajzolása() {
-        ablak.repaint();
-
+        ablak.revalidate();
+        System.out.println("Repaint called");
     }
 
     /**
