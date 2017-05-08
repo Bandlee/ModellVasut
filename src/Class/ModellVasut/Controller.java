@@ -26,7 +26,6 @@ public class Controller {
      */
     public Controller(){
         nézet = new View(this);
-        menüMegnyitása(""); //nélküle nincs menü
     }
 
 
