@@ -75,9 +75,7 @@ public abstract class VonatElem implements IMegjeleníthetõ {
 			if(tartózkodásiHely.getKövetkezõ() == null) {
 				boolean tmp = tartózkodásiHely.keresztez(irány, this);
 				if(!tmp){
-					JátékVége v = new JátékVége();
-					v.vég();
-					return;
+					throw new VegException("Játék Vége");
 				}
 			} else {
 				setPozíció(tartózkodásiHely.getKövetkezõ());
@@ -86,9 +84,7 @@ public abstract class VonatElem implements IMegjeleníthetõ {
             if(tartózkodásiHely.getElõzõ() == null) {
                 boolean tmp = tartózkodásiHely.keresztez(irány, this);
                 if (!tmp) {
-                    JátékVége v = new JátékVége();
-                    v.vég();
-                    return;
+					throw new VegException("Játék Vége");
                 }
             } else {
                 setPozíció(tartózkodásiHely.getElõzõ());
@@ -101,8 +97,7 @@ public abstract class VonatElem implements IMegjeleníthetõ {
 		 * azonos irányú vonatelemmel történõ ütközést nem detektál, helyes pályafileoknál nem okoz gondot
 		 * megoldja a csomopontnál lévõ ütközésdetektálást is*/
         if (tartózkodásiHely.getÁthaladóElem()!=null &&tartózkodásiHely.getÁthaladóElem().irány != this.irány){
-            JátékVége v = new JátékVége();
-            v.vég();
+			throw new VegException("Játék Vége");
         } else {
             tartózkodásiHely.setÁthaladóElem(this);
         }
@@ -111,8 +106,7 @@ public abstract class VonatElem implements IMegjeleníthetõ {
 		//átlépés nem lehet, mivel a vonatokat "egyenként" léptetjük és nem egyszerre
 		/*boolean ütköz = tartózkodásiHely.ütközésElõrejelez();
 		if(!ütköz) {
-			JátékVége v = new JátékVége();
-			v.vég();
+			throw new VegException("Játék Vége");
 		}*/
 
 

@@ -27,7 +27,7 @@ public class Controller {
      */
     public Controller(){
         nézet = new View(this);
-        menüMegnyitása("Welcome");
+
     }
 
 
@@ -51,7 +51,7 @@ public class Controller {
                         játékVége("Game over!"); //Controller::játékVége()
                     }
                 }
-            }, idõzítõ.getCiklusidõ(), idõzítõ.getCiklusidõ());
+            }, 0, idõzítõ.getCiklusidõ());
         }
         else {
             menüMegnyitása("Controller nem kapott idõzítõt");
@@ -143,6 +143,7 @@ public class Controller {
      */
     public void kilépés(){
         nézet.bezárás();
+        if(idõzítõ != null) idõzítõ.cancel();
     }
 
 
